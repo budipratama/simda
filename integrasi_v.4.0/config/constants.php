@@ -36,6 +36,30 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
+/*
+|--------------------------------------------------------------------------
+| Defined table
+|--------------------------------------------------------------------------
+|
+| 
+|
+*/
+define('TBL_CONFIG_REK_1',							'Ms_Rek_1');
+define('TBL_CONFIG_REK_2',							'Ms_Rek_2');
+define('TBL_CONFIG_REK_3',							'Ms_Rek_3');
+define('TBL_CONFIG_REK_4',							'Ms_Rek_4');
+define('TBL_CONFIG_REK_5',							'Ms_Rek_5');
+define('TBL_KOROLARI',								'Ms_Korolari');
+
+define('TBL_AKUN',									'akun');
+define('TBL_KELOMPOK',								'kelompok');
+define('TBL_JENIS',									'jenis');
+define('TBL_OBYEK',									'obyek');
+define('TBL_RINCIAN',								'rincian');
+define('NOTIF_SUCCESS_INPUT','Data telah di masukan ke dalam sistem kami');
+define('NOTIF_UNIQUE_INPUT','Data yang anda masukan telah ada pada sistem kami');
+define('PESAN_FIELD_KOSONG','Data yang di inputkan tidak boleh kosong');
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
