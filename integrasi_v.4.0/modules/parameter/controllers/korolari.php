@@ -168,4 +168,9 @@ class Korolari extends CI_Controller {
 		$this->Korolari_model->delete($_POST);
 	}
 
+	public function registerJS($js)
+	{
+		echo "<script type='text/javascript'>$js</script>";
+	}
+
 }
