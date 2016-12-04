@@ -84,6 +84,11 @@ class MX_Loader extends CI_Loader
 		}
 	}	
 	
+	public function registerJS($js)
+	{
+		echo "<script type='text/javascript'>$js</script>";
+	}
+
 	/** Load a module config file **/
 	public function config($file = 'config', $use_sections = FALSE, $fail_gracefully = FALSE) {
 		return CI::$APP->config->load($file, $use_sections, $fail_gracefully, $this->_module);
