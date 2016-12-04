@@ -206,7 +206,9 @@
 	                                            <?php endforeach; ?>
 	                                        </tbody>
 	                                    </table>
+							        <?= base_url('parameter/korolari/update')?>
 							        </div>
+
 							         
                                 </div>
                             </div>
@@ -217,6 +219,14 @@
             <!-- #END# Tabs With Custom Animations -->
         </div>
     </section>
+    <?php
+    	$urlUpdate  = base_url('parameter/korolari/update');
+    	$this->registerJS("
+    		function pilih(id){
+	    		window.location.href = '".$urlUpdate."/'+id;
+	    	}
+    	");
+    ?>
     <script type="text/javascript">
     	var tempData 	= {}, 
     		d 			= document,
@@ -246,9 +256,9 @@
     		console.log(list.children);
     		alert('don\'t let me down');
     	}*/
-    	function pilih(id){
-    		window.location.href = window.location.href+"/update/"+id;
-    	}
+    	// function pilih(id){
+    	// 	window.location.href = window.location.href+"/update/"+id;
+    	// }
 
     	// event only number inputan
     	for(var i=0,fLen = input.length;i<fLen;i++){
