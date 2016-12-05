@@ -21,6 +21,8 @@
 
     <!-- Bootstrap Core Css -->
     <link href="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/bootstrap/css/bootstrap.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('public/templates/integrasi_v.4.0/css/budi.css');?>" rel="stylesheet">
+    <!-- <link href="<?php echo base_url('public/templates/integrasi_v.4.0/css/responsive.dataTables.css');?>" rel="stylesheet"> -->
 
     <!-- Waves Effect Css -->
     <link href="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/node-waves/waves.css');?>" rel="stylesheet" />
@@ -62,4 +64,5 @@
 	
 	<!-- BEGIN PAGE LEVEL STYLES datepicker -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/bootstrap-datepicker/css/datepicker3.css');?>"/>
+	<link href="<?php echo base_url('public/templates/rkpd_v.4.0/global/css/jquery.wizard.css');?>" type="text/css" rel="stylesheet">
 </head>

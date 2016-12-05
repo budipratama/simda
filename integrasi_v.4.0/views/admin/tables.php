@@ -32,7 +32,11 @@
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/momentjs/moment.js');?>"></script>
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js');?>"></script>
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/js/pages/forms/basic-form-elements.js');?>"></script>
-
+    <script type="text/javascript">
+        function href(url){
+            window.location.href = url;
+        }
+    </script>
 </body>
 <!-- END BODY -->
 </html>

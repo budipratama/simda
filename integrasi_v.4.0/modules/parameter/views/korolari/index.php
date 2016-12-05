@@ -46,6 +46,56 @@
 	                    <div class="body">
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	                                <!-- <div class="alert"> -->
+								        <!-- <button type="button" id="tutup-browse" style="display: none;float: right;">&times;</button> -->
+								        <button type="button" class="close" id="tutup-browse" style="display: none;z-index: 9999;position: relative;">&times;</button>
+
+								        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="table-browse">
+	                                        <thead>
+	                                        <tr>
+	                                            <th style="text-align:center; width:100px;display: none">id</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek 1</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek 2</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek 3</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek 4</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek 5</th>
+	                                            <th style="text-align:center; width:100px">D Rek 1</th>
+	                                            <th style="text-align:center; width:100px">D Rek 2</th>
+	                                            <th style="text-align:center; width:100px">D Rek 3</th>
+	                                            <th style="text-align:center; width:100px">D Rek 4</th>
+	                                            <th style="text-align:center; width:100px">D Rek 5</th>
+	                                            <th style="text-align:center; width:100px">K Rek 1</th>
+	                                            <th style="text-align:center; width:100px">K Rek 2</th>
+	                                            <th style="text-align:center; width:100px">K Rek 3</th>
+	                                            <th style="text-align:center; width:100px">K Rek 4</th>
+	                                            <th style="text-align:center; width:100px">K Rek 5</th>
+	                                        </tr>
+	                                        </thead>
+	                                        <tbody>
+	                                            <?php foreach($browse as $row):?>
+	                                                <tr <?= "onclick='pilih({$row->id})'"?>>
+	                                                    <td style="text-align:center;display: none"><?= $row->id;?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1;?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_2;?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_3;?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_4;?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_5;?></td>
+	                                                    <td style="text-align:center;"><?= $row->D_Rek_1;?></td>
+	                                                    <td style="text-align:center;"><?= $row->D_Rek_2;?></td>
+	                                                    <td style="text-align:center;"><?= $row->D_Rek_3;?></td>
+	                                                    <td style="text-align:center;"><?= $row->D_Rek_4;?></td>
+	                                                    <td style="text-align:center;"><?= $row->D_Rek_5;?></td>
+	                                                    <td style="text-align:center;"><?= $row->K_Rek_1;?></td>
+	                                                    <td style="text-align:center;"><?= $row->K_Rek_2;?></td>
+	                                                    <td style="text-align:center;"><?= $row->K_Rek_3;?></td>
+	                                                    <td style="text-align:center;"><?= $row->K_Rek_4;?></td>
+	                                                    <td style="text-align:center;"><?= $row->K_Rek_5;?></td>
+	                                                </tr>
+	                                            <?php endforeach; ?>
+	                                        </tbody>
+	                                    </table>
+							    	<!-- </div> -->
+
                                 	<form id="form-korolari-atas-rekening" name="form-korolari" method="POST" action="<?=site_url("parameter/korolari/save")?>">
 	                                	<div class="alert alert-danger" style="display: none" id="error_pesan">
 									        <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -161,55 +211,7 @@
 					                    	</div>
 							        	</div>
 							        </form>
-							        <div class="col-md-12">
-							        	<table class="table table-bordered table-striped table-hover js-basic-example dataTable" >
-	                                        <thead>
-	                                        <tr>
-	                                            <th style="text-align:center; width:100px;display: none">id</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 1</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 2</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 3</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 4</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 5</th>
-	                                            <th style="text-align:center; width:100px">D Rek 1</th>
-	                                            <th style="text-align:center; width:100px">D Rek 2</th>
-	                                            <th style="text-align:center; width:100px">D Rek 3</th>
-	                                            <th style="text-align:center; width:100px">D Rek 4</th>
-	                                            <th style="text-align:center; width:100px">D Rek 5</th>
-	                                            <th style="text-align:center; width:100px">K Rek 1</th>
-	                                            <th style="text-align:center; width:100px">K Rek 2</th>
-	                                            <th style="text-align:center; width:100px">K Rek 3</th>
-	                                            <th style="text-align:center; width:100px">K Rek 4</th>
-	                                            <th style="text-align:center; width:100px">K Rek 5</th>
-	                                        </tr>
-	                                        </thead>
-	                                        <tbody>
-	                                            <?php foreach($browse as $row):?>
-	                                                <tr <?= "onclick='pilih({$row->id})'"?>>
-	                                                    <td style="text-align:center;display: none"><?= $row->id;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_5;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_5;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_5;?></td>
-	                                                </tr>
-	                                            <?php endforeach; ?>
-	                                        </tbody>
-	                                    </table>
-							        <?= base_url('parameter/korolari/update')?>
-							        </div>
-
-							         
+							        
                                 </div>
                             </div>
                         </div>
@@ -220,222 +222,227 @@
         </div>
     </section>
     <?php
-    	$urlUpdate  = base_url('parameter/korolari/update');
+    	$urlUpdate  	= base_url('parameter/korolari/update');
+    	$urlHapus  		= base_url('parameter/korolari/hapus');
+    	$urlKorolari	= base_url('parameter/korolari');
     	$this->registerJS("
+    		var tempData 	= {}, 
+	    		d 			= document,
+	    		cancel 		= d.getElementById('cancel'), 
+	    		f 			= d.forms['form-korolari'], 
+	    		tambah 		= d.getElementById('Korolari_tambah'), 
+	    		simpan 		= d.getElementById('Korolari_simpan'), 
+	    		link 		= d.getElementsByClassName('link-search'),
+	    		detailrek5 	= d.getElementsByClassName('Nm_Rek_5'),
+	    		hapus 		= d.getElementById('hapus'),
+	    		ubah 		= d.getElementById('ubah'),
+	    		browse 		= d.getElementById('browse'),
+	    		input 		= f.getElementsByTagName('input'),
+	    		form 		= d.getElementById('korolari-atas-rekening'),
+	    		formId 		= d.getElementById('form-korolari-atas-rekening'),
+	    		tutupBrowse = d.getElementById('tutup-browse'),
+	    		pesan_error = d.getElementById('error_pesan'),
+	    		cetak 		= d.getElementById('cetak');
+	    	find = setInterval(function(){
+	    		if (d.getElementById('table-browse_wrapper') !=null) {
+	    			d.getElementById('table-browse_wrapper').style.display = 'none';
+	    			clearInterval(find);
+	    		}
+	    	},1);
+
+	    	cancel.style.display = 'none';
+    		simpan.style.display = 'none';
+
+    		browse.addEventListener('click',function(){
+    			tbl_browse  				= d.getElementById('table-browse_wrapper');
+    			tbl_browse.style.display 	= '';
+    			tutupBrowse.style.display   = '';
+    			formId.style.display 		= 'none';
+    		});
+
+    		tutupBrowse.addEventListener('click',function(){
+    			this.style.display = 'none';
+    			formId.style.display = '';
+    			d.getElementById('table-browse_wrapper').style.display = 'none';
+    		});
+
+    		// event only number inputan
+	    	for(var i=0,fLen = input.length;i<fLen;i++){
+				  c = input[i];
+				  tempData[i] = input[i].value;
+				  
+				  d.getElementById(c.getAttribute(\"id\")).addEventListener('keydown',function(e){
+				  	if ((e.keyCode == 65 && e.ctrlKey === true) || (e.keyCode == 67 && e.ctrlKey === true) || (e.keyCode == 88 && e.ctrlKey === true) || (e.keyCode == 8 )||(e.keyCode == 37 ) || (e.keyCode == 39 ) || (e.keyCode == 9 )) {
+			                 return;
+			        }
+			        // Ensure that it is a number and stop the keypress
+			        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+			            e.preventDefault();
+			        }
+				  });
+			}
+
+			// fungsi untuk menampilkan data di browse
     		function pilih(id){
 	    		window.location.href = '".$urlUpdate."/'+id;
 	    	}
+
+	    	//event hapus
+	    	hapus.addEventListener('click',function(){
+	    		var http = new XMLHttpRequest();
+				var url = '$urlHapus';
+				var params = serialize(f);
+				http.open(\"POST\", url, true);
+
+				http.setRequestHeader(\"Content-type\", \"application/x-www-form-urlencoded\");
+
+				http.onreadystatechange = function() {
+				    if(http.readyState == 4 && http.status == 200) {
+				        if (http.responseText == 1) {
+				        	window.location.href = '$urlKorolari';
+				        }
+				        else{
+				        	alert(\"Gagal hapus data\");
+				        }
+				    }
+				}
+				http.send(params);
+	    	});
+
+	    	
+
+			// event simpan data
+			simpan.addEventListener('click',function(){
+				checkForm();
+			});
+
+			//event ubah
+	    	ubah.addEventListener('click',function(){
+	    		hapus.style.display 	= 'none';
+	    		cetak.style.display 	= 'none';
+	    		ubah.style.display 		= 'none';
+	    		cancel.style.display 	= '';
+	    		browse.style.display 	= 'none';
+	    		tambah.style.display 	= 'none';
+	    		simpan.style.display    = '';
+	    		for(var i=0,fLen=f.length;i<fLen;i++){
+				  f.elements[i].readOnly = false;
+				}
+	    		for(var i=0,fLen=link.length;i<fLen;i++){
+					link[i].removeEventListener('click',disableLink);
+				}
+	    	});
+
+	    	// fungsi nonaktikan logo search
+	    	function disableSearch()
+	    	{
+	    		for(var i=0,fLen=link.length;i<fLen;i++){
+					link[i].addEventListener('click',disableLink);
+				}
+	    	}
+	    	// fungsi read only
+	    	function readOnly(){
+	    		for(var i=0,fLen=f.length;i<fLen;i++){
+				  f.elements[i].readOnly = true;
+				}
+	    	}
+	    	// fungsi buka read only inputan
+		    function openReadOnly(){
+				for(var i=0,fLen=f.length;i<fLen;i++){
+				  f.elements[i].readOnly = false;
+				  f.elements[i].value = '';
+				}
+				// console.log(tempData);
+				for(var i=0,fLen=link.length;i<fLen;i++){
+					link[i].removeEventListener('click',disableLink);
+				}
+			}
+			// disable link
+	    	function disableLink(e)
+			{	
+				e.preventDefault();
+			}
+			// disable all
+			function disableAll()
+			{
+				f = d.forms['form-korolari'];
+				for(var i=0,fLen=f.length;i<fLen;i++){
+				  	f.elements[i].readOnly = true;
+				}
+				disableSearch();
+			}
+			// fungsi untuk cek form
+	    	function checkForm()
+	    	{
+	    		for(i=0;i<input.length;i++)
+	    		{
+					if (input[i].value == '') {
+						input[i].parentNode.setAttribute('class','has-error '+input[i].parentNode.getAttribute('class'));
+						pesan_error.style.display = '';
+					}
+	    		}
+	    	}
+
+	    	// fungsi untuk menghilakan error
+	    	function removeError()
+	    	{
+	    		for(i=0;i<input.length;i++)
+	    		{
+					if (input[i].value == '') {
+						input[i].parentNode.setAttribute('class',input[i].parentNode.getAttribute('class').replace('has-error',''));
+					}
+	    		}
+				pesan_error.style.display = 'none';
+	    	}
+
+	    	function initializeValueInput()
+			{
+				for(var i=0,fLen = input.length;i<fLen;i++){
+					tempData[i] = input[i].value;
+				}
+			}
+
+			// event cancel
+	    	cancel.addEventListener('click',function(){
+	    		removeError();
+	    		hapus.style.display 	= '';
+	    		cetak.style.display 	= '';
+	    		ubah.style.display 		= '';
+	    		browse.style.display 	= '';
+	    		simpan.style.display 	= 'none';
+	    		tambah.style.display    = '';
+	    		this.style.display 		= 'none';
+	    		// console.log(tempData);
+	    		/*for(var i=0,fLen=f.length;i<fLen;i++){
+				  f.elements[i].readOnly = true;
+				}*/
+				disableAll();	
+				for (var i = 0;i <input.length;i++) {
+					input[i].value = tempData[i];
+				}
+				for(var i=0,fLen=detailrek5.length;i<fLen;i++){
+				  detailrek5[i].style.visibility = '';
+				}
+				disableSearch();
+	    	});
+
+	    	//event tambah
+	    	tambah.addEventListener('click',function(){
+	    		this.style.display 		= 'none';
+	    		simpan.style.display    = '';
+	    		cancel.style.display    = '';
+	    		hapus.style.display 	= 'none';
+	    		cetak.style.display 	= 'none';
+	    		ubah.style.display 		= 'none';
+	    		browse.style.display 	= 'none';
+	    		for(var i=0,fLen=detailrek5.length;i<fLen;i++){
+				  detailrek5[i].style.visibility = 'hidden';
+				}
+	    		openReadOnly();
+	    	});
     	");
     ?>
     <script type="text/javascript">
-    	var tempData 	= {}, 
-    		d 			= document,
-    		cancel 		= d.getElementById('cancel'), 
-    		f 			= d.forms['form-korolari'], 
-    		tambah 		= d.getElementById("Korolari_tambah"), 
-    		simpan 		= d.getElementById("Korolari_simpan"), 
-    		link 		= d.getElementsByClassName('link-search'),
-    		detailrek5 	= d.getElementsByClassName('Nm_Rek_5'),
-    		hapus 		= d.getElementById("hapus"),
-    		ubah 		= d.getElementById("ubah"),
-    		browse 		= d.getElementById("browse"),
-    		input 		= f.getElementsByTagName('input'),
-    		form 		= d.getElementById("korolari-atas-rekening"),
-    		pesan_error = d.getElementById("error_pesan"),
-    		cetak 		= d.getElementById("cetak");
-
-    	cancel.style.display = "none";
-    	simpan.style.display = "none";
-    	/*function pilih(e)
-    	{
-    		list = e;
-    		pajang = list.children;
-    		for(i=0;i<list.children;i++){
-
-    		}
-    		console.log(list.children);
-    		alert('don\'t let me down');
-    	}*/
-    	// function pilih(id){
-    	// 	window.location.href = window.location.href+"/update/"+id;
-    	// }
-
-    	// event only number inputan
-    	for(var i=0,fLen = input.length;i<fLen;i++){
-			  c = input[i];
-			  tempData[i] = input[i].value;
-			 
-			  d.getElementById(c.getAttribute("id")).addEventListener('keydown',function(e){
-			  	if ((e.keyCode == 65 && e.ctrlKey === true) || (e.keyCode == 67 && e.ctrlKey === true) || (e.keyCode == 88 && e.ctrlKey === true) || (e.keyCode == 8 )||(e.keyCode == 37 ) || (e.keyCode == 39 ) || (e.keyCode == 9 )) {
-		                 return;
-		        }
-		        // Ensure that it is a number and stop the keypress
-		        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-		            e.preventDefault();
-		        }
-			  });
-		}
-
-		function initializeValueInput()
-		{
-			for(var i=0,fLen = input.length;i<fLen;i++){
-				tempData[i] = input[i].value;
-			}
-		}
-
-    	//event hapus
-    	hapus.addEventListener('click',function(){
-    		var http = new XMLHttpRequest();
-    		console.log(window.location.href) 
-			console.log(window.location.hostname) 
-			console.log(window.location.pathname) 
-			console.log(window.location.protocol)
-			console.log(window.location.assign)
-    		// alert(window.location.hostname);
-			var url = window.location.href+"/hapus";
-			var params = serialize(f);
-			http.open("POST", url, true);
-
-			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-			http.onreadystatechange = function() {
-			    if(http.readyState == 4 && http.status == 200) {
-			        if (http.responseText == 1) {
-			        	location.reload();
-			        }
-			        else{
-			        	alert("Gagal hapus data");
-			        }
-			    }
-			}
-			http.send(params);
-    	});	
-
-
-    	function checkForm()
-    	{
-    		for(i=0;i<input.length;i++)
-    		{
-				if (input[i].value == "") {
-					input[i].parentNode.setAttribute("class","has-error "+input[i].parentNode.getAttribute("class"));
-					pesan_error.style.display = "";
-				}
-    		}
-    	}
-
-    	function removeError()
-    	{
-    		for(i=0;i<input.length;i++)
-    		{
-				if (input[i].value == "") {
-					input[i].parentNode.setAttribute("class",input[i].parentNode.getAttribute("class").replace("has-error",""));
-				}
-    		}
-			pesan_error.style.display = "none";
-    	}
-
-    	// event simpan data
-    	simpan.addEventListener('click',function(){
-    		checkForm();
-    	});
-    	
-    	
-    	// event  
-
-    	//event ubah
-    	ubah.addEventListener('click',function(){
-    		hapus.style.display 	= "none";
-    		cetak.style.display 	= "none";
-    		ubah.style.display 		= "none";
-    		cancel.style.display 	= "";
-    		browse.style.display 	= "none";
-    		tambah.style.display 	= "none";
-    		simpan.style.display    = "";
-    		for(var i=0,fLen=f.length;i<fLen;i++){
-			  f.elements[i].readOnly = false;
-			}
-    		for(var i=0,fLen=link.length;i<fLen;i++){
-				link[i].removeEventListener('click',disableLink);
-			}
-    	});
-
-    	// event cancel
-    	cancel.addEventListener('click',function(){
-    		removeError();
-    		hapus.style.display 	= "";
-    		cetak.style.display 	= "";
-    		ubah.style.display 		= "";
-    		browse.style.display 	= "";
-    		simpan.style.display 	= "none";
-    		tambah.style.display    = "";
-    		this.style.display 		= "none";
-    		// console.log(tempData);
-    		/*for(var i=0,fLen=f.length;i<fLen;i++){
-			  f.elements[i].readOnly = true;
-			}*/
-			disableAll();	
-			for (var i = 0;i <input.length;i++) {
-				input[i].value = tempData[i];
-			}
-			for(var i=0,fLen=detailrek5.length;i<fLen;i++){
-			  detailrek5[i].style.display = "";
-			}
-			disableSearch();
-    	});
-
-    	//event tambah
-    	tambah.addEventListener('click',function(){
-    		this.style.display 		= "none";
-    		simpan.style.display    = "";
-    		cancel.style.display    = "";
-    		hapus.style.display 	= "none";
-    		cetak.style.display 	= "none";
-    		ubah.style.display 		= "none";
-    		browse.style.display 	= "none";
-    		for(var i=0,fLen=detailrek5.length;i<fLen;i++){
-			  detailrek5[i].style.display = "none";
-			}
-    		openReadOnly();
-    		
-    	});
-
-    	function disableSearch()
-    	{
-    		for(var i=0,fLen=link.length;i<fLen;i++){
-				link[i].addEventListener('click',disableLink);
-			}
-    	}
-    	function readOnly(){
-    		for(var i=0,fLen=f.length;i<fLen;i++){
-			  f.elements[i].readOnly = true;
-			}
-    	}
-
-	    function openReadOnly(){
-			for(var i=0,fLen=f.length;i<fLen;i++){
-			  f.elements[i].readOnly = false;
-			  f.elements[i].value = '';
-			}
-			// console.log(tempData);
-			for(var i=0,fLen=link.length;i<fLen;i++){
-				link[i].removeEventListener('click',disableLink);
-			}
-		}
-		
-    	function disableLink(e)
-		{	
-			e.preventDefault();
-		}
-
-		function disableAll()
-		{
-			f = d.forms['form-korolari'];
-			for(var i=0,fLen=f.length;i<fLen;i++){
-			  	f.elements[i].readOnly = true;
-			}
-			disableSearch();
-		}
-
 		function serialize(form) {
 			if (!form || form.nodeName !== "FORM") {
 				return;

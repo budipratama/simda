@@ -20,7 +20,12 @@
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/nouislider/nouislider.js');?>"></script>
     <!-- Demo Js 11-->
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/js/demo.js');?>"></script>
-
+    
+	<script src="<?php echo base_url('public/templates/rkpd_v.4.0/global/scripts/jquery.wizard.js');?>" type="text/javascript"></script>
+	<script type="text/javascript">
+	console.log($(".wizard"));
+	$(".wizard").on("click",function(){this.ste})
+	</script>
     <!-- Slimscroll Plugin tooltips Js -->
 <!-- tooltips <script src="<?php echo base_url('public/templates/integrasi_v.4.0/js/pages/ui/tooltips-popovers.js');?>"></script> -->
 
@@ -57,6 +62,7 @@
 <script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/select2/select2.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/datatables/media/js/jquery.dataTables.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js');?>"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.js"></script>
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script> var site_url = "<?php echo site_url();?>"; </script>
@@ -144,18 +150,6 @@ jQuery(document).ready(function() {
 
 </script>
 <!-- END BODY -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- BEGIN Peta Form-->
 <?php 

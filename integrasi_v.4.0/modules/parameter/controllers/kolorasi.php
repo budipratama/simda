@@ -13,7 +13,6 @@ class Unit_organisasi extends CI_Controller {
 	
 	public function index() {
 		// echo "ganteng";
-		// echo "ganteng";
 		$admin_log 	= $this->auth->is_login_admin();
 		{
 			$container['sidebar']['view']					= 'admin/sidebar';

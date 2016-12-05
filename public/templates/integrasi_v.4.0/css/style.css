@@ -5920,7 +5920,7 @@ fieldset[disabled] .form-control {
   margin: 0; }
 
 .wizard ul > li, .tabcontrol ul > li {
-  display: block;
+  /*display: block;*/
   padding: 0; }
 
 /* Accessibility */
