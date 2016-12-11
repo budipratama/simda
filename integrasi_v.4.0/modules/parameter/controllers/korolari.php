@@ -5,7 +5,7 @@
 *
 *
 */
-error_reporting(E_ALL);
+// error_reporting(E_ALL);
 class Korolari extends CI_Controller {
 	
 	public function __construct()
