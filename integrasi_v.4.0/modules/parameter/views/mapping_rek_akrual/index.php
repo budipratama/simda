@@ -263,6 +263,7 @@
         </div>
     </section>
     <?php
+    	$testing = "test buat iyus";
     	$urlUpdate  	= base_url('parameter/mapping-rek-akrual/update');
     	$urlHapus  		= base_url('parameter/mapping-rek-akrual/hapus');
     	$urlAjax  		= base_url('parameter/mapping-rek-akrual/ajax');
