@@ -223,6 +223,8 @@
     </section>
     <?php
     	$urlUpdate  	= base_url('parameter/korolari/update');
+    	$urlUpdateData  = base_url("parameter/korolari/updateData/{$row->id}");
+    	$urlSave  		= base_url('parameter/korolari/save');
     	$urlHapus  		= base_url('parameter/korolari/hapus');
     	$urlAjax  		= base_url('parameter/korolari/ajax');
     	$urlKorolari	= base_url('parameter/korolari');
@@ -262,6 +264,7 @@
     		// event 5 inputan korolari atas rekening
     		for(i=0;i<ajaxKAR.length;i++){
     			d.getElementById(ajaxKAR[i].getAttribute('id')).addEventListener('keyup',function(){
+    				removeError();
     				params = '';
     				for (j=0; j < ajaxKAR.length; j++) { 
     					val = d.getElementById(ajaxKAR[j].getAttribute('id')).value;
@@ -287,6 +290,7 @@
     		for(i=0;i<ajaxRD.length;i++){
     			d.getElementById(ajaxRD[i].getAttribute('id')).addEventListener('keyup',function(){
     				params = '';
+    				removeError();
     				for (j=0; j < ajaxRD.length; j++) { 
     					val = d.getElementById(ajaxRD[j].getAttribute('id')).value;
     					params += ajaxRD[j].getAttribute('id')+'='+val+'&';
@@ -311,6 +315,7 @@
     		for(i=0;i<ajaxRK.length;i++){
     			d.getElementById(ajaxRK[i].getAttribute('id')).addEventListener('keyup',function(){
     				params = '';
+    				removeError();
     				for (j=0; j < ajaxRK.length; j++) { 
     					val = d.getElementById(ajaxRK[j].getAttribute('id')).value;
     					params += ajaxRK[j].getAttribute('id')+'='+val+'&';
@@ -419,6 +424,7 @@
 
 			//event ubah
 	    	ubah.addEventListener('click',function(){
+	    		f.setAttribute('action','$urlUpdateData');
 	    		hapus.style.display 	= 'none';
 	    		cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
@@ -508,6 +514,7 @@
 
 			// event cancel
 	    	cancel.addEventListener('click',function(){
+	    		f.setAttribute('action','$urlSave');
 	    		removeError();
 	    		hapus.style.display 	= '';
 	    		cetak.style.display 	= '';

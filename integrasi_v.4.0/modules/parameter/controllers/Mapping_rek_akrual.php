@@ -38,8 +38,8 @@ class Mapping_rek_akrual extends CI_Controller {
                         
                         $detailMapping1 = $this->Mapping_rek_akrual_model->getDetailMsAkrual5($row->Kd_AkrualD_1,$row->Kd_AkrualD_2,$row->Kd_AkrualD_3,$row->Kd_AkrualD_4,$row->Kd_AkrualD_5);
                         
-                        $detailMapping2 = $this->Mapping_rek_akrual_model->getDetailRek5($row->Kd_AkrualK_1,$row->Kd_AkrualK_2,$row->Kd_AkrualK_3,$row->Kd_AkrualK_4,$row->Kd_AkrualK_5);
-                        // $this->debug($detailMapping2);
+                        $detailMapping2 = $this->Mapping_rek_akrual_model->getDetailMsAkrual5($row->Kd_AkrualK_1,$row->Kd_AkrualK_2,$row->Kd_AkrualK_3,$row->Kd_AkrualK_4,$row->Kd_AkrualK_5);
+                        // $this->debug($detailMapping1);
                         // die();
                         // print_r($detailKAR);die();
                         $container['sidebar']['view']                           = 'admin/sidebar';
@@ -170,14 +170,23 @@ class Mapping_rek_akrual extends CI_Controller {
                 $array = array_keys($_POST);
 
                 $row = $this->Mapping_rek_akrual_model->getDetailRek5($_POST[$array[0]],$_POST[$array[1]],$_POST[$array[2]],$_POST[$array[3]],$_POST[$array[4]]);
-                // print_r($row);
+                echo json_encode($row);
+                exit();
+        }
+
+        public function ajaxAkrual()
+        {
+                header('Content-Type: application/json');
+                $array = array_keys($_POST);
+
+                $row = $this->Mapping_rek_akrual_model->getDetailMsAkrual5($_POST[$array[0]],$_POST[$array[1]],$_POST[$array[2]],$_POST[$array[3]],$_POST[$array[4]]);
                 echo json_encode($row);
                 exit();
         }
 
         public function save()
         {
-                
+
                 if (!$this->Mapping_rek_akrual_model->save($_POST))
                         @redirect('parameter/mapping_rek_akrual/destroy/1');
                 else
@@ -213,6 +222,16 @@ class Mapping_rek_akrual extends CI_Controller {
                         $this->session->set_flashdata('success', NOTIF_SUCCESS_INPUT);
 
                 @ redirect('parameter/mapping_rek_akrual');
+        }
+
+        public function updateData($id){
+                $result = $this->Mapping_rek_akrual_model->updateData($id);
+
+                if ($result == '1')
+                        $this->session->set_flashdata('success', NOTIF_UPDATE_SUCCESS);
+                else
+                        $this->session->set_flashdata('errors', NOTIF_UPDATE_FAILED);
+                @redirect('parameter/mapping_rek_akrual');
         }
 
         public function hapus()

@@ -66,6 +66,8 @@ define('TBL_RINCIAN',								'rincian');
 
 define('NOTIF_SUCCESS_INPUT','Data telah di masukan ke dalam sistem kami');
 define('NOTIF_UNIQUE_INPUT','Data yang anda masukan telah ada pada sistem kami');
+define('NOTIF_UPDATE_SUCCESS','Data telah di perbaharui pada sistem kami');
+define('NOTIF_UPDATE_FAILED','Data telah di perbaharui pada sistem kami');
 define('PESAN_FIELD_KOSONG','Data yang di inputkan tidak boleh kosong');
 
 

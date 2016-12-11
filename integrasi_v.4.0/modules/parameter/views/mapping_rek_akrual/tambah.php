@@ -179,7 +179,7 @@
 						                    </div>
 					                    </div>
 				                  		<div class="row">
-					                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_kredit_Nm_Rek_5">
+					                    	<div class="col-md-12 Nm_Rek_5" id="Mra_mapping_2">
 					                    		<?= $detailMapping2->Nm_Akrual_5;?>
 					                    	</div>
 					                    </div>
@@ -211,7 +211,9 @@
     	// echo 'var cancel = document.getElementById("cancel");cancel.addEventListener("click",function(){window.location.href=\''.base_url('parameter/korolari/destroy').'\'});';
     	// echo '</script>';
     	$cancel 	= base_url('parameter/mapping-rek-akrual/destroy');
-    	$urlAjax  	= base_url('parameter/korolari/ajax');
+    	$urlAjax  	= base_url('parameter/mapping-rek-akrual/ajax');
+		$urlAjaxAkrual  = base_url('parameter/mapping-rek-akrual/ajaxAkrual');
+
     	$this->registerJS("
 
 	    	var tempData 	= {}, 
@@ -229,11 +231,13 @@
 	    		form 		= d.getElementById('rekening-permendagri-13'),
 	    		rDeb 		= d.getElementById('rekening-permendagri-64'),
 	    		rKred 		= d.getElementById('mapping-1'),
+	    		rKred2 		= d.getElementById('mapping-2'),
 	    		formId 		= d.getElementById('form-mapping-rek-akrual'),
 	    		tutupBrowse = d.getElementById('tutup-browse'),
 	    		pesan_error = d.getElementById('error_pesan'),
 	    		ajaxKAR 	= form.getElementsByTagName('input'),
 	    		ajaxRD 		= rDeb.getElementsByTagName('input'),
+	    		ajaxRK2 	= rKred2.getElementsByTagName('input'),
 	    		ajaxRK 		= rKred.getElementsByTagName('input'),
 	    		cetak 		= d.getElementById('cetak');
 
@@ -289,15 +293,15 @@
     					// console.log(val);
     				}
     				params = params.slice(0, -1);
-    				url = '$urlAjax';
+    				url = '$urlAjaxAkrual';
     				response = ajaxPost(url,params,function(err,balikan){
     					div = d.getElementById('Korolari_rekening_debit_Nm_Rek_5');
-    					if (balikan.Nm_Rek_5 === undefined) {
+    					if (balikan.Nm_Akrual_5 === undefined) {
     						div.style.visibility = '';
 					        div.innerHTML = 'Data tidak ada pada sistem kami';
 					    } else {
 					    	div.style.visibility = '';
-					    	div.innerHTML = balikan.Nm_Rek_5;
+					    	div.innerHTML = balikan.Nm_Akrual_5;
 					    } 
     				});
     			});
@@ -313,22 +317,68 @@
     					// console.log(val);
     				}
     				params = params.slice(0, -1);
-    				url = '$urlAjax';
+    				url = '$urlAjaxAkrual';
     				response = ajaxPost(url,params,function(err,balikan){
     					console.log(balikan.Nm_Rek_5);
     					div = d.getElementById('Korolari_rekening_kredit_Nm_Rek_5');
-    					if (balikan.Nm_Rek_5 === undefined) {
+    					if (balikan.Nm_Akrual_5 === undefined) {
     						div.style.visibility = '';
 					        div.innerHTML = 'Data tidak ada pada sistem kami';
 					    } else {
 					    	div.style.visibility = '';
-					    	div.innerHTML = balikan.Nm_Rek_5;
+					    	div.innerHTML = balikan.Nm_Akrual_5;
 					    } 
     				});
     			});
     		}
 
+    		// event 5 inputan Mapping 2
+    		for(i=0;i<ajaxRK2.length;i++){
+    			d.getElementById(ajaxRK2[i].getAttribute('id')).addEventListener('keyup',function(){
+    				removeError();
+    				params = '';
+    				for (j=0; j < ajaxRK2.length; j++) { 
+    					val = d.getElementById(ajaxRK2[j].getAttribute('id')).value;
+    					params += ajaxRK2[j].getAttribute('id')+'='+val+'&';
+    					// console.log(val);
+    				}
+    				params = params.slice(0, -1);
+    				url = '$urlAjaxAkrual';
+    				response = ajaxPost(url,params,function(err,balikan){
+    					console.log(balikan.Nm_Rek_5);
+    					div = d.getElementById('Mra_mapping_2');
+    					if (balikan.Nm_Akrual_5 === undefined) {
+    						div.style.visibility = '';
+					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					    } else {
+					    	div.style.visibility = '';
+					    	div.innerHTML = balikan.Nm_Akrual_5;
+					    } 
+    				});	
+    				
+    			});
+    		}
 
+    		// fungsi untuk menghilakan error
+	    	function removeError()
+	    	{
+	    		console.log('removeError')
+	    		for(i=0;i<input.length;i++)
+	    		{
+					if (input[i].value != '') {
+						input[i].parentNode.setAttribute('class',input[i].parentNode.getAttribute('class').replace('has-error',''));
+					}
+	    		}
+				pesan_error.style.display = 'none';
+	    	}
+
+	    	function initializeValueInput()
+			{
+				for(var i=0,fLen = input.length;i<fLen;i++){
+					tempData[i] = input[i].value;
+				}
+			}
+			
     		function ajaxPost(url,params,callback){
     			var http = new XMLHttpRequest();
 				var url = url;

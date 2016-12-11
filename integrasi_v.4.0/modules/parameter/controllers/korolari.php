@@ -180,9 +180,24 @@ class Korolari extends CI_Controller {
 		@ redirect('parameter/korolari');
 	}
 
+	public function updateData($id){
+        $result = $this->Korolari_model->updateData($id);
+
+        if ($result == '1')
+                $this->session->set_flashdata('success', NOTIF_UPDATE_SUCCESS);
+        else
+                $this->session->set_flashdata('errors', NOTIF_UPDATE_FAILED);
+        @redirect('parameter/korolari');
+    }
+
 	public function hapus()
 	{
-		$this->Korolari_model->delete($_POST);
+		$error = $this->Korolari_model->delete($_POST);
+
+		if ($error == '1')
+			$this->session->set_flashdata('errors', NOTIF_UNIQUE_INPUT);
+		else
+			$this->session->set_flashdata('success', NOTIF_SUCCESS_INPUT);
 	}
 
 	

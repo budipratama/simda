@@ -106,7 +106,7 @@
 	                                    </table>
 							    	<!-- </div> -->
 
-                                	<form id="form-mapping-rek-akrual" name="form-korolari" method="POST" action="<?=site_url("parameter/korolari/save")?>">
+                                	<form id="form-mapping-rek-akrual" name="form-korolari" method="POST" action="<?=site_url("parameter/mapping_rek_akrual/save")?>">
 	                                	<div class="alert alert-danger" style="display: none" id="error_pesan">
 									        <button type="button" class="close" data-dismiss="alert">&times;</button>
 									        <div><?= PESAN_FIELD_KOSONG?></div>
@@ -181,19 +181,19 @@
 					                    <div class="row">
 						                    <div id="mapping-1">
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualD_1" name="Kd_AkrualD_1" value="<?= $data->Kd_AkrualD_1?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_1" name="Kd_AkrualD_1" value="<?= $data->Kd_AkrualD_1 != '0'?$data->Kd_AkrualD_1:''?>">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualD_2" name="Kd_AkrualD_2" value="<?= $data->Kd_AkrualD_2?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_2" name="Kd_AkrualD_2" value="<?= $data->Kd_AkrualD_2 != '0'?$data->Kd_AkrualD_2:''?>">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualD_3" name="Kd_AkrualD_3" value="<?= $data->Kd_AkrualD_3?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_3" name="Kd_AkrualD_3" value="<?= $data->Kd_AkrualD_3 != '0'?$data->Kd_AkrualD_3:''?>">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualD_4" name="Kd_AkrualD_4" value="<?= $data->Kd_AkrualD_4?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_4" name="Kd_AkrualD_4" value="<?= $data->Kd_AkrualD_4 != '0'?$data->Kd_AkrualD_4:''?>">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualD_5" name="Kd_AkrualD_5" value="<?= $data->Kd_AkrualD_5?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_5" name="Kd_AkrualD_5" value="<?= $data->Kd_AkrualD_5 != '0'?$data->Kd_AkrualD_5:''?>">
 						                    	</div>
 						                    	<div class="col-md-1">
 						                    		<a class="link-search" href="<?=base_url('parameter/Mra-mapping-1/')?>">
@@ -213,19 +213,19 @@
 					                    <div class="row">
 						                    <div id="mapping-2">
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualK_1" name="Kd_AkrualK_1" value="<?= $data->Kd_AkrualK_1?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_1" name="Kd_AkrualK_1" value="<?= $data->Kd_AkrualK_1=='0'?'':$data->Kd_AkrualK_1?>">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualK_2" name="Kd_AkrualK_2" value="<?= $data->Kd_AkrualK_2?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_2" name="Kd_AkrualK_2" value="<?= $data->Kd_AkrualK_2=='0'?'':$data->Kd_AkrualK_2?>">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualK_3" name="Kd_AkrualK_3" value="<?= $data->Kd_AkrualK_3?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_3" name="Kd_AkrualK_3" value="<?= $data->Kd_AkrualK_3=='0'?'':$data->Kd_AkrualK_3?>">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualK_4" name="Kd_AkrualK_4" value="<?= $data->Kd_AkrualK_4?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_4" name="Kd_AkrualK_4" value="<?= $data->Kd_AkrualK_4=='0'?'':$data->Kd_AkrualK_4?>">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="Kd_AkrualK_5" name="Kd_AkrualK_5" value="<?= $data->Kd_AkrualK_5?>">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_5" name="Kd_AkrualK_5" value="<?= $data->Kd_AkrualK_5=='0'?'':$data->Kd_AkrualK_5?>">
 						                    	</div>
 						                    	<div class="col-md-1">
 						                    		<a class="link-search" href="<?=base_url('parameter/Mra-mapping-2/')?>">
@@ -235,7 +235,7 @@
 						                    </div>
 					                    </div>
 				                  		<div class="row">
-					                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_kredit_Nm_Rek_5">
+					                    	<div class="col-md-12 Nm_Rek_5" id="Mra_mapping_2">
 					                    		<?= $detailMapping2->Nm_Akrual_5;?>
 					                    	</div>
 					                    </div>
@@ -263,10 +263,13 @@
         </div>
     </section>
     <?php
-    	$urlUpdate  	= base_url('parameter/korolari/update');
-    	$urlHapus  		= base_url('parameter/korolari/hapus');
-    	$urlAjax  		= base_url('parameter/korolari/ajax');
-    	$urlKorolari	= base_url('parameter/korolari');
+    	$urlUpdate  	= base_url('parameter/mapping-rek-akrual/update');
+    	$urlHapus  		= base_url('parameter/mapping-rek-akrual/hapus');
+    	$urlAjax  		= base_url('parameter/mapping-rek-akrual/ajax');
+    	$urlAjaxAkrual  = base_url('parameter/mapping-rek-akrual/ajaxAkrual');
+    	$urlKorolari	= base_url('parameter/mapping-rek-akrual');
+    	$urlSave		= base_url('parameter/mapping-rek-akrual/save');
+    	$urlUpdate      = base_url("parameter/mapping_rek_akrual/updateData/{$row->id}");
     	$this->registerJS("
     		var tempData 	= {}, 
 	    		d 			= document,
@@ -338,15 +341,16 @@
     					// console.log(val);
     				}
     				params = params.slice(0, -1);
-    				url = '$urlAjax';
+    				url = '$urlAjaxAkrual';
     				response = ajaxPost(url,params,function(err,balikan){
     					div = d.getElementById('Korolari_rekening_debit_Nm_Rek_5');
-    					if (balikan.Nm_Rek_5 === undefined) {
+
+    					if (balikan.Nm_Akrual_5 === undefined) {
     						div.style.visibility = '';
 					        div.innerHTML = 'Data tidak ada pada sistem kami';
 					    } else {
 					    	div.style.visibility = '';
-					    	div.innerHTML = balikan.Nm_Rek_5;
+					    	div.innerHTML = balikan.Nm_Akrual_5;
 					    } 
     				});
     			});
@@ -363,16 +367,16 @@
     					// console.log(val);
     				}
     				params = params.slice(0, -1);
-    				url = '$urlAjax';
+    				url = '$urlAjaxAkrual';
     				response = ajaxPost(url,params,function(err,balikan){
     					console.log(balikan.Nm_Rek_5);
     					div = d.getElementById('Korolari_rekening_kredit_Nm_Rek_5');
-    					if (balikan.Nm_Rek_5 === undefined) {
+    					if (balikan.Nm_Akrual_5 === undefined) {
     						div.style.visibility = '';
 					        div.innerHTML = 'Data tidak ada pada sistem kami';
 					    } else {
 					    	div.style.visibility = '';
-					    	div.innerHTML = balikan.Nm_Rek_5;
+					    	div.innerHTML = balikan.Nm_Akrual_5;
 					    } 
     				});	
     				
@@ -382,7 +386,7 @@
     		// event 5 inputan Mapping 2
     		for(i=0;i<ajaxRK2.length;i++){
     			d.getElementById(ajaxRK2[i].getAttribute('id')).addEventListener('keyup',function(){
-    				removeError();
+    				// removeError();
     				params = '';
     				for (j=0; j < ajaxRK2.length; j++) { 
     					val = d.getElementById(ajaxRK2[j].getAttribute('id')).value;
@@ -390,16 +394,16 @@
     					// console.log(val);
     				}
     				params = params.slice(0, -1);
-    				url = '$urlAjax';
+    				url = '$urlAjaxAkrual';
     				response = ajaxPost(url,params,function(err,balikan){
-    					console.log(balikan.Nm_Rek_5);
-    					div = d.getElementById('Korolari_rekening_kredit_Nm_Rek_5');
-    					if (balikan.Nm_Rek_5 === undefined) {
+    					div = d.getElementById('Mra_mapping_2');
+
+    					if (balikan.Nm_Akrual_5 === '') {
     						div.style.visibility = '';
 					        div.innerHTML = 'Data tidak ada pada sistem kami';
 					    } else {
 					    	div.style.visibility = '';
-					    	div.innerHTML = balikan.Nm_Rek_5;
+					    	div.innerHTML = balikan.Nm_Akrual_5;
 					    } 
     				});	
     				
@@ -491,6 +495,7 @@
 
 			//event ubah
 	    	ubah.addEventListener('click',function(){
+	    		f.setAttribute('action','$urlUpdate');
 	    		hapus.style.display 	= 'none';
 	    		cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
@@ -615,6 +620,7 @@
 
 			// event cancel
 	    	cancel.addEventListener('click',function(){
+	    		f.setAttribute('action','$urlSave');
 	    		removeError();
 	    		hapus.style.display 	= '';
 	    		cetak.style.display 	= '';

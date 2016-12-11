@@ -190,16 +190,18 @@ class Mapping_rek_akrual_model extends CI_Model {
                 return $query->result(); 
         }
 
+        public function updateData($id){
+               return $this->db->update(TBL_AKRUAL, $_POST, array('id' => $id));
+
+        }
         public function save($data)
         {
+
                 if(!$this->db->insert(TBL_AKRUAL,$data))
                 {
-                        // echo $error = $this->db->error();
-                        // echo "hai";
-                        // die();
-
                         return false;
                 }
+
                 return true;
         }
 
