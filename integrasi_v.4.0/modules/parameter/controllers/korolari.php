@@ -14,6 +14,7 @@ class Korolari extends CI_Controller {
 		$this->load->library('Datatables');
 		$this->load->model('parameter/Korolari_model');
 	}
+	
 	public function index()
 	{
 		$admin_log 	= $this->auth->is_login_admin();
@@ -44,26 +45,6 @@ class Korolari extends CI_Controller {
 			$this->load->view('admin/footer');
 			$this->load->view('admin/tables');
 		}
-	}
-
-	public function destroy()
-	{	
-		$this->session->unset_userdata('KAR_Kd_Rek_1');
-		$this->session->unset_userdata('KAR_Kd_Rek_2');
-		$this->session->unset_userdata('KAR_Kd_Rek_3');
-		$this->session->unset_userdata('KAR_Kd_Rek_4');
-		$this->session->unset_userdata('KAR_Kd_Rek_5');
-		$this->session->unset_userdata('KRD_Kd_Rek_1_debit');
-		$this->session->unset_userdata('KRD_Kd_Rek_2_debit');
-		$this->session->unset_userdata('KRD_Kd_Rek_3_debit');
-		$this->session->unset_userdata('KRD_Kd_Rek_4_debit');
-		$this->session->unset_userdata('KRD_Kd_Rek_5_debit');
-		$this->session->unset_userdata('KRK_Kd_Rek_1_kredit');
-		$this->session->unset_userdata('KRK_Kd_Rek_2_kredit');
-		$this->session->unset_userdata('KRK_Kd_Rek_3_kredit');
-		$this->session->unset_userdata('KRK_Kd_Rek_4_kredit');
-		$this->session->unset_userdata('KRK_Kd_Rek_5_kredit');
-		@ redirect('parameter/korolari');
 	}
 
 	public function tambah()
@@ -154,13 +135,49 @@ class Korolari extends CI_Controller {
 		}
 	}
 
+	public function ajax()
+	{
+		header('Content-Type: application/json');
+		$array = array_keys($_POST);
+
+		$row = $this->Korolari_model->getDetailRek5($_POST[$array[0]],$_POST[$array[1]],$_POST[$array[2]],$_POST[$array[3]],$_POST[$array[4]]);
+		// print_r($row);
+		echo json_encode($row);
+		exit();
+	}
+
 	public function save()
 	{
 		if (!$this->Korolari_model->save($_POST))
+			@redirect('parameter/korolari/destroy/1');
+		else
+			@redirect('parameter/korolari/destroy/0');
+	}
+
+	public function destroy($error)
+	{	
+		$this->session->unset_userdata('KAR_Kd_Rek_1');
+		$this->session->unset_userdata('KAR_Kd_Rek_2');
+		$this->session->unset_userdata('KAR_Kd_Rek_3');
+		$this->session->unset_userdata('KAR_Kd_Rek_4');
+		$this->session->unset_userdata('KAR_Kd_Rek_5');
+		$this->session->unset_userdata('KRD_Kd_Rek_1_debit');
+		$this->session->unset_userdata('KRD_Kd_Rek_2_debit');
+		$this->session->unset_userdata('KRD_Kd_Rek_3_debit');
+		$this->session->unset_userdata('KRD_Kd_Rek_4_debit');
+		$this->session->unset_userdata('KRD_Kd_Rek_5_debit');
+		$this->session->unset_userdata('KRK_Kd_Rek_1_kredit');
+		$this->session->unset_userdata('KRK_Kd_Rek_2_kredit');
+		$this->session->unset_userdata('KRK_Kd_Rek_3_kredit');
+		$this->session->unset_userdata('KRK_Kd_Rek_4_kredit');
+		$this->session->unset_userdata('KRK_Kd_Rek_5_kredit');
+
+		if ($error == '1')
 			$this->session->set_flashdata('errors', NOTIF_UNIQUE_INPUT);
 		else
 			$this->session->set_flashdata('success', NOTIF_SUCCESS_INPUT);
-		@ redirect('parameter/korolari/destroy');
+
+		@ redirect('parameter/korolari');
 	}
 
 	public function hapus()

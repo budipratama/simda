@@ -50,12 +50,20 @@ define('TBL_CONFIG_REK_3',							'Ms_Rek_3');
 define('TBL_CONFIG_REK_4',							'Ms_Rek_4');
 define('TBL_CONFIG_REK_5',							'Ms_Rek_5');
 define('TBL_KOROLARI',								'Ms_Korolari');
+define('TBL_AKRUAL',								'Ms_Akrual_Rek');
+define('TBL_MS_AKRUAL5',							'Ms_Akrual_5');
+define('TBL_MS_AKRUAL_1',							'Ms_Akrual_1');
+define('TBL_MS_AKRUAL_2',							'Ms_Akrual_2');
+define('TBL_MS_AKRUAL_3',							'Ms_Akrual_3');
+define('TBL_MS_AKRUAL_4',							'Ms_Akrual_4');
+define('TBL_MS_AKRUAL_5',							'Ms_Akrual_5');
 
 define('TBL_AKUN',									'akun');
 define('TBL_KELOMPOK',								'kelompok');
 define('TBL_JENIS',									'jenis');
 define('TBL_OBYEK',									'obyek');
 define('TBL_RINCIAN',								'rincian');
+
 define('NOTIF_SUCCESS_INPUT','Data telah di masukan ke dalam sistem kami');
 define('NOTIF_UNIQUE_INPUT','Data yang anda masukan telah ada pada sistem kami');
 define('PESAN_FIELD_KOSONG','Data yang di inputkan tidak boleh kosong');

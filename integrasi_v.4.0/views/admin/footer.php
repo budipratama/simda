@@ -23,8 +23,8 @@
     
 	<script src="<?php echo base_url('public/templates/rkpd_v.4.0/global/scripts/jquery.wizard.js');?>" type="text/javascript"></script>
 	<script type="text/javascript">
-	console.log($(".wizard"));
-	$(".wizard").on("click",function(){this.ste})
+	// console.log($(".wizard"));
+	// $(".wizard").on("click",function(){this.ste})
 	</script>
     <!-- Slimscroll Plugin tooltips Js -->
 <!-- tooltips <script src="<?php echo base_url('public/templates/integrasi_v.4.0/js/pages/ui/tooltips-popovers.js');?>"></script> -->

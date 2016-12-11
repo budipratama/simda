@@ -129,7 +129,7 @@
 						                    </div>
 					                    </div>
 					                  		<div class="row">
-						                    	<div class="col-md-12 Nm_Rek_5">
+						                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_atas_rekening_Nm_Rek_5">
 						                    		<?= $KAR->Nm_Rek_5;?>
 						                    	</div>
 						                    </div>
@@ -161,7 +161,7 @@
 						                    </div>
 					                    </div>
 					                  		<div class="row">
-						                    	<div class="col-md-12 Nm_Rek_5">
+						                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_debit_Nm_Rek_5">
 						                    		<?= $KRD->Nm_Rek_5;?>
 						                    	</div>
 						                    </div>
@@ -193,7 +193,7 @@
 						                    </div>
 					                    </div>
 					                  		<div class="row">
-						                    	<div class="col-md-12 Nm_Rek_5">
+						                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_kredit_Nm_Rek_5">
 						                    		<?= $KRK->Nm_Rek_5;?>
 						                    	</div>
 						                    </div>
@@ -224,6 +224,7 @@
     <?php
     	$urlUpdate  	= base_url('parameter/korolari/update');
     	$urlHapus  		= base_url('parameter/korolari/hapus');
+    	$urlAjax  		= base_url('parameter/korolari/ajax');
     	$urlKorolari	= base_url('parameter/korolari');
     	$this->registerJS("
     		var tempData 	= {}, 
@@ -239,9 +240,14 @@
 	    		browse 		= d.getElementById('browse'),
 	    		input 		= f.getElementsByTagName('input'),
 	    		form 		= d.getElementById('korolari-atas-rekening'),
+	    		rDeb 		= d.getElementById('rekening-debit'),
+	    		rKred 		= d.getElementById('rekening-kredit'),
 	    		formId 		= d.getElementById('form-korolari-atas-rekening'),
 	    		tutupBrowse = d.getElementById('tutup-browse'),
 	    		pesan_error = d.getElementById('error_pesan'),
+	    		ajaxKAR 	= form.getElementsByTagName('input'),
+	    		ajaxRD 		= rDeb.getElementsByTagName('input'),
+	    		ajaxRK 		= rKred.getElementsByTagName('input'),
 	    		cetak 		= d.getElementById('cetak');
 	    	find = setInterval(function(){
 	    		if (d.getElementById('table-browse_wrapper') !=null) {
@@ -252,6 +258,98 @@
 
 	    	cancel.style.display = 'none';
     		simpan.style.display = 'none';
+
+    		// event 5 inputan korolari atas rekening
+    		for(i=0;i<ajaxKAR.length;i++){
+    			d.getElementById(ajaxKAR[i].getAttribute('id')).addEventListener('keyup',function(){
+    				params = '';
+    				for (j=0; j < ajaxKAR.length; j++) { 
+    					val = d.getElementById(ajaxKAR[j].getAttribute('id')).value;
+    					params += ajaxKAR[j].getAttribute('id')+'='+val+'&';
+    					// console.log(val);
+    				}
+    				params = params.slice(0, -1);
+    				url = '$urlAjax';
+    				response = ajaxPost(url,params,function(err,balikan){
+    					div = d.getElementById('Korolari_atas_rekening_Nm_Rek_5');
+    					if (balikan.Nm_Rek_5 === undefined) {
+    						div.style.visibility = '';
+					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					    } else {
+					    	div.style.visibility = '';
+					    	div.innerHTML = balikan.Nm_Rek_5;
+					    } 
+    				});
+    			});
+    		}
+
+    		// event 5 inputan rekening debit
+    		for(i=0;i<ajaxRD.length;i++){
+    			d.getElementById(ajaxRD[i].getAttribute('id')).addEventListener('keyup',function(){
+    				params = '';
+    				for (j=0; j < ajaxRD.length; j++) { 
+    					val = d.getElementById(ajaxRD[j].getAttribute('id')).value;
+    					params += ajaxRD[j].getAttribute('id')+'='+val+'&';
+    					// console.log(val);
+    				}
+    				params = params.slice(0, -1);
+    				url = '$urlAjax';
+    				response = ajaxPost(url,params,function(err,balikan){
+    					div = d.getElementById('Korolari_rekening_debit_Nm_Rek_5');
+    					if (balikan.Nm_Rek_5 === undefined) {
+    						div.style.visibility = '';
+					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					    } else {
+					    	div.style.visibility = '';
+					    	div.innerHTML = balikan.Nm_Rek_5;
+					    } 
+    				});
+    			});
+    		}
+
+    		// event 5 inputan rekening kredit
+    		for(i=0;i<ajaxRK.length;i++){
+    			d.getElementById(ajaxRK[i].getAttribute('id')).addEventListener('keyup',function(){
+    				params = '';
+    				for (j=0; j < ajaxRK.length; j++) { 
+    					val = d.getElementById(ajaxRK[j].getAttribute('id')).value;
+    					params += ajaxRK[j].getAttribute('id')+'='+val+'&';
+    					// console.log(val);
+    				}
+    				params = params.slice(0, -1);
+    				url = '$urlAjax';
+    				response = ajaxPost(url,params,function(err,balikan){
+    					console.log(balikan.Nm_Rek_5);
+    					div = d.getElementById('Korolari_rekening_kredit_Nm_Rek_5');
+    					if (balikan.Nm_Rek_5 === undefined) {
+    						div.style.visibility = '';
+					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					    } else {
+					    	div.style.visibility = '';
+					    	div.innerHTML = balikan.Nm_Rek_5;
+					    } 
+    				});
+    			});
+    		}
+
+
+    		function ajaxPost(url,params,callback){
+    			var http = new XMLHttpRequest();
+				var url = url;
+				var params = params;
+				http.open('POST', url, true);
+
+				//Send the proper header information along with the request
+				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+				http.onreadystatechange = function() {//Call a function when the state changes.
+				    if(http.readyState == 4 && http.status == 200) {
+				        var obj = JSON.parse(http.responseText);
+				        callback(null,obj);
+				    }
+				}
+				http.send(params);
+    		}
 
     		browse.addEventListener('click',function(){
     			tbl_browse  				= d.getElementById('table-browse_wrapper');
@@ -271,7 +369,7 @@
 				  c = input[i];
 				  tempData[i] = input[i].value;
 				  
-				  d.getElementById(c.getAttribute(\"id\")).addEventListener('keydown',function(e){
+				  d.getElementById(c.getAttribute('id')).addEventListener('keydown',function(e){
 				  	if ((e.keyCode == 65 && e.ctrlKey === true) || (e.keyCode == 67 && e.ctrlKey === true) || (e.keyCode == 88 && e.ctrlKey === true) || (e.keyCode == 8 )||(e.keyCode == 37 ) || (e.keyCode == 39 ) || (e.keyCode == 9 )) {
 			                 return;
 			        }
@@ -292,9 +390,9 @@
 	    		var http = new XMLHttpRequest();
 				var url = '$urlHapus';
 				var params = serialize(f);
-				http.open(\"POST\", url, true);
+				http.open('POST', url, true);
 
-				http.setRequestHeader(\"Content-type\", \"application/x-www-form-urlencoded\");
+				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
 				http.onreadystatechange = function() {
 				    if(http.readyState == 4 && http.status == 200) {
@@ -302,7 +400,7 @@
 				        	window.location.href = '$urlKorolari';
 				        }
 				        else{
-				        	alert(\"Gagal hapus data\");
+				        	alert('Gagal hapus data');
 				        }
 				    }
 				}
@@ -313,7 +411,10 @@
 
 			// event simpan data
 			simpan.addEventListener('click',function(){
-				checkForm();
+				submit = checkForm();
+				if (submit) {
+					d.getElementById('form-korolari-atas-rekening').submit();
+				}
 			});
 
 			//event ubah
@@ -374,13 +475,16 @@
 			// fungsi untuk cek form
 	    	function checkForm()
 	    	{
+	    		send = 1;
 	    		for(i=0;i<input.length;i++)
 	    		{
 					if (input[i].value == '') {
+						send = 0;
 						input[i].parentNode.setAttribute('class','has-error '+input[i].parentNode.getAttribute('class'));
 						pesan_error.style.display = '';
 					}
 	    		}
+	    		return send;
 	    	}
 
 	    	// fungsi untuk menghilakan error
@@ -388,7 +492,7 @@
 	    	{
 	    		for(i=0;i<input.length;i++)
 	    		{
-					if (input[i].value == '') {
+					if (input[i].value != '') {
 						input[i].parentNode.setAttribute('class',input[i].parentNode.getAttribute('class').replace('has-error',''));
 					}
 	    		}

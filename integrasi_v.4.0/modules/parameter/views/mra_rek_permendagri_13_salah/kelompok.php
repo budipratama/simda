@@ -88,11 +88,11 @@
                                                 <tbody>
                                                     <?php foreach($data as $list):?>
                                                         <tr>
-                                                            <td style="text-align:center;"><?= $list->akun;?></td>
-                                                            <td style="text-align:center;"><?= $list->no;?></td>
+                                                            <td style="text-align:center;"><?= $list->Kd_Rek_1;?></td>
+                                                            <td style="text-align:center;"><?= $list->Kd_Rek_2;?></td>
                                                             <td>
-                                                                <a href="<?= site_url('parameter/mra-rek-permendagri-13/jenis/'.$list->no);?>">
-                                                                <?= $list->kelompok_nama;?>
+                                                                <a href="<?= site_url('parameter/mra-rek-permendagri-13/jenis/'.$list->Kd_Rek_2);?>">
+                                                                <?= $list->Nm_Rek_2;?>
                                                                 </a>
                                                             </td>
                                                         </tr>

@@ -7,12 +7,12 @@
 	?>
 	
    <section class="content">
-		<h2>Parameter<small> rekening korolari</small></h2>  
+		<h2>Parameter<small> Mapping Rekening Akrual</small></h2>  
 			<div class="body">
 				<ol class="breadcrumb breadcrumb-col-cyan">
 					<li><a href="<?php echo site_url('dashboard');?>"><i class="material-icons">home</i> Home</a></li>
 					<li><a href="<?php echo site_url('parameter');?>"> Parameter</a></li>
-					<li><a href="<?php echo site_url('parameter/korolari');?>"> Korolari</a></li>
+					<li><a href="<?php echo site_url('parameter/mapping-rek-akrual');?>"> Mapping Rekening Akrual</a></li>
 					<li class="active"> Urusan</li>
 				</ol>
 			</div>
@@ -34,7 +34,7 @@
                 	
                     <div class="card">
 	                    <div class="header bg-light-green">
-						    <h2>Unit Korolari<small>Data Urusan</small></h2>
+						    <h2>Unit Mapping Rekening Akrual<small>Data Urusan</small></h2>
 	                        <ul class="header-dropdown m-r--5">
 	                            <li class="dropdown">
 	                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -50,125 +50,149 @@
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                  <button type="button" class="close" id="tutup-browse" style="display: none;z-index: 9999;position: relative;">&times;</button>
-                                	<form id="form-korolari-atas-rekening" name="form-korolari" method="POST" action="<?=site_url("parameter/korolari/save")?>">
-                                		<div class="alert alert-danger" style="display: none" id="error_pesan">
+                                	<form id="form-mapping-rek-akrual" name="form-korolari" method="POST" action="<?=site_url("parameter/mapping-rek-akrual/save")?>">
+	                                	<div class="alert alert-danger" style="display: none" id="error_pesan">
 									        <button type="button" class="close" data-dismiss="alert">&times;</button>
 									        <div><?= PESAN_FIELD_KOSONG?></div>
 									    </div>
 	                                	<div class="row">
-	                                		<div class="col-md-12">Korolari Atas Rekening</div>
+	                                		<div class="col-md-12">Rekening Permendagri 13</div>
 	                                	</div>
 	                                	<div class="row">
-		                                    <div id="korolari-atas-rekening">
+		                                    <div id="rekening-permendagri-13">
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KAR_Kd_Rek_1')!=''?$this->session->userdata('KAR_Kd_Rek_1'):''?>" min="1" id="Kd_Rek_1" name="Kd_Rek_1">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P13_Kd_Rek_1')!=''?$this->session->userdata('P13_Kd_Rek_1'):''?>" min="1" id="Kd_Rek_1" name="Kd_Rek_1">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KAR_Kd_Rek_2')!=''?$this->session->userdata('KAR_Kd_Rek_2'):''?>" min="1" id="Kd_Rek_2" name="Kd_Rek_2">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P13_Kd_Rek_2')!=''?$this->session->userdata('P13_Kd_Rek_2'):''?>" min="1" id="Kd_Rek_2" name="Kd_Rek_2">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KAR_Kd_Rek_3')!=''?$this->session->userdata('KAR_Kd_Rek_3'):''?>" min="1" id="Kd_Rek_3" name="Kd_Rek_3">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P13_Kd_Rek_3')!=''?$this->session->userdata('P13_Kd_Rek_3'):''?>" min="1" id="Kd_Rek_3" name="Kd_Rek_3">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KAR_Kd_Rek_4')!=''?$this->session->userdata('KAR_Kd_Rek_4'):''?>" min="1" id="Kd_Rek_4" name="Kd_Rek_4">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P13_Kd_Rek_4')!=''?$this->session->userdata('P13_Kd_Rek_4'):''?>" min="1" id="Kd_Rek_4" name="Kd_Rek_4">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KAR_Kd_Rek_5')!=''?$this->session->userdata('KAR_Kd_Rek_5'):''?>" min="1" id="Kd_Rek_5" name="Kd_Rek_5">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P13_Kd_Rek_5')!=''?$this->session->userdata('P13_Kd_Rek_5'):''?>" min="1" id="Kd_Rek_5" name="Kd_Rek_5">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<a class="link-search" href="<?=base_url('parameter/korolari-atas-rekening/')?>">
-						                    			<img src="<?= base_url('public/templates/integrasi_v.4.0/images/search.png')?>" widht="24" height="24" class="icon-search"/>
-						                    		</a>
-						                    	</div>
-						                    </div>
-					                    </div>
-				                  		<div class="row">
-					                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_atas_rekening_Nm_Rek_5">
-					                    		<?php if (isset($content['dataset']['rekening'])) {
-						                    			$data = $content['dataset']['rekening'];
-						                    			echo $data->Nm_Rek_5;
-					                    			}
-					                    		?>		
-
-					                    	</div>
-					                    </div>
-						                <div class="row">
-	                                		<div class="col-md-12">Rekening Debit</div>
-	                                	</div>
-					                    <div class="row">
-						                    <div id="rekening-debit">
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KRD_Kd_Rek_1_debit')!=''?$this->session->userdata('KRD_Kd_Rek_1_debit'):''?>" id="D_Rek_1" name="D_Rek_1">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KRD_Kd_Rek_2_debit')!=''?$this->session->userdata('KRD_Kd_Rek_2_debit'):''?>" id="D_Rek_2" name="D_Rek_2">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KRD_Kd_Rek_3_debit')!=''?$this->session->userdata('KRD_Kd_Rek_3_debit'):''?>" id="D_Rek_3" name="D_Rek_3">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KRD_Kd_Rek_4_debit')!=''?$this->session->userdata('KRD_Kd_Rek_4_debit'):''?>" id="D_Rek_4" name="D_Rek_4">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KRD_Kd_Rek_5_debit')!=''?$this->session->userdata('KRD_Kd_Rek_5_debit'):''?>" id="D_Rek_5" name="D_Rek_5">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<a class="link-search" href="<?=base_url('parameter/korolari-rekening-debit/')?>">
-						                    			<img src="<?= base_url('public/templates/integrasi_v.4.0/images/search.png')?>" widht="24" height="24" class="icon-search"/>
-						                    		</a>
-						                    	</div>
-						                    </div>
-					                    </div>
-				                  		<div class="row">
-					                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_debit_Nm_Rek_5">
-					                    		<?php if (isset($content['dataset']['debit'])) {
-						                    			$data = $content['dataset']['debit'];
-						                    			echo $data->Nm_Rek_5;
-						                    		}
-						                    	?>
-					                    	</div>
-					                    </div>
-						                <div class="row">
-	                                		<div class="col-md-12">Rekening Kredit</div>
-	                                	</div>
-					                    <div class="row">
-						                    <div id="rekening-kredit">
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="K_Rek_1" name="K_Rek_1" value="<?=$this->session->userdata('KRK_Kd_Rek_1_kredit')!=''?$this->session->userdata('KRK_Kd_Rek_1_kredit'):''?>">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="K_Rek_2" name="K_Rek_2" value="<?=$this->session->userdata('KRK_Kd_Rek_2_kredit')!=''?$this->session->userdata('KRK_Kd_Rek_2_kredit'):''?>">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="K_Rek_3" name="K_Rek_3" value="<?=$this->session->userdata('KRK_Kd_Rek_3_kredit')!=''?$this->session->userdata('KRK_Kd_Rek_3_kredit'):''?>">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="K_Rek_4" name="K_Rek_4" value="<?=$this->session->userdata('KRK_Kd_Rek_4_kredit')!=''?$this->session->userdata('KRK_Kd_Rek_4_kredit'):''?>">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<input type="text" class="form-control" id="K_Rek_5" name="K_Rek_5" value="<?=$this->session->userdata('KRK_Kd_Rek_5_kredit')!=''?$this->session->userdata('KRK_Kd_Rek_5_kredit'):''?>">
-						                    	</div>
-						                    	<div class="col-md-1">
-						                    		<a class="link-search" href="<?=base_url('parameter/korolari-rekening-kredit/')?>">
+						                    		<a class="link-search" href="<?=base_url('parameter/Mra-rekening-permendagri-13/')?>">
 						                    			<img src="<?= base_url('public/templates/integrasi_v.4.0/images/search.png')?>" widht="24" height="24" class="icon-search"/>
 						                    		</a>
 						                    	</div>
 						                    </div>
 					                    </div>
 					                  		<div class="row">
-						                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_kredit_Nm_Rek_5">
-					                    			<?php if (isset($content['dataset']['kredit'])){
-							                    			$data = $content['dataset']['kredit'];
-							                    			echo $data->Nm_Rek_5;
-					                    				}
-					                    			?>
+						                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_atas_rekening_Nm_Rek_5">
+						                    		<?= $RP13->Nm_Rek_5;?>
 						                    	</div>
 						                    </div>
+						                <div class="row">
+	                                		<div class="col-md-12">Rekening Permendagri 64</div>
+	                                	</div>
 					                    <div class="row">
-					                    	<div class="col-md-12">
+						                    <div id="rekening-permendagri-64">
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P64_Kd_Rek_1')!=''?$this->session->userdata('P64_Kd_Rek_1'):''?>" id="Kd_Akrual_1" name="Kd_Akrual_1">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P64_Kd_Rek_2')!=''?$this->session->userdata('P64_Kd_Rek_2'):''?>" id="Kd_Akrual_2" name="Kd_Akrual_2">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P64_Kd_Rek_3')!=''?$this->session->userdata('P64_Kd_Rek_3'):''?>" id="Kd_Akrual_3" name="Kd_Akrual_3">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P64_Kd_Rek_4')!=''?$this->session->userdata('P64_Kd_Rek_4'):''?>" id="Kd_Akrual_4" name="Kd_Akrual_4">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('P64_Kd_Rek_5')!=''?$this->session->userdata('P64_Kd_Rek_5'):''?>" id="Kd_Akrual_5" name="Kd_Akrual_5">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<a class="link-search" href="<?=base_url('parameter/Mra-rekening-permendagri-64/')?>">
+						                    			<img src="<?= base_url('public/templates/integrasi_v.4.0/images/search.png')?>" widht="24" height="24" class="icon-search"/>
+						                    		</a>
+						                    	</div>
+						                    </div>
+					                    </div>
+					                  		<div class="row">
+						                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_debit_Nm_Rek_5">
+						                    		<?= $RP64->Nm_Akrual_5;?>
+						                    	</div>
+						                    </div>
+						                <div class="row">
+	                                		<div class="col-md-12">Mapping 1 (OPTIONAL)</div>
+	                                	</div>
+					                    <div class="row">
+						                    <div id="mapping-1">
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_1" name="Kd_AkrualD_1" value="<?=$this->session->userdata('Mra_mapping_1_Kd_Rek_1')!=''?$this->session->userdata('Mra_mapping_1_Kd_Rek_1'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_2" name="Kd_AkrualD_2" value="<?=$this->session->userdata('Mra_mapping_1_Kd_Rek_2')!=''?$this->session->userdata('Mra_mapping_1_Kd_Rek_2'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_3" name="Kd_AkrualD_3" value="<?=$this->session->userdata('Mra_mapping_1_Kd_Rek_3')!=''?$this->session->userdata('Mra_mapping_1_Kd_Rek_3'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_4" name="Kd_AkrualD_4" value="<?=$this->session->userdata('Mra_mapping_1_Kd_Rek_4')!=''?$this->session->userdata('Mra_mapping_1_Kd_Rek_4'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualD_5" name="Kd_AkrualD_5" value="<?=$this->session->userdata('Mra_mapping_1_Kd_Rek_5')!=''?$this->session->userdata('Mra_mapping_1_Kd_Rek_5'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<a class="link-search" href="<?=base_url('parameter/Mra-mapping-1/')?>">
+						                    			<img src="<?= base_url('public/templates/integrasi_v.4.0/images/search.png')?>" widht="24" height="24" class="icon-search"/>
+						                    		</a>
+						                    	</div>
+						                    </div>
+					                    </div>
+				                  		<div class="row">
+					                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_kredit_Nm_Rek_5">
+					                    		<?= $detailMapping1->Nm_Akrual_5;?>
+					                    	</div>
+					                    </div>
+					                    <div class="row">
+	                                		<div class="col-md-12">Mapping 2 (OPTIONAL)</div>
+	                                	</div>
+					                    <div class="row">
+						                    <div id="mapping-2">
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_1" name="Kd_AkrualK_1" value="<?=$this->session->userdata('Mra_mapping_2_Kd_Rek_1')!=''?$this->session->userdata('Mra_mapping_2_Kd_Rek_1'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_2" name="Kd_AkrualK_2" value="<?=$this->session->userdata('Mra_mapping_2_Kd_Rek_2')!=''?$this->session->userdata('Mra_mapping_2_Kd_Rek_2'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_3" name="Kd_AkrualK_3" value="<?=$this->session->userdata('Mra_mapping_2_Kd_Rek_3')!=''?$this->session->userdata('Mra_mapping_2_Kd_Rek_3'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_4" name="Kd_AkrualK_4" value="<?=$this->session->userdata('Mra_mapping_2_Kd_Rek_4')!=''?$this->session->userdata('Mra_mapping_2_Kd_Rek_4'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<input type="text" class="form-control" id="Kd_AkrualK_5" name="Kd_AkrualK_5" value="<?=$this->session->userdata('Mra_mapping_2_Kd_Rek_5')!=''?$this->session->userdata('Mra_mapping_2_Kd_Rek_5'):''?>">
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<a class="link-search" href="<?=base_url('parameter/Mra-mapping-2/')?>">
+						                    			<img src="<?= base_url('public/templates/integrasi_v.4.0/images/search.png')?>" widht="24" height="24" class="icon-search"/>
+						                    		</a>
+						                    	</div>
+						                    </div>
+					                    </div>
+				                  		<div class="row">
+					                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_kredit_Nm_Rek_5">
+					                    		<?= $detailMapping2->Nm_Akrual_5;?>
+					                    	</div>
+					                    </div>
+					                    <div class="row">
+					                    	<div class="col-md-12" id="kumpulan_button">
 												
-												<?= ($enable_readonly == true)?'<button type="button" class="btn btn-primary" id="Korolari_tambah">Tambah</button>':'<button type="button" class="btn btn-primary" id="Korolari_simpan">Simpan</button>'?>
-												<!-- <button type="submit" class="btn btn-primary" id="Korolari_simpan">Simpan</button> -->
+												<?php //($enable_readonly == true)?'<button type="button" class="btn btn-primary" id="Korolari_tambah">Tambah</button>':'<button type="submit" class="btn btn-primary" id="Korolari_simpan">Simpan</button>'?>
+												<button type="button" class="btn btn-primary" id="Korolari_simpan">Simpan</button>
+												<!-- <button type="button" class="btn btn-primary" id="Korolari_tambah">Tambah</button>
+												<button type="button" class="btn btn-success" id="ubah">Ubah</button>
+												<button type="button" class="btn btn-info" id="hapus">Hapus</button>
+												<button type="button" class="btn btn-warning" id="cetak">Cetak</button>
+												<button type="button" class="btn btn-info" id="browse">Browse</button> -->
 												<button type="button" class="btn btn-danger" id="cancel">Cancel</button>
 					                    	</div>
 							        	</div>
@@ -186,22 +210,33 @@
     	// echo '<script type="text/javascript">';
     	// echo 'var cancel = document.getElementById("cancel");cancel.addEventListener("click",function(){window.location.href=\''.base_url('parameter/korolari/destroy').'\'});';
     	// echo '</script>';
-    	$cancel = base_url('parameter/korolari/destroy');
-    	$urlAjax  		= base_url('parameter/korolari/ajax');
+    	$cancel 	= base_url('parameter/mapping-rek-akrual/destroy');
+    	$urlAjax  	= base_url('parameter/korolari/ajax');
     	$this->registerJS("
 
-	    	var d 			= document,
-	    		f 			= d.forms['form-korolari'],
+	    	var tempData 	= {}, 
+	    		d 			= document,
+	    		cancel 		= d.getElementById('cancel'), 
+	    		f 			= d.forms['form-korolari'], 
+	    		tambah 		= d.getElementById('Korolari_tambah'), 
+	    		simpan 		= d.getElementById('Korolari_simpan'), 
+	    		link 		= d.getElementsByClassName('link-search'),
+	    		detailrek5 	= d.getElementsByClassName('Nm_Rek_5'),
+	    		hapus 		= d.getElementById('hapus'),
+	    		ubah 		= d.getElementById('ubah'),
+	    		browse 		= d.getElementById('browse'),
 	    		input 		= f.getElementsByTagName('input'),
-	    		tempData 	= {},
-	    		form 		= d.getElementById('korolari-atas-rekening'),
-	    		rDeb 		= d.getElementById('rekening-debit'),
-	    		rKred 		= d.getElementById('rekening-kredit'),
+	    		form 		= d.getElementById('rekening-permendagri-13'),
+	    		rDeb 		= d.getElementById('rekening-permendagri-64'),
+	    		rKred 		= d.getElementById('mapping-1'),
+	    		formId 		= d.getElementById('form-mapping-rek-akrual'),
+	    		tutupBrowse = d.getElementById('tutup-browse'),
+	    		pesan_error = d.getElementById('error_pesan'),
 	    		ajaxKAR 	= form.getElementsByTagName('input'),
 	    		ajaxRD 		= rDeb.getElementsByTagName('input'),
 	    		ajaxRK 		= rKred.getElementsByTagName('input'),
-	    		pesan_error = d.getElementById('error_pesan'),
-	    		simpan 		= d.getElementById('Korolari_simpan');
+	    		cetak 		= d.getElementById('cetak');
+
 	    	// console.log(input);
 	    	// event only number inputan
 	    	for(var i=0,fLen = input.length;i<fLen;i++){
@@ -316,23 +351,55 @@
 			simpan.addEventListener('click',function(){
 				submit = checkForm();
 				if (submit) {
-					d.getElementById('form-korolari-atas-rekening').submit();
+					d.getElementById('form-mapping-rek-akrual').submit();
 				}
 			});
 			// fungsi untuk cek form
+	    	// fungsi untuk cek form
 	    	function checkForm()
 	    	{
 	    		send = 1;
+	    		console.log(input.length);
 	    		for(i=0;i<input.length;i++)
 	    		{
-					if (input[i].value == '') {
-						send = 0;
-						input[i].parentNode.setAttribute('class','has-error '+input[i].parentNode.getAttribute('class'));
-						pesan_error.style.display = '';
-					}
-					if (input[i].value != '') {
-						input[i].parentNode.setAttribute('class','col-md-1');
-					}
+	    			if (i <= 9) {
+	    				if (input[i].value == '') {
+							send = 0;
+							input[i].parentNode.setAttribute('class','has-error '+input[i].parentNode.getAttribute('class'));
+							pesan_error.style.display = '';
+						}
+	    			}
+	    			// OPTIONAL
+    				if (i >= 10 && i<=14 ) {
+    					console.log(i);
+    					if (input[i].value != '') {
+    						for(j=10;j<15;j++){
+    							if (input[j].value == '') {
+
+    								console.log('kosong'+input[i].value);
+	    							send = 0;
+									input[j].parentNode.setAttribute('class','has-error '+input[i].parentNode.getAttribute('class'));
+									pesan_error.style.display = '';
+    							}
+    							
+							}
+						}
+    				}
+    				// OPTIONAL
+    				if (i >= 15 && i<=19 ) {
+    					console.log(i);
+    					if (input[i].value != '') {
+    						for(j=15;j<20;j++){
+    							if (input[j].value == '') {
+    								console.log('kosong'+input[i].value);
+	    							send = 0;
+									input[j].parentNode.setAttribute('class','has-error '+input[i].parentNode.getAttribute('class'));
+									pesan_error.style.display = '';
+    							}
+							}
+						}
+    				}
+					
 	    		}
 	    		return send;
 	    	}

@@ -1,20 +1,20 @@
 <!-- Main Content -->
    <section class="content">
-		<h2>Parameter<small> <?=$title?></small></h2>  
-			<div class="body">
-				<ol class="breadcrumb breadcrumb-col-cyan">
-					<li><a href="<?= site_url('dashboard');?>"><i class="material-icons">home</i> Home</a></li>
+        <h2>Parameter<small> <?=$title?></small></h2>  
+            <div class="body">
+                <ol class="breadcrumb breadcrumb-col-cyan">
+                    <li><a href="<?= site_url('dashboard');?>"><i class="material-icons">home</i> Home</a></li>
                     <li><a href="<?= site_url('parameter');?>"> Parameter</a></li>
-                    <li><a href="<?= site_url('parameter/mapping-rek-akrual');?>"> Maaping Rekening Akrual</a></li>
+                    <li><a href="<?= site_url('parameter/mapping-rek-akrual');?>"> Mapping Rekening Akrual</a></li>
                     <li class="active"> Urusan</li>
-				</ol>
-			</div>
+                </ol>
+            </div>
             <!-- Multiple Items To Be Open -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header bg-light-green">
-						      <h2>Rekening Akrual <?=$title?><small>Data Urusan</small></h2>
+                              <h2><?=$title_header?><small>Data Urusan</small></h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -32,7 +32,7 @@
                                     <div class="wizard">
                                         <div class="steps-index-container">
                                             <ul class="steps">
-                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/mra-rek-permendagri-13")?>')">
+                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/Mra-mapping-1")?>')">
                                                     <span class="step-index">
                                                         <span class="label">1</span>
                                                     </span>
@@ -40,7 +40,7 @@
                                                     <span class="wiz-icon-chevron-right colorA"></span>
                                                     <span class="wiz-icon-chevron-right colorB"></span>
                                                 </li>
-                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/mra-rek-permendagri-13/kelompok/{$this->session->userdata('mra_rek_permendagri_13_akun')}")?>')">
+                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/Mra-mapping-1/kelompok/{$this->session->userdata('P64_Kd_Rek_1')}")?>')">
                                                     <span class="step-index">
                                                         <span class="label">2</span>
                                                     </span>
@@ -48,7 +48,7 @@
                                                     <span class="wiz-icon-chevron-right colorA"></span>
                                                     <span class="wiz-icon-chevron-right colorB"></span>
                                                 </li>
-                                                <li class="active">
+                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/Mra-mapping-1/jenis/{$this->session->userdata('P64_Kd_Rek_2')}")?>')">
                                                     <span class="step-index">
                                                         <span class="label">3</span>
                                                     </span>
@@ -56,7 +56,7 @@
                                                     <span class="wiz-icon-chevron-right colorA"></span>
                                                     <span class="wiz-icon-chevron-right colorB"></span>
                                                 </li>
-                                                <li>
+                                                <li class="active">
                                                     <span class="step-index">
                                                         <span class="label">4</span>
                                                     </span>
@@ -83,18 +83,20 @@
                                                     <th style="text-align:center; width:50px">Akun</th>
                                                     <th style="text-align:center; width:80px">Kelompok</th>
                                                     <th style="text-align:center; width:50px">Jenis</th>
-                                                    <th style="text-align:center;">Uraian Rekening Jenis</th>
+                                                    <th style="text-align:center; width:50px">Obyek</th>
+                                                    <th style="text-align:center;">Uraian Rekening Obyek</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php foreach($data as $list):?>
                                                         <tr>
-                                                            <td style="text-align:center;"><?= $list->akun;?></td>
-                                                            <td style="text-align:center;"><?= $list->kelompok;?></td>
-                                                            <td style="text-align:center;"><?= $list->no;?></td>
+                                                            <td style="text-align:center;"><?= $list->Kd_Akrual_1;?></td>
+                                                            <td style="text-align:center;"><?= $list->Kd_Akrual_2;?></td>
+                                                            <td style="text-align:center;"><?= $list->Kd_Akrual_3;?></td>
+                                                            <td style="text-align:center;"><?= $list->Kd_Akrual_4;?></td>
                                                             <td>
-                                                                <a href="<?= site_url('parameter/mra-rek-permendagri-13/obyek/'.$list->no);?>">
-                                                                <?= $list->jenis_nama;?>
+                                                                <a href="<?= site_url('parameter/Mra-mapping-2/rincian/'.$list->Kd_Akrual_4);?>">
+                                                                <?= $list->Nm_Akrual_4;?>
                                                                 </a>
                                                             </td>
                                                         </tr>
