@@ -1,101 +1,154 @@
 <?php
-class Belanja_wajib_model extends CI_Model  {
+/**
+* Class Belanja Wajib Model
+* @author Trust
+*
+*/
+// error_reporting(E_ALL);
+class belanja_wajib_model extends CI_Model {
 
-	function __contsruct(){
-        parent::Model();
-    }
-	
-	function insert($data){
-       return $this->db->insert("belanja_wajib", $data);
-	}
-	
-	function update($data, $kode){
-		return $this->db->update("belanja_wajib", $data, array('kode' => $kode));	
-	}
-	
-	function delete($kode){
-		return $this->db->delete("belanja_wajib", array('kode' => $kode));	
-	}
-	
-	public function get_task_data($id){
-        $this->db->where('kode',$id);
-        $query = $this->db->get('belanja_wajib');
-        return $query->row();
-    }
-	
-	public function get_all(){ 
-		$this->db->select('belanja_wajib.kode as task_id,
-		akun.no as id_akun,
-		kelompok.no as id_kelompok,
-		jenis.no as id_jenis,
-		obyek.nomor as id_obyek,
-		rincian.nomor as id_rincian,
-		rincian.rincian_nama as nama_rincian');
-		$this->db->order_by('belanja_wajib.kelompok','ASC');
-        $this->db->from('belanja_wajib');
-		$this->db->join('akun', 'akun.kode = belanja_wajib.akun');
-		$this->db->join('kelompok', 'kelompok.kode = belanja_wajib.kelompok');
-		$this->db->join('jenis', 'jenis.kode = belanja_wajib.jenis');
-		$this->db->join('obyek', 'obyek.kode = belanja_wajib.obyek');
-		$this->db->join('rincian', 'rincian.kode = belanja_wajib.rincian');
-        $query = $this->db->get();
-        return $query->result();
-    }
-	
-	public function get_list($id){
-        $this->db->select('*');
-        $this->db->from('akun');
-        $this->db->where('kode',$id);
-        $query = $this->db->get();
-         if($query->num_rows() != 1){
-            return FALSE;
+        public $kd_rek_1;
+        public $kd_rek_2;
+        public $kd_rek_3;
+        public $kd_rek_4;
+
+        public function __construct()
+        {
+                parent::__construct();
         }
-        return $query->row();
-    }
-	
-	public function get($select="", $where=""){
-		$this->db->select($select);
-		$this->db->from("belanja_wajib");
-		if ($where){$this->db->where($where);}
-		$this->db->order_by('belanja_wajib.kode','ASC');
-		$this->db->limit(1);
-		$query = $this->db->get();
-		if ($query->num_rows() == 1){
-			return $query->row();
-		} else {
-			return false;
-		}
-	}
-	
-	public function grid_all($select="", $sidx="", $sord="", $limit="", $start="", $where="", $like=""){
-		$this->db->select($select);
-		$this->db->from("akun");
-		if ($where){$this->db->where($where);}
-		if ($like){
-			foreach($like as $key => $value){ 
-			$this->db->like($key, $value); 
-			}
-		}
-		if ($sidx && $sord) {$this->db->order_by($sidx,$sord);}
-		if (!empty($limit)) {$this->db->limit($limit,$start);}
-		$query = $this->db->get();
-		if ($query->num_rows() > 0){
-			return $query->result();
-		} else {
-			return false;
-		}
-	}
-	
-	public function count_all($where="", $like=""){
-		$this->db->select("kode");
-		$this->db->from("akun");
-		if ($where){$this->db->where($where);}
-		if ($like){
-			foreach($like as $key => $value){ 
-			$this->db->like($key, $value); 
-			}
-		}
-		$query = $this->db->get();
-		return $query->num_rows();
-	}
+
+        public function showData()
+        {
+                $query = $this->db->query("SELECT * FROM ".TBL_BELANJA_WAJIB." ORDER BY id DESC");
+                $row = $query->row();
+                
+                return $row;
+        }
+
+        public function update($id)
+        {
+                $query = $this->db->query("SELECT * FROM ".TBL_BELANJA_WAJIB." WHERE `id`= $id");
+                $row = $query->row();
+                
+                return $row;
+        }
+
+        public function getDetailRek5($kd_rek_1,$kd_rek_2,$kd_rek_3,$kd_rek_4,$kd_rek_5)
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_CONFIG_REK_5);
+                $this->db->where('kd_rek_1', $kd_rek_1);
+                $this->db->where('kd_rek_2', $kd_rek_2);
+                $this->db->where('kd_rek_3', $kd_rek_3);
+                $this->db->where('kd_rek_4', $kd_rek_4);
+                $this->db->where('kd_rek_5', $kd_rek_5);
+                $query = $this->db->get();
+                // echo $this->db->last_query();
+                return $query->row();
+        }
+
+        public function get_akun($where)
+        {
+
+                $this->db->select('*');
+                $this->db->from(TBL_CONFIG_REK_1);
+                $this->db->where_in('kd_rek_1',$where);
+                $query = $this->db->get();
+       
+                return $query->result();
+        }
+
+        public function get_kelompok()
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_CONFIG_REK_2);
+                if ($this->kd_rek_1 == 5) {
+                        $this->db->where('kd_rek_2',2);
+                }
+                $this->db->where('kd_rek_1', $this->kd_rek_1);
+
+                $query = $this->db->get();
+
+                return $query->result(); 
+        }
+
+        public function get_jenis()
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_CONFIG_REK_3);
+                $this->db->where('kd_rek_1', $this->kd_rek_1);
+                $this->db->where('kd_rek_2', $this->kd_rek_2);
+
+                if ($this->kd_rek_1 == 5) {
+                        $this->db->where('kd_rek_3',3);
+                }
+
+                $query = $this->db->get();
+                // echo $this->db->last_query();
+                return $query->result();
+        }
+
+        public function get_obyek()
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_CONFIG_REK_4);
+                $this->db->where('kd_rek_1', $this->kd_rek_1);
+                $this->db->where('kd_rek_2', $this->kd_rek_2);
+                $this->db->where('kd_rek_3', $this->kd_rek_3);
+
+                $query = $this->db->get();
+
+                return $query->result(); 
+        }
+
+        public function get_rincian()
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_CONFIG_REK_5);
+                $this->db->where('kd_rek_1', $this->kd_rek_1);
+                $this->db->where('kd_rek_2', $this->kd_rek_2);
+                $this->db->where('kd_rek_3', $this->kd_rek_3);
+                $this->db->where('kd_rek_4', $this->kd_rek_4);
+                $query = $this->db->get();
+
+                return $query->result(); 
+        }
+
+        public function allData()
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_BELANJA_WAJIB);
+
+                $query = $this->db->get();
+
+                return $query->result(); 
+        }
+
+        public function save($data)
+        {
+                if(!$this->db->insert(TBL_BELANJA_WAJIB,$data))
+                {
+                        // echo $error = $this->db->error();die();
+                        return false;
+                }
+                return true;
+        }
+
+        public function delete($data)
+        {
+                $this->db->select("*");
+                $this->db->from(TBL_BELANJA_WAJIB);
+                $this->db->where($data);
+                $query = $this->db->get();
+
+                $row = $query->row();
+                // echo "hapus ".$this->db->delete(TBL_BELANJA_WAJIB, array('id' => $row->id));
+                if ($this->db->delete(TBL_BELANJA_WAJIB, array('id' => $row->id))) 
+                        echo "1";
+                else
+                        echo "0";
+                // echo $this->db->last_query();
+
+        }
+
 }
