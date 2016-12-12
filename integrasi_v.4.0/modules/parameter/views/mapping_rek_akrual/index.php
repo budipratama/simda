@@ -270,7 +270,7 @@
     	$urlAjaxAkrual  = base_url('parameter/mapping-rek-akrual/ajaxAkrual');
     	$urlKorolari	= base_url('parameter/mapping-rek-akrual');
     	$urlSave		= base_url('parameter/mapping-rek-akrual/save');
-    	$urlUpdate      = base_url("parameter/mapping_rek_akrual/updateData/{$row->id}");
+    	$urlFlagUpdate  = base_url("parameter/mapping_rek_akrual/updateData/{$row->id}");
     	$this->registerJS("
     		var tempData 	= {}, 
 	    		d 			= document,

@@ -153,21 +153,41 @@ class Korolari extends CI_Controller {
 	public function ajaxUpdate($update)
 	{
 		$korolari = array('Korolari_update'  => $update);
-		$this->session->set_userdata($korolari);
+		
 
 		header('Content-Type: application/json');
-		if ($update == 1) 
+		if ($update == 1){
+			$this->session->set_userdata($korolari);
 			echo json_encode($korolari);
-		else
+		} 
+		else{
+			$this->session->set_userdata($korolari);
 			echo json_encode($korolari);
+		}
 		exit();
 	}
 
 	public function save()
 	{	$id = $this->session->userdata('Korolari_update');
 		
-		if ($this->session->userdata('Korolari_update')!='') {
+		if ($this->session->userdata('Korolari_update')!='0') {
 			$this->session->unset_userdata('Korolari_update');
+			$this->session->unset_userdata('KAR_Kd_Rek_1');
+			$this->session->unset_userdata('KAR_Kd_Rek_2');
+			$this->session->unset_userdata('KAR_Kd_Rek_3');
+			$this->session->unset_userdata('KAR_Kd_Rek_4');
+			$this->session->unset_userdata('KAR_Kd_Rek_5');
+			$this->session->unset_userdata('KRD_Kd_Rek_1_debit');
+			$this->session->unset_userdata('KRD_Kd_Rek_2_debit');
+			$this->session->unset_userdata('KRD_Kd_Rek_3_debit');
+			$this->session->unset_userdata('KRD_Kd_Rek_4_debit');
+			$this->session->unset_userdata('KRD_Kd_Rek_5_debit');
+			$this->session->unset_userdata('KRK_Kd_Rek_1_kredit');
+			$this->session->unset_userdata('KRK_Kd_Rek_2_kredit');
+			$this->session->unset_userdata('KRK_Kd_Rek_3_kredit');
+			$this->session->unset_userdata('KRK_Kd_Rek_4_kredit');
+			$this->session->unset_userdata('KRK_Kd_Rek_5_kredit');
+			
 			$this->updateData($id);
 		}
 

@@ -222,13 +222,15 @@
         </div>
     </section>
     <?php
-    	$urlUpdate  	= base_url('parameter/korolari/update');
-    	$urlUpdateData  = base_url("parameter/korolari/updateData/{$row->id}");
-    	$urlSave  		= base_url('parameter/korolari/save');
-    	$urlHapus  		= base_url('parameter/korolari/hapus');
-    	$urlAjax  		= base_url('parameter/korolari/ajax');
-    	$urlKorolari	= base_url('parameter/korolari');
-    	$urlUpdateAjax  = base_url("parameter/korolari/ajaxUpdate/{$row->id}");
+    	$urlUpdate  			= base_url('parameter/korolari/update');
+    	$urlUpdateData  		= base_url("parameter/korolari/updateData/{$row->id}");
+    	$urlSave  				= base_url('parameter/korolari/save');
+    	$urlHapus  				= base_url('parameter/korolari/hapus');
+    	$urlAjax  				= base_url('parameter/korolari/ajax');
+    	$urlKorolari			= base_url('parameter/korolari');
+    	$urlUpdateAjax  		= base_url("parameter/korolari/ajaxUpdate/{$row->id}");
+    	$urlUpdateAjaxCancel  	= base_url("parameter/korolari/ajaxUpdate/0");
+
     	$this->registerJS("
     		var tempData 	= {}, 
 	    		d 			= document,
@@ -536,6 +538,10 @@
 
 			// event cancel
 	    	cancel.addEventListener('click',function(){
+	    		url = '$urlUpdateAjaxCancel';
+	    		ajaxGET(url,function(cb){
+					alert(cb);
+				});
 	    		f.setAttribute('action','$urlSave');
 	    		removeError();
 	    		hapus.style.display 	= '';
