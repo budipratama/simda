@@ -5,7 +5,7 @@
 *
 *
 */
-error_reporting(E_ALL);
+// error_reporting(E_ALL);
 class belanja_wajib extends CI_Controller {
 	
 	public function __construct()
@@ -14,6 +14,12 @@ class belanja_wajib extends CI_Controller {
 		$this->load->library('Datatables');
 		$this->load->model('parameter/belanja_wajib_model');
 	}
+
+	public function getDetailRek5($Kd_Rek_1,$Kd_Rek_2,$Kd_Rek_3,$Kd_Rek_4,$Kd_Rek_5)
+	{
+		$this->belanja_wajib_model->getDetailRek5($Kd_Rek_1,$Kd_Rek_2,$Kd_Rek_3,$Kd_Rek_4,$Kd_Rek_5);
+	}
+
 	public function index()
 	{
 		$admin_log 	= $this->auth->is_login_admin();
@@ -45,23 +51,13 @@ class belanja_wajib extends CI_Controller {
 		}
 	}
 
-	public function destroy()
-	{	
-		$this->session->unset_userdata('KAR_Kd_Rek_1');
-		$this->session->unset_userdata('KAR_Kd_Rek_2');
-		$this->session->unset_userdata('KAR_Kd_Rek_3');
-		$this->session->unset_userdata('KAR_Kd_Rek_4');
-		$this->session->unset_userdata('KAR_Kd_Rek_5');
-		@ redirect('parameter/belanja_wajib');
-	}
-
 	public function tambah()
 	{
 		$admin_log 	= $this->auth->is_login_admin();
 		{
 			$enable_readonly = true;
 
-			// session belanja_wajib dan mengikat
+			// session belanja wajib dan mengikat
 			if ($this->session->userdata('KAR_Kd_Rek_5')!='') 
 			{
 				$detail_data_mengikat = $this->belanja_wajib_model->getDetailRek5($this->session->userdata('KAR_Kd_Rek_1'),$this->session->userdata('KAR_Kd_Rek_2'),$this->session->userdata('KAR_Kd_Rek_3'),$this->session->userdata('KAR_Kd_Rek_4'),$this->session->userdata('KAR_Kd_Rek_5'));
@@ -82,16 +78,6 @@ class belanja_wajib extends CI_Controller {
 			$this->load->view('admin/footer');
 		}
 	}
-	
-	/*public function validationPost($data)
-	{
-		foreach ($data as $key => $value) {
-			if ($data[$key]=="") {
-				$this->session->set_flashdata('errors', 'Field Tidak Boleh Kosong');
-				@ redirect('parameter/belanja_wajib');
-			}
-		}
-	}*/
 
 	public function update($id)
 	{
@@ -121,22 +107,109 @@ class belanja_wajib extends CI_Controller {
 		}
 	}
 
+	public function ajax()
+	{
+		header('Content-Type: application/json');
+		$array = array_keys($_POST);
+
+		$row = $this->belanja_wajib_model->getDetailRek5($_POST[$array[0]],$_POST[$array[1]],$_POST[$array[2]],$_POST[$array[3]],$_POST[$array[4]]);
+		// print_r($row);
+		echo json_encode($row);
+		exit();
+	}
+
+	/**
+	* Setting flag update
+	*
+	*/
+	public function ajaxUpdate($update)
+	{
+		$belanja = array('Belanja_update'  => $update);
+		
+
+		header('Content-Type: application/json');
+		if ($update == 1) {
+			$this->session->set_userdata($belanja);
+			echo json_encode($belanja);
+		} 
+		else {
+			$this->session->set_userdata($belanja);
+			echo json_encode($belanja);
+		}
+		exit();
+	}
+
 	public function save()
 	{
-		if (!$this->belanja_wajib_model->save($_POST)){
-			$this->session->set_flashdata('errors', NOTIF_UNIQUE_INPUT);
+		$id = $this->session->userdata('Belanja_update');
+		
+		if ($this->session->userdata('Belanja_update')!='0') {
+			$this->session->unset_userdata('Belanja_update');
+			$this->session->unset_userdata('KAR_Kd_Rek_1');
+			$this->session->unset_userdata('KAR_Kd_Rek_2');
+			$this->session->unset_userdata('KAR_Kd_Rek_3');
+			$this->session->unset_userdata('KAR_Kd_Rek_4');
+			$this->session->unset_userdata('KAR_Kd_Rek_5');
+			
+			$this->updateData($id);
 		}
-		else{
-			$this->session->set_flashdata('success', NOTIF_SUCCESS_INPUT);
+
+		// echo "id ".$id;die();
+		if (!$this->belanja_wajib_model->save($_POST)) {
+			@redirect('parameter/belanja-wajib/destroy/1');
 		}
-		@ redirect('parameter/belanja_wajib/destroy');
+		else {
+			@redirect('parameter/belanja-wajib/destroy/0');
+		}
 	}
+
+	public function destroy($error)
+	{	
+		$this->session->unset_userdata('KAR_Kd_Rek_1');
+		$this->session->unset_userdata('KAR_Kd_Rek_2');
+		$this->session->unset_userdata('KAR_Kd_Rek_3');
+		$this->session->unset_userdata('KAR_Kd_Rek_4');
+		$this->session->unset_userdata('KAR_Kd_Rek_5');
+		
+		if ($error == '1')
+			$this->session->set_flashdata('errors', NOTIF_UNIQUE_INPUT);
+		else
+			$this->session->set_flashdata('success', NOTIF_SUCCESS_INPUT);
+
+		@ redirect('parameter/belanja-wajib');
+	}
+
+	public function updateData($id){
+        $result = $this->belanja_wajib_model->updateData($id);
+
+        if ($result == '1') {
+        	$this->session->set_flashdata('success', NOTIF_UPDATE_SUCCESS);
+        }
+        else {
+        	$this->session->set_flashdata('errors', NOTIF_UPDATE_FAILED);
+        }
+        @redirect('parameter/belanja-wajib');
+    }
+
+	/*public function validationPost($data)
+	{
+		foreach ($data as $key => $value) {
+			if ($data[$key]=="") {
+				$this->session->set_flashdata('errors', 'Field Tidak Boleh Kosong');
+				@ redirect('parameter/belanja_wajib');
+			}
+		}
+	}*/
 
 	public function hapus()
 	{
-		$this->belanja_wajib_model->delete($_POST);
+		$error = $this->belanja_wajib_model->delete($_POST);
+
+		if ($error == '1') {
+			$this->session->set_flashdata('errors', NOTIF_UNIQUE_INPUT);
+		}
+		else {
+			$this->session->set_flashdata('success', NOTIF_SUCCESS_INPUT);
+		}
 	}
-
-	
-
 }

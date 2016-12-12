@@ -133,8 +133,8 @@ class belanja_wajib_dan_mengikat extends CI_Controller {
 			$this->belanja_wajib_model->Kd_Rek_2 				= $this->session->userdata('KAR_Kd_Rek_2');
 			$this->belanja_wajib_model->Kd_Rek_3 				= $this->session->userdata('KAR_Kd_Rek_3');
 			$this->belanja_wajib_model->Kd_Rek_4 				= $id;
-			$container['data']								= $this->belanja_wajib_model->get_rincian();			
-			$header['admin_log']							= $admin_log;
+			$container['data']									= $this->belanja_wajib_model->get_rincian();			
+			$header['admin_log']								= $admin_log;
 
 			$this->load->view('admin/head');
 			$this->load->view('admin/header', $header);
@@ -152,11 +152,7 @@ class belanja_wajib_dan_mengikat extends CI_Controller {
 			$belanja_wajib = array(
 			        	'KAR_Kd_Rek_5'  => $id,
 			);
-			// print "<pre>";
-			// print_r($container);
-			// print_r($belanja_wajib);
-			// echo $id;
-			// exit;
+			
 			$this->session->set_userdata($belanja_wajib);
 			redirect('parameter/belanja-wajib/tambah', 'refresh');
 		}

@@ -49,7 +49,7 @@
 	                    <div class="body">
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                	<form id="form-belanja-wajib-dan-mengikat" name="form-belanja-wajib" method="POST" action="<?=site_url("parameter/belanja-wajib/save")?>">
+                                	<form id="form-bwlanja-wajib-dan-mengikat" name="form-belanja-wajib" method="POST" action="<?=site_url("parameter/belanja-wajib/save")?>">
 	                                	<div class="row">
 	                                		<div class="col-md-12">Belanja wajib dan mengikat</div>
 	                                	</div>
@@ -77,21 +77,21 @@
 						                    	</div>
 						                    </div>
 					                    </div>
-					                    <?php if (isset($content['dataset']['rekening'])) {?>
+					                    <?php if (isset($content['dataset']['mengikat'])) {?>
 						                  		<div class="row">
 							                    	<div class="col-md-12">
 							                    		<?php 
-							                    			$data = $content['dataset']['rekening'];
+							                    			$data = $content['dataset']['mengikat'];
 							                    			echo $data->Nm_Rek_5;
 							                    		?>
 							                    	</div>
 							                    </div>
 						                <?php }?>
-					                    <div class="row">
+						                <div class="row">
 					                    	<div class="col-md-12">
 												
-												<?= ($enable_readonly == true)?'<button type="button" class="btn btn-primary" id="belanja_tambah">Tambah</button>':'<button type="submit" class="btn btn-primary" id="belanja_simpan">Simpan</button>'?>
-												<!-- <button type="submit" class="btn btn-primary" id="belanja_simpan">Simpan</button> -->
+												<?= ($enable_readonly == true)?'<button type="button" class="btn btn-primary" id="Belanja_tambah">Tambah</button>':'<button type="submit" class="btn btn-primary" id="Belanja_simpan">Simpan</button>'?>
+												<!-- <button type="submit" class="btn btn-primary" id="Belanja_simpan">Simpan</button> -->
 												<button type="button" class="btn btn-success" onclick="openReadOnly()">Ubah</button>
 												<button type="button" class="btn btn-info">Hapus</button>
 												<button type="button" class="btn btn-warning">Cetak</button>
@@ -106,7 +106,6 @@
                 </div>
             </div>
             <!-- #END# Tabs With Custom Animations -->
-        </div>
     </section>
     <script type="text/javascript">
 	    function openReadOnly(){
@@ -120,7 +119,7 @@
 			}
 		}
 		
-    	var tambah = document.getElementById("belanja_tambah");
+    	var tambah = document.getElementById("Belanja_tambah");
     	tambah.addEventListener('click',function(){
     		this.textContent = "Simpan";
     		// alert('sad');
