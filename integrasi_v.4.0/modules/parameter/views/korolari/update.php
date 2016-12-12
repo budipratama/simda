@@ -391,24 +391,28 @@
 
 	    	//event hapus
 	    	hapus.addEventListener('click',function(){
-	    		var http = new XMLHttpRequest();
-				var url = '$urlHapus';
-				var params = serialize(f);
-				http.open('POST', url, true);
+			    var r = confirm('Hapus data tekan yes');
+			    if (r == true) {
+			        var http = new XMLHttpRequest();
+					var url = '$urlHapus';
+					var params = serialize(f);
+					http.open('POST', url, true);
 
-				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-				http.onreadystatechange = function() {
-				    if(http.readyState == 4 && http.status == 200) {
-				        if (http.responseText == 1) {
-				        	window.location.href = '$urlKorolari';
-				        }
-				        else{
-				        	alert('Gagal hapus data');
-				        }
-				    }
-				}
-				http.send(params);
+					http.onreadystatechange = function() {
+					    if(http.readyState == 4 && http.status == 200) {
+					        if (http.responseText == 1) {
+					        	window.location.href = '$urlKorolari';
+					        }
+					        else{
+					        	alert('Gagal hapus data');
+					        }
+					    }
+					}
+					http.send(params);
+			    } 
+	    		
 	    	});
 
 	    	
@@ -515,7 +519,7 @@
 	    				send = 0;
 	    			}
 	    		}
-	    		
+
 	    		return send;
 	    	}
 

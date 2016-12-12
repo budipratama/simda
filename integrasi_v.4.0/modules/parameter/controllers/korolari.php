@@ -246,10 +246,10 @@ class Korolari extends CI_Controller {
 	{
 		$error = $this->Korolari_model->delete($_POST);
 
-		if ($error == '1')
-			$this->session->set_flashdata('errors', NOTIF_UNIQUE_INPUT);
+		if ($error != '1')
+			$this->session->set_flashdata('errors', NOTIF_FAILED_DELETE);
 		else
-			$this->session->set_flashdata('success', NOTIF_SUCCESS_INPUT);
+			$this->session->set_flashdata('success', NOTIF_SUCCESS_DELETE);
 	}
 
 	

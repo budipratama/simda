@@ -70,6 +70,8 @@ define('NOTIF_UNIQUE_INPUT','Data yang anda masukan telah ada pada sistem kami')
 define('NOTIF_UPDATE_SUCCESS','Data telah di perbaharui pada sistem kami');
 define('NOTIF_UPDATE_FAILED','Data telah di perbaharui pada sistem kami');
 define('PESAN_FIELD_KOSONG','Data yang di inputkan tidak boleh kosong');
+define('NOTIF_SUCCESS_DELETE','Data telah di hapus');
+define('NOTIF_FAILED_DELETE','Data gagal di hapus');
 
 
 /* End of file constants.php */

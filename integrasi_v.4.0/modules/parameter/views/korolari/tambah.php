@@ -201,6 +201,7 @@
 	    		ajaxRD 		= rDeb.getElementsByTagName('input'),
 	    		ajaxRK 		= rKred.getElementsByTagName('input'),
 	    		pesan_error = d.getElementById('error_pesan'),
+	    		detailrek5 	= d.getElementsByClassName('Nm_Rek_5'),
 	    		simpan 		= d.getElementById('Korolari_simpan');
 	    	// console.log(input);
 	    	// event only number inputan
