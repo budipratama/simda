@@ -1,4 +1,7 @@
 <!-- Main Content -->
+<?php
+	$this->load->model('parameter/Korolari_model');
+?>
    <section class="content">
 		<h2>Parameter<small> rekening korolari</small></h2>  
 			<div class="body">
@@ -54,42 +57,33 @@
 	                                        <thead>
 	                                        <tr>
 	                                            <th style="text-align:center; width:100px;display: none">id</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 1</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 2</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 3</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 4</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 5</th>
-	                                            <th style="text-align:center; width:100px">D Rek 1</th>
-	                                            <th style="text-align:center; width:100px">D Rek 2</th>
-	                                            <th style="text-align:center; width:100px">D Rek 3</th>
-	                                            <th style="text-align:center; width:100px">D Rek 4</th>
-	                                            <th style="text-align:center; width:100px">D Rek 5</th>
-	                                            <th style="text-align:center; width:100px">K Rek 1</th>
-	                                            <th style="text-align:center; width:100px">K Rek 2</th>
-	                                            <th style="text-align:center; width:100px">K Rek 3</th>
-	                                            <th style="text-align:center; width:100px">K Rek 4</th>
-	                                            <th style="text-align:center; width:100px">K Rek 5</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek</th>
+	                                            <th style="text-align:center; width:100px">Uraian Rekening</th>
+	                                            <th style="text-align:center; width:100px">Kd Debit</th>
+	                                            <th style="text-align:center; width:100px">Uraian Rekening</th>
+	                                            <th style="text-align:center; width:100px">Kd Kredit</th>
+	                                            <th style="text-align:center; width:100px">Uraian Rekening</th>
 	                                        </tr>
 	                                        </thead>
 	                                        <tbody>
 	                                            <?php foreach($browse as $row):?>
+	                                            	<?php
+	                                            		// $kdRek = 
+	                                            		$kdRek4AtasRekening = strlen((string)$row->Kd_Rek_4)==1?"0".$row->Kd_Rek_4:$row->Kd_Rek_4;
+	                                            		$kdRek5AtasRekening = strlen((string)$row->Kd_Rek_5)==1?"0".$row->Kd_Rek_5:$row->Kd_Rek_5;
+	                                            		$kdRek4RekeningDebit = strlen((string)$row->D_Rek_4)==1?"0".$row->D_Rek_4:$row->D_Rek_4;
+	                                            		$kdRek5RekeningDebit = strlen((string)$row->D_Rek_5)==1?"0".$row->D_Rek_5:$row->D_Rek_5;
+	                                            		$kdRek4RekeningKredit = strlen((string)$row->K_Rek_4)==1?"0".$row->K_Rek_4:$row->K_Rek_4;
+	                                            		$kdRek5RekeningKredit = strlen((string)$row->K_Rek_5)==1?"0".$row->K_Rek_5:$row->K_Rek_5;
+	                                            	?>
 	                                                <tr <?= "onclick='pilih({$row->id})'"?>>
 	                                                    <td style="text-align:center;display: none"><?= $row->id;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_5;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->D_Rek_5;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->K_Rek_5;?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1.".".$row->Kd_Rek_2.".".$row->Kd_Rek_3.".".$kdRek4AtasRekening.".".$kdRek5AtasRekening?></td>
+	                                                    <td style="text-align:center;"><?= $this->Korolari_model->getDetailRek5($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4,$row->Kd_Rek_5)->Nm_Rek_5?></td>
+	                                                    <td style="text-align:center;"><?= $row->D_Rek_1.".".$row->D_Rek_2.".".$row->D_Rek_3.".".$kdRek4RekeningDebit.".".$kdRek5RekeningDebit?></td>
+	                                                    <td style="text-align:center;"><?= $this->Korolari_model->getDetailRek5($row->D_Rek_1,$row->D_Rek_2,$row->D_Rek_3,$row->D_Rek_4,$row->D_Rek_5)->Nm_Rek_5?></td>
+	                                                    <td style="text-align:center;"><?= $row->K_Rek_1.".".$row->K_Rek_2.".".$row->K_Rek_3.".".$kdRek4RekeningKredit.".".$kdRek5RekeningKredit?></td>
+	                                                    <td style="text-align:center;"><?= $this->Korolari_model->getDetailRek5($row->K_Rek_1,$row->K_Rek_2,$row->K_Rek_3,$row->K_Rek_4,$row->K_Rek_5)->Nm_Rek_5?></td>
 	                                                </tr>
 	                                            <?php endforeach; ?>
 	                                        </tbody>

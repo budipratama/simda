@@ -15,6 +15,10 @@ class Korolari extends CI_Controller {
 		$this->load->model('parameter/Korolari_model');
 	}
 	
+	public function getDetailRek5($Kd_Rek_1,$Kd_Rek_2,$Kd_Rek_3,$Kd_Rek_4,$Kd_Rek_5){
+		$this->Korolari_model->getDetailRek5($Kd_Rek_1,$Kd_Rek_2,$Kd_Rek_3,$Kd_Rek_4,$Kd_Rek_5);
+	}
+	
 	public function index()
 	{
 		$admin_log 	= $this->auth->is_login_admin();
@@ -187,7 +191,7 @@ class Korolari extends CI_Controller {
 			$this->session->unset_userdata('KRK_Kd_Rek_3_kredit');
 			$this->session->unset_userdata('KRK_Kd_Rek_4_kredit');
 			$this->session->unset_userdata('KRK_Kd_Rek_5_kredit');
-			
+
 			$this->updateData($id);
 		}
 
