@@ -41,7 +41,7 @@ class Mapping_rek_akrual_model extends CI_Model {
 
         public function update($id)
         {
-                $query = $this->db->query("SELECT * FROM ".TBL_KOROLARI." WHERE `id`= $id");
+                $query = $this->db->query("SELECT * FROM ".TBL_AKRUAL." WHERE `id`= $id");
                 $row = $query->row();
                 
                 return $row;
@@ -208,17 +208,15 @@ class Mapping_rek_akrual_model extends CI_Model {
         public function delete($data)
         {
                 $this->db->select("*");
-                $this->db->from(TBL_KOROLARI);
+                $this->db->from(TBL_AKRUAL);
                 $this->db->where($data);
                 $query = $this->db->get();
-
                 $row = $query->row();
-                // echo "hapus ".$this->db->delete(TBL_KOROLARI, array('id' => $row->id));
-                if ($this->db->delete(TBL_KOROLARI, array('id' => $row->id))) 
+                
+                if ($this->db->delete(TBL_AKRUAL, array('id' => $row->id))) 
                         echo "1";
                 else
                         echo "0";
-                // echo $this->db->last_query();
 
         }
 

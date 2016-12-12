@@ -432,14 +432,35 @@
 	    		browse.style.display 	= 'none';
 	    		tambah.style.display 	= 'none';
 	    		simpan.style.display    = '';
+	    		params = 'update=1';
 	    		for(var i=0,fLen=f.length;i<fLen;i++){
 				  f.elements[i].readOnly = false;
 				}
 	    		for(var i=0,fLen=link.length;i<fLen;i++){
 					link[i].removeEventListener('click',disableLink);
 				}
+
+				ajaxGET(url,param);
 	    	});
 
+	    	// ajax GET
+	    	function ajaxGET(url,param){
+	    		var http = new XMLHttpRequest();
+				var url = url;
+				var params = params;
+				http.open('POST', url, true);
+
+				//Send the proper header information along with the request
+				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+				http.onreadystatechange = function() {//Call a function when the state changes.
+				    if(http.readyState == 4 && http.status == 200) {
+				        var obj = JSON.parse(http.responseText);
+				        callback(null,obj);
+				    }
+				}
+				http.send(params);
+	    	}
 	    	// fungsi nonaktikan logo search
 	    	function disableSearch()
 	    	{

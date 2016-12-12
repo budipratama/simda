@@ -5,7 +5,7 @@
 				<ol class="breadcrumb breadcrumb-col-cyan">
 					<li><a href="<?php echo site_url('dashboard');?>"><i class="material-icons">home</i> Home</a></li>
 					<li><a href="<?php echo site_url('parameter');?>"> Parameter</a></li>
-					<li><a href="<?php echo site_url('parameter/korolari');?>"> Mapping Rekening Akrual</a></li>
+					<li><a href="<?php echo site_url('parameter/mapping-rek-akrual');?>"> Mapping Rekening Akrual</a></li>
 					<li class="active"> Urusan</li>
 				</ol>
 			</div>
@@ -465,24 +465,33 @@
 
 	    	//event hapus
 	    	hapus.addEventListener('click',function(){
-	    		var http = new XMLHttpRequest();
-				var url = '$urlHapus';
-				var params = serialize(f);
-				http.open('POST', url, true);
+	    		var r = confirm('Hapus data tekan yes');
+			    if (r == true) {
+			    	var http = new XMLHttpRequest();
+					var url = '$urlHapus';
+					var params = serialize(f);
 
-				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					http.open('POST', url, true);
 
-				http.onreadystatechange = function() {
-				    if(http.readyState == 4 && http.status == 200) {
-				        if (http.responseText == 1) {
-				        	window.location.href = '$urlKorolari';
-				        }
-				        else{
-				        	alert('Gagal hapus data');
-				        }
-				    }
-				}
-				http.send(params);
+					http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+					http.onreadystatechange = function() {
+					    if(http.readyState == 4 && http.status == 200) {
+					    	// alert(params);
+					    	// alert(http.responseText);
+					        if (http.responseText == 1) {
+					        	// location.reload();
+					        	window.location.href = '$urlKorolari';
+					        }
+					        else{
+					        	// location.reload();
+					        	window.location.href = '$urlKorolari';
+					        }
+					    }
+					}
+					http.send(params);
+			    }
+	    		
 	    	});
 
 			// event simpan data
