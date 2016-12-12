@@ -4,7 +4,7 @@
 * @author Trust
 *
 */
-error_reporting(E_ALL);
+// error_reporting(E_ALL);
 class belanja_wajib_model extends CI_Model {
 
         public $Kd_Rek_1;
@@ -19,7 +19,6 @@ class belanja_wajib_model extends CI_Model {
 
         public function showData()
         {
-                $sql = "SELECT * FROM ".TBL_BELANJA_WAJIB." ORDER BY id DESC";
                 $query = $this->db->query("SELECT * FROM ".TBL_BELANJA_WAJIB." ORDER BY id DESC");
                 $row = $query->row();
                 
@@ -32,6 +31,12 @@ class belanja_wajib_model extends CI_Model {
                 $row = $query->row();
                 
                 return $row;
+        }
+
+        public function updateData($id)
+        {
+               return $this->db->update(TBL_BELANJA_WAJIB, $_POST, array('id' => $id));
+
         }
 
         public function getDetailRek5($Kd_Rek_1,$Kd_Rek_2,$Kd_Rek_3,$Kd_Rek_4,$Kd_Rek_5)
@@ -144,10 +149,12 @@ class belanja_wajib_model extends CI_Model {
 
                 $row = $query->row();
                 // echo "hapus ".$this->db->delete(TBL_BELANJA_WAJIB, array('id' => $row->id));
-                if ($this->db->delete(TBL_BELANJA_WAJIB, array('id' => $row->id))) 
+                if ($this->db->delete(TBL_BELANJA_WAJIB, array('id' => $row->id))) {
                         echo "1";
-                else
+                }
+                else {
                         echo "0";
+                }
                 // echo $this->db->last_query();
 
         }
