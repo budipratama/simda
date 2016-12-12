@@ -173,7 +173,8 @@ class Korolari extends CI_Controller {
 	}
 
 	public function save()
-	{	$id = $this->session->userdata('Korolari_update');
+	{	
+		$id = $this->session->userdata('Korolari_update');
 		
 		if ($this->session->userdata('Korolari_update')!='0') {
 			$this->session->unset_userdata('Korolari_update');

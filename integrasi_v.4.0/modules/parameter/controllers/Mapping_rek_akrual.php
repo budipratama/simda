@@ -82,19 +82,19 @@ class Mapping_rek_akrual extends CI_Controller {
                         $detailMapping2 = $this->Mapping_rek_akrual_model->getDetailMsAkrual5($row->Kd_AkrualK_1,$row->Kd_AkrualK_2,$row->Kd_AkrualK_3,$row->Kd_AkrualK_4,$row->Kd_AkrualK_5);
 
                         // print_r($detailKAR);die();
-                        $container['sidebar']['view']                                           = 'admin/sidebar';
+                        $container['sidebar']['view']                           = 'admin/sidebar';
                         $container['sidebar']['dataset']['aktive_menu']         = 60;
-                        $container['content']['view']                           = 'parameter/mapping_rek_akrual/index';
-                        $container['content']['dataset']['data']                        = $row;
-                        $container['content']['dataset']['id']                          = $row->id;
+                        $container['content']['view']                           = 'parameter/mapping_rek_akrual/update';
+                        $container['content']['dataset']['data']                = $row;
+                        $container['content']['dataset']['id']                  = $row->id;
                         $container['content']['dataset']['RP13']                = $detailRP13;
                         $container['content']['dataset']['RP64']                = $detailRP64;
                         $container['content']['dataset']['browse']              = $rowAll;
                         $container['content']['dataset']['detailMapping1']      = $detailMapping1;
                         $container['content']['dataset']['detailMapping2']      = $detailMapping2;
-                        $container['content']['dataset']['browse']                      = $rowAll;
+                        $container['content']['dataset']['browse']              = $rowAll;
                         $container['content']['dataset']['enable_readonly']     = $enable_readonly;
-                        $header['admin_log']                                                            = $admin_log;
+                        $header['admin_log']                                    = $admin_log;
                         
                         $this->load->view('admin/head');
                         $this->load->view('admin/header', $header);
@@ -103,6 +103,28 @@ class Mapping_rek_akrual extends CI_Controller {
                         $this->load->view('admin/tables');
                 }
         }
+
+        /**
+        * Setting flag update
+        *
+        */
+        public function ajaxUpdate($update)
+        {
+                $korolari = array('Mapping_rek_akrual_update'  => $update);
+                
+
+                header('Content-Type: application/json');
+                if ($update == 1){
+                        $this->session->set_userdata($korolari);
+                        echo json_encode($korolari);
+                } 
+                else{
+                        $this->session->set_userdata($korolari);
+                        echo json_encode($korolari);
+                }
+                exit();
+        }
+
         public function tambah()
         {
                 $admin_log      = $this->auth->is_login_admin();
@@ -196,7 +218,33 @@ class Mapping_rek_akrual extends CI_Controller {
 
         public function save()
         {
-
+                $id = $this->session->userdata('Mapping_rek_akrual_update');
+                
+                if ($this->session->userdata('Mapping_rek_akrual_update')!='0') {
+                        $this->session->unset_userdata('Mapping_rek_akrual_update');
+                        $this->session->unset_userdata('P13_Kd_Rek_1');
+                        $this->session->unset_userdata('P13_Kd_Rek_2');
+                        $this->session->unset_userdata('P13_Kd_Rek_3');
+                        $this->session->unset_userdata('P13_Kd_Rek_4');
+                        $this->session->unset_userdata('P13_Kd_Rek_5');
+                        $this->session->unset_userdata('P64_Kd_Rek_1');
+                        $this->session->unset_userdata('P64_Kd_Rek_2');
+                        $this->session->unset_userdata('P64_Kd_Rek_3');
+                        $this->session->unset_userdata('P64_Kd_Rek_4');
+                        $this->session->unset_userdata('P64_Kd_Rek_5');
+                        $this->session->unset_userdata('Mra_mapping_1_Kd_Rek_1');
+                        $this->session->unset_userdata('Mra_mapping_1_Kd_Rek_2');
+                        $this->session->unset_userdata('Mra_mapping_1_Kd_Rek_3');
+                        $this->session->unset_userdata('Mra_mapping_1_Kd_Rek_4');
+                        $this->session->unset_userdata('Mra_mapping_1_Kd_Rek_5');
+                        $this->session->unset_userdata('Mra_mapping_2_Kd_Rek_1');
+                        $this->session->unset_userdata('Mra_mapping_2_Kd_Rek_2');
+                        $this->session->unset_userdata('Mra_mapping_2_Kd_Rek_3');
+                        $this->session->unset_userdata('Mra_mapping_2_Kd_Rek_4');
+                        $this->session->unset_userdata('Mra_mapping_2_Kd_Rek_5');
+                        $this->updateData($id);
+                }
+                
                 if (!$this->Mapping_rek_akrual_model->save($_POST))
                         @redirect('parameter/mapping_rek_akrual/destroy/1');
                 else

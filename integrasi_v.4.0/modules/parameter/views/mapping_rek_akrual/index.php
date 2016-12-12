@@ -263,12 +263,14 @@
     <?php
     	$testing = "test buat iyus";
     	$urlUpdate  	= base_url('parameter/mapping-rek-akrual/update');
+    	$urlUpdateData  = base_url("parameter/mapping-rek-akrual/updateData/{$row->id}");
     	$urlHapus  		= base_url('parameter/mapping-rek-akrual/hapus');
     	$urlAjax  		= base_url('parameter/mapping-rek-akrual/ajax');
     	$urlAjaxAkrual  = base_url('parameter/mapping-rek-akrual/ajaxAkrual');
     	$urlKorolari	= base_url('parameter/mapping-rek-akrual');
     	$urlSave		= base_url('parameter/mapping-rek-akrual/save');
-    	$urlFlagUpdate  = base_url("parameter/mapping_rek_akrual/updateData/{$row->id}");
+    	$urlFlagUpdate  = base_url("parameter/mapping-rek-akrual/updateData/{$row->id}");
+    	$urlUpdateAjax  = base_url("parameter/mapping-rek-akrual/ajaxUpdate/{$row->id}");
     	$this->registerJS("
     		var tempData 	= {}, 
 	    		d 			= document,
@@ -320,7 +322,7 @@
     					div = d.getElementById('Korolari_atas_rekening_Nm_Rek_5');
     					if (balikan.Nm_Rek_5 === undefined) {
     						div.style.visibility = '';
-					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					        div.innerHTML = '<p style=\'color:#a94442\'>Data tidak ada pada sistem kami</p>';
 					    } else {
 					    	div.style.visibility = '';
 					    	div.innerHTML = balikan.Nm_Rek_5;
@@ -346,7 +348,7 @@
 
     					if (balikan.Nm_Akrual_5 === undefined) {
     						div.style.visibility = '';
-					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					        div.innerHTML = '<p style=\'color:#a94442\'>Data tidak ada pada sistem kami</p>';
 					    } else {
 					    	div.style.visibility = '';
 					    	div.innerHTML = balikan.Nm_Akrual_5;
@@ -372,7 +374,7 @@
     					div = d.getElementById('Korolari_rekening_kredit_Nm_Rek_5');
     					if (balikan.Nm_Akrual_5 === undefined) {
     						div.style.visibility = '';
-					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					        div.innerHTML = '<p style=\'color:#a94442\'>Data tidak ada pada sistem kami</p>';
 					    } else {
 					    	div.style.visibility = '';
 					    	div.innerHTML = balikan.Nm_Akrual_5;
@@ -385,7 +387,7 @@
     		// event 5 inputan Mapping 2
     		for(i=0;i<ajaxRK2.length;i++){
     			d.getElementById(ajaxRK2[i].getAttribute('id')).addEventListener('keyup',function(){
-    				// removeError();
+    				removeError();
     				params = '';
     				for (j=0; j < ajaxRK2.length; j++) { 
     					val = d.getElementById(ajaxRK2[j].getAttribute('id')).value;
@@ -397,9 +399,9 @@
     				response = ajaxPost(url,params,function(err,balikan){
     					div = d.getElementById('Mra_mapping_2');
 
-    					if (balikan.Nm_Akrual_5 === '') {
+    					if (balikan.Nm_Akrual_5 === undefined) {
     						div.style.visibility = '';
-					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					        div.innerHTML = '<p style=\'color:#a94442\'>Data tidak ada pada sistem kami</p>';
 					    } else {
 					    	div.style.visibility = '';
 					    	div.innerHTML = balikan.Nm_Akrual_5;
@@ -503,7 +505,7 @@
 
 			//event ubah
 	    	ubah.addEventListener('click',function(){
-	    		f.setAttribute('action','$urlUpdate');
+	    		f.setAttribute('action','$urlUpdateData');
 	    		hapus.style.display 	= 'none';
 	    		cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
@@ -517,8 +519,29 @@
 	    		for(var i=0,fLen=link.length;i<fLen;i++){
 					link[i].removeEventListener('click',disableLink);
 				}
+
+	    		url    = '$urlUpdateAjax';
+				ajaxGET(url,function(cb){
+					// alert(cb);
+				});
 	    	});
 
+	    	// ajax GET
+	    	function ajaxGET(url,callback){
+	    		var http = new XMLHttpRequest();
+				var url = url;
+				var params = params;
+				http.open('GET', url, true);
+
+				http.onreadystatechange = function() {//Call a function when the state changes.
+				    if(http.readyState == 4 && http.status == 200) {
+				        var obj = JSON.parse(http.responseText);
+				        callback(obj);
+				    }
+				}
+				http.send(params);
+	    	}
+	    	
 	    	// fungsi nonaktikan logo search
 	    	function disableSearch()
 	    	{
@@ -561,15 +584,17 @@
 	    	function checkForm()
 	    	{
 	    		send = 1;
-	    		console.log(input.length);
+	    		console.log('panjang length input '+input.length);
 	    		for(i=0;i<input.length;i++)
 	    		{
+	    			console.log('jumlah '+i);
 	    			if (i <= 9) {
 	    				if (input[i].value == '') {
 							send = 0;
 							input[i].parentNode.setAttribute('class','has-error '+input[i].parentNode.getAttribute('class'));
 							pesan_error.style.display = '';
 						}
+						
 	    			}
 	    			// OPTIONAL
     				if (i >= 10 && i<=14 ) {
@@ -601,6 +626,13 @@
 							}
 						}
     				}
+
+    				for (c=0; c < detailrek5.length;c++) {
+						// console.log(detailrek5[]);
+		    			if (detailrek5[c].textContent == 'Data tidak ada pada sistem kami') {
+		    				send = 0;
+		    			}
+		    		}
 					
 	    		}
 	    		return send;
