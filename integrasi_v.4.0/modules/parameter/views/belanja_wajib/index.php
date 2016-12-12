@@ -121,8 +121,6 @@
 												<button type="button" class="btn btn-primary" id="Belanja_tambah">Tambah</button>
 												<button type="button" class="btn btn-success" id="ubah">Ubah</button>
 												<button type="button" class="btn btn-info" id="hapus">Hapus</button>
-												<button type="button" class="btn btn-warning" id="cetak">Cetak</button>
-												<button type="button" class="btn btn-info" id="browse">Browse</button>
 												<button type="button" class="btn btn-danger" id="cancel">Cancel</button>
 					                    	</div>
 							        	</div>
@@ -157,7 +155,6 @@
 	    		detailrek5 	= d.getElementsByClassName('Nm_Rek_5'),
 	    		hapus 		= d.getElementById('hapus'),
 	    		ubah 		= d.getElementById('ubah'),
-	    		browse 		= d.getElementById('browse'),
 	    		input 		= f.getElementsByTagName('input'),
 	    		form 		= d.getElementById('belanja-wajib-dan-mengikat'),
 	    		formId 		= d.getElementById('form-belanja-wajib-dan-mengikat'),
@@ -165,13 +162,7 @@
 	    		pesan_error = d.getElementById('error_pesan'),
 	    		ajaxKAR 	= form.getElementsByTagName('input'),
 	    		cetak 		= d.getElementById('cetak');
-	    	find = setInterval(function(){
-	    		if (d.getElementById('table-browse_wrapper') !=null) {
-	    			d.getElementById('table-browse_wrapper').style.display = 'none';
-	    			clearInterval(find);
-	    		}
-	    	},1);
-
+	    	
 	    	cancel.style.display = 'none';
     		simpan.style.display = 'none';
 
@@ -217,13 +208,6 @@
 				}
 				http.send(params);
     		}
-
-    		browse.addEventListener('click',function(){
-    			tbl_browse  				= d.getElementById('table-browse_wrapper');
-    			tbl_browse.style.display 	= '';
-    			tutupBrowse.style.display   = '';
-    			formId.style.display 		= 'none';
-    		});
 
     		tutupBrowse.addEventListener('click',function(){
     			this.style.display = 'none';
@@ -288,10 +272,9 @@
 	    	ubah.addEventListener('click',function(){
 	    		f.setAttribute('action','$urlUpdateData');
 	    		hapus.style.display 	= 'none';
-	    		cetak.style.display 	= 'none';
+	    		// cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
 	    		cancel.style.display 	= '';
-	    		browse.style.display 	= 'none';
 	    		tambah.style.display 	= 'none';
 	    		simpan.style.display    = '';
 
@@ -404,9 +387,8 @@
 	    		f.setAttribute('action','$urlSave');
 	    		removeError();
 	    		hapus.style.display 	= '';
-	    		cetak.style.display 	= '';
+	    		// cetak.style.display 	= '';
 	    		ubah.style.display 		= '';
-	    		browse.style.display 	= '';
 	    		simpan.style.display 	= 'none';
 	    		tambah.style.display    = '';
 	    		this.style.display 		= 'none';
@@ -430,9 +412,8 @@
 	    		simpan.style.display    = '';
 	    		cancel.style.display    = '';
 	    		hapus.style.display 	= 'none';
-	    		cetak.style.display 	= 'none';
+	    		// cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
-	    		browse.style.display 	= 'none';
 	    		for(var i=0,fLen=detailrek5.length;i<fLen;i++){
 				  detailrek5[i].style.visibility = 'hidden';
 				}
