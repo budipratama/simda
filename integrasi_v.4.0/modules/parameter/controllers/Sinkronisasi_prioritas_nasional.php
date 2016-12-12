@@ -6,7 +6,7 @@
 *
 */
 // error_reporting(E_ALL);
-class Korolari extends CI_Controller {
+class Sinkronisasi_prioritas_nasional extends CI_Controller {
 	
 	public function __construct()
 	{
@@ -29,7 +29,7 @@ class Korolari extends CI_Controller {
 			// print_r($detailKAR);die();
 			$container['sidebar']['view']						= 'admin/sidebar';
 			$container['sidebar']['dataset']['aktive_menu'] 	= 60;
-			$container['content']['view']						= 'parameter/korolari/index';
+			$container['content']['view']						= 'parameter/sinkronisasi_prioritas_nasional/index';
 			$container['content']['dataset']['data']			= $row;
 			$container['content']['dataset']['id']				= $row->id;
 			$container['content']['dataset']['KAR']				= $detailKAR;
@@ -146,32 +146,8 @@ class Korolari extends CI_Controller {
 		exit();
 	}
 
-	/**
-	* Setting flag update
-	*
-	*/
-	public function ajaxUpdate($update)
-	{
-		$korolari = array('Korolari_update'  => $update);
-		$this->session->set_userdata($korolari);
-
-		header('Content-Type: application/json');
-		if ($update == 1) 
-			echo json_encode($korolari);
-		else
-			echo json_encode($korolari);
-		exit();
-	}
-
 	public function save()
-	{	$id = $this->session->userdata('Korolari_update');
-		
-		if ($this->session->userdata('Korolari_update')!='') {
-			$this->session->unset_userdata('Korolari_update');
-			$this->updateData($id);
-		}
-
-		// echo "id ".$id;die();
+	{
 		if (!$this->Korolari_model->save($_POST))
 			@redirect('parameter/korolari/destroy/1');
 		else

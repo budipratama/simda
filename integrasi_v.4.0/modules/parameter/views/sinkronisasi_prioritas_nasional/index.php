@@ -228,7 +228,6 @@
     	$urlHapus  		= base_url('parameter/korolari/hapus');
     	$urlAjax  		= base_url('parameter/korolari/ajax');
     	$urlKorolari	= base_url('parameter/korolari');
-    	$urlUpdateAjax  = base_url("parameter/korolari/ajaxUpdate/{$row->id}");
     	$this->registerJS("
     		var tempData 	= {}, 
 	    		d 			= document,
@@ -433,35 +432,14 @@
 	    		browse.style.display 	= 'none';
 	    		tambah.style.display 	= 'none';
 	    		simpan.style.display    = '';
-
-	    		params = '/1';
-	    		url    = '$urlUpdateAjax'+params;
 	    		for(var i=0,fLen=f.length;i<fLen;i++){
 				  f.elements[i].readOnly = false;
 				}
 	    		for(var i=0,fLen=link.length;i<fLen;i++){
 					link[i].removeEventListener('click',disableLink);
 				}
-				ajaxGET(url,function(cb){
-					alert(cb);
-				});
 	    	});
 
-	    	// ajax GET
-	    	function ajaxGET(url,callback){
-	    		var http = new XMLHttpRequest();
-				var url = url;
-				var params = params;
-				http.open('GET', url, true);
-
-				http.onreadystatechange = function() {//Call a function when the state changes.
-				    if(http.readyState == 4 && http.status == 200) {
-				        var obj = JSON.parse(http.responseText);
-				        callback(obj);
-				    }
-				}
-				http.send(params);
-	    	}
 	    	// fungsi nonaktikan logo search
 	    	function disableSearch()
 	    	{
