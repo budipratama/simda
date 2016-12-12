@@ -216,13 +216,15 @@
         </div>
     </section>
     <?php
+    	// echo "ganteng $id";die();
+    	$urlUpdateData  		= base_url("parameter/korolari/updateData/$id");
     	$urlUpdate  			= base_url('parameter/korolari/update');
-    	$urlUpdateData  		= base_url("parameter/korolari/updateData/{$row->id}");
+    	
     	$urlSave  				= base_url('parameter/korolari/save');
     	$urlHapus  				= base_url('parameter/korolari/hapus');
     	$urlAjax  				= base_url('parameter/korolari/ajax');
     	$urlKorolari			= base_url('parameter/korolari');
-    	$urlUpdateAjax  		= base_url("parameter/korolari/ajaxUpdate/{$row->id}");
+    	$urlUpdateAjax  		= base_url("parameter/korolari/ajaxUpdate/$id");
     	$urlUpdateAjaxCancel  	= base_url("parameter/korolari/ajaxUpdate/0");
 
     	$this->registerJS("
@@ -437,9 +439,8 @@
 	    		for(var i=0,fLen=link.length;i<fLen;i++){
 					link[i].removeEventListener('click',disableLink);
 				}
-				// alert(url);
 				ajaxGET(url,function(cb){
-					// alert(cb);
+					alert(url);
 				});
 	    	});
 
@@ -513,8 +514,8 @@
 	    			if (detailrek5[i].textContent == 'Data tidak ada pada sistem kami') {
 	    				send = 0;
 	    			}
-	    			
 	    		}
+	    		
 	    		return send;
 	    	}
 

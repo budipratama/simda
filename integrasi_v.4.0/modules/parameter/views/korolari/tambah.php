@@ -220,10 +220,23 @@
 				  });
 			}
 
+			// fungsi untuk menghilakan error
+	    	function removeError()
+	    	{
+	    		for(i=0;i<input.length;i++)
+	    		{
+					if (input[i].value != '') {
+						input[i].parentNode.setAttribute('class',input[i].parentNode.getAttribute('class').replace('has-error',''));
+					}
+	    		}
+				pesan_error.style.display = 'none';
+	    	}
+	    	
 			// event 5 inputan korolari atas rekening
     		for(i=0;i<ajaxKAR.length;i++){
     			d.getElementById(ajaxKAR[i].getAttribute('id')).addEventListener('keyup',function(){
     				params = '';
+    				removeError();
     				for (j=0; j < ajaxKAR.length; j++) { 
     					val = d.getElementById(ajaxKAR[j].getAttribute('id')).value;
     					params += ajaxKAR[j].getAttribute('id')+'='+val+'&';
@@ -235,7 +248,7 @@
     					div = d.getElementById('Korolari_atas_rekening_Nm_Rek_5');
     					if (balikan.Nm_Rek_5 === undefined) {
     						div.style.visibility = '';
-					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					        div.innerHTML = '<p style=\'color:#a94442\'>Data tidak ada pada sistem kami</p>';
 					    } else {
 					    	div.style.visibility = '';
 					    	div.innerHTML = balikan.Nm_Rek_5;
@@ -248,6 +261,7 @@
     		for(i=0;i<ajaxRD.length;i++){
     			d.getElementById(ajaxRD[i].getAttribute('id')).addEventListener('keyup',function(){
     				params = '';
+    				removeError();
     				for (j=0; j < ajaxRD.length; j++) { 
     					val = d.getElementById(ajaxRD[j].getAttribute('id')).value;
     					params += ajaxRD[j].getAttribute('id')+'='+val+'&';
@@ -259,7 +273,7 @@
     					div = d.getElementById('Korolari_rekening_debit_Nm_Rek_5');
     					if (balikan.Nm_Rek_5 === undefined) {
     						div.style.visibility = '';
-					        div.innerHTML = 'Data tidak ada pada sistem kami';
+    						div.innerHTML = '<p style=\'color:#a94442\'>Data tidak ada pada sistem kami</p>';
 					    } else {
 					    	div.style.visibility = '';
 					    	div.innerHTML = balikan.Nm_Rek_5;
@@ -272,6 +286,7 @@
     		for(i=0;i<ajaxRK.length;i++){
     			d.getElementById(ajaxRK[i].getAttribute('id')).addEventListener('keyup',function(){
     				params = '';
+    				removeError();
     				for (j=0; j < ajaxRK.length; j++) { 
     					val = d.getElementById(ajaxRK[j].getAttribute('id')).value;
     					params += ajaxRK[j].getAttribute('id')+'='+val+'&';
@@ -284,7 +299,7 @@
     					div = d.getElementById('Korolari_rekening_kredit_Nm_Rek_5');
     					if (balikan.Nm_Rek_5 === undefined) {
     						div.style.visibility = '';
-					        div.innerHTML = 'Data tidak ada pada sistem kami';
+    						div.innerHTML = '<p style=\'color:#a94442\'>Data tidak ada pada sistem kami</p>';
 					    } else {
 					    	div.style.visibility = '';
 					    	div.innerHTML = balikan.Nm_Rek_5;
@@ -334,6 +349,13 @@
 						input[i].parentNode.setAttribute('class','col-md-1');
 					}
 	    		}
+
+	    		for (i=0; i< detailrek5.length;i++) {
+	    			if (detailrek5[i].textContent == 'Data tidak ada pada sistem kami') {
+	    				send = 0;
+	    			}
+	    		}
+
 	    		return send;
 	    	}
     		var cancel = document.getElementById('cancel');cancel.addEventListener('click',function(){window.location.href='$cancel'});

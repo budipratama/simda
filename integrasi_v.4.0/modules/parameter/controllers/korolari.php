@@ -18,7 +18,7 @@ class Korolari extends CI_Controller {
 	public function getDetailRek5($Kd_Rek_1,$Kd_Rek_2,$Kd_Rek_3,$Kd_Rek_4,$Kd_Rek_5){
 		$this->Korolari_model->getDetailRek5($Kd_Rek_1,$Kd_Rek_2,$Kd_Rek_3,$Kd_Rek_4,$Kd_Rek_5);
 	}
-	
+
 	public function index()
 	{
 		$admin_log 	= $this->auth->is_login_admin();
@@ -121,7 +121,7 @@ class Korolari extends CI_Controller {
 			// print_r($detailKAR);die();
 			$container['sidebar']['view']						= 'admin/sidebar';
 			$container['sidebar']['dataset']['aktive_menu'] 	= 60;
-			$container['content']['view']						= 'parameter/korolari/index';
+			$container['content']['view']						= 'parameter/korolari/update';
 			$container['content']['dataset']['data']			= $row;
 			$container['content']['dataset']['id']				= $row->id;
 			$container['content']['dataset']['KAR']				= $detailKAR;
@@ -129,6 +129,7 @@ class Korolari extends CI_Controller {
 			$container['content']['dataset']['KRK']				= $detailKAR;
 			$container['content']['dataset']['browse']			= $rowAll;
 			$container['content']['dataset']['enable_readonly']	= $enable_readonly;
+			$container['content']['dataset'][' ']		= $id;
 			$header['admin_log']								= $admin_log;
 			
 			$this->load->view('admin/head');
@@ -176,6 +177,7 @@ class Korolari extends CI_Controller {
 		
 		if ($this->session->userdata('Korolari_update')!='0') {
 			$this->session->unset_userdata('Korolari_update');
+			// echo "update id ".$id;die();
 			$this->session->unset_userdata('KAR_Kd_Rek_1');
 			$this->session->unset_userdata('KAR_Kd_Rek_2');
 			$this->session->unset_userdata('KAR_Kd_Rek_3');
@@ -191,11 +193,10 @@ class Korolari extends CI_Controller {
 			$this->session->unset_userdata('KRK_Kd_Rek_3_kredit');
 			$this->session->unset_userdata('KRK_Kd_Rek_4_kredit');
 			$this->session->unset_userdata('KRK_Kd_Rek_5_kredit');
-
 			$this->updateData($id);
 		}
 
-		// echo "id ".$id;die();
+		// echo "new id ".$id;die();
 		if (!$this->Korolari_model->save($_POST))
 			@redirect('parameter/korolari/destroy/1');
 		else
@@ -229,6 +230,9 @@ class Korolari extends CI_Controller {
 	}
 
 	public function updateData($id){
+		// echo "id $id";
+		// print_r($_POST);
+		// die();
         $result = $this->Korolari_model->updateData($id);
 
         if ($result == '1')
