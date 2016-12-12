@@ -1,4 +1,8 @@
 <!-- Main Content -->
+<?php
+	
+    $this->load->model('parameter/Mapping_rek_akrual_model');
+?>
    <section class="content">
 		<h2>Parameter<small> rekening korolari</small></h2>  
 			<div class="body">
@@ -54,52 +58,46 @@
 	                                        <thead>
 	                                        <tr>
 	                                            <th style="text-align:center; width:100px;display: none">id</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 1</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 2</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 3</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 4</th>
-	                                            <th style="text-align:center; width:100px">Kd Rek 5</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual 1</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual 2</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual 3</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual 4</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual 5</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual D 1</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual D 2</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual D 3</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual D 4</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual D 5</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual K 1</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual K 2</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual K 3</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual K 4</th>
-	                                            <th style="text-align:center; width:100px">Kd Akrual K 5</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek</th>
+	                                            <th style="text-align:center; width:100px">Uraian Rekening</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek</th>
+	                                            <th style="text-align:center; width:100px">Uraian Rekening</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek</th>
+	                                            <th style="text-align:center; width:100px">Nama AkrualD_5 </th>
+	                                            <th style="text-align:center; width:100px">Kd Rek</th>
+	                                            <th style="text-align:center; width:100px">Nama AkrualK_5 </th>
 	                                        </tr>
 	                                        </thead>
 	                                        <tbody>
 	                                            <?php foreach($browse as $row):?>
+	                                            	<?php
+														$kdRek4Permendagri13 = strlen((string)$row->Kd_Rek_4)==1?"0".$row->Kd_Rek_4:$row->Kd_Rek_4;
+	                                            		$kdRek5Permendagri13 = strlen((string)$row->Kd_Rek_5)==1?"0".$row->Kd_Rek_5:$row->Kd_Rek_5;
+	                                            		
+	                                            		$kdRek4Permendagri64 = strlen((string)$row->Kd_Akrual_4)==1?"0".$row->Kd_Akrual_4:$row->Kd_Akrual_4;
+	                                            		$kdRek5Permendagri64 = strlen((string)$row->Kd_Akrual_5)==1?"0".$row->Kd_Akrual_5:$row->Kd_Akrual_5;
+	                                            		
+	                                            		$kdRek4Mapping1 = strlen((string)$row->Kd_AkrualD_4)==1?"0".$row->Kd_AkrualD_4:$row->Kd_AkrualD_4;
+	                                            		$kdRek5Mapping1 = strlen((string)$row->Kd_AkrualD_5)==1?"0".$row->Kd_AkrualD_5:$row->Kd_AkrualD_5;
+
+	                                            		$kdRek4Mapping2 = strlen((string)$row->Kd_AkrualK_4)==1?"0".$row->Kd_AkrualK_4:$row->Kd_AkrualK_4;
+	                                            		$kdRek5Mapping2 = strlen((string)$row->Kd_AkrualK_5)==1?"0".$row->Kd_AkrualK_5:$row->Kd_AkrualK_5;
+	                                            	?>
 	                                                <tr <?= "onclick='pilih({$row->id})'"?>>
 	                                                    <td style="text-align:center;display: none"><?= $row->id;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_5;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Akrual_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Akrual_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Akrual_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Akrual_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Akrual_5;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualD_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualD_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualD_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualD_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualD_5;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualK_1;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualK_2;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualK_3;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualK_4;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualK_5;?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1.".".$row->Kd_Rek_2.".".$row->Kd_Rek_3.".".$kdRek4Permendagri13.".".$kdRek5Permendagri13?></td>
+	                                                    <td style="text-align:center;"><?= $this->Mapping_rek_akrual_model->getDetailRek5($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4,$row->Kd_Rek_5)->Nm_Rek_5;?></td>
+
+	                                                    <td style="text-align:center;"><?= $row->Kd_Akrual_1.".".$row->Kd_Akrual_2.".".$row->Kd_Akrual_3.".".$kdRek4Permendagri64.".".$kdRek5Permendagri64?></td>
+	                                                    <td style="text-align:center;"><?= $this->Mapping_rek_akrual_model->getDetailMsAkrual5($row->Kd_Akrual_1,$row->Kd_Akrual_2,$row->Kd_Akrual_3,$row->Kd_Akrual_4,$row->Kd_Akrual_5)->Nm_Akrual_5;?></td>
+	                                                    
+	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualD_1.".".$row->Kd_AkrualD_2.".".$row->Kd_AkrualD_3.".".$kdRek4Mapping1.".".$kdRek5Mapping1?></td>
+	                                                    <td style="text-align:center;"><?= $this->Mapping_rek_akrual_model->getDetailMsAkrual5($row->Kd_AkrualD_1,$row->Kd_AkrualD_2,$row->Kd_AkrualD_3,$row->Kd_AkrualD_4,$row->Kd_AkrualD_5)->Nm_Akrual_5;?></td>
+	                                                    
+	                                                    <td style="text-align:center;"><?= $row->Kd_AkrualK_1.".".$row->Kd_AkrualK_2.".".$row->Kd_AkrualK_3.".".$kdRek4Mapping2.".".$kdRek5Mapping2?></td>
+	                                                    <td style="text-align:center;"><?= $this->Mapping_rek_akrual_model->getDetailMsAkrual5($row->Kd_AkrualK_1,$row->Kd_AkrualK_2,$row->Kd_AkrualK_3,$row->Kd_AkrualK_4,$row->Kd_AkrualK_5)->Nm_Akrual_5?></td>
+	                                                    
+
 	                                                </tr>
 	                                            <?php endforeach;?>
 	                                        </tbody>
