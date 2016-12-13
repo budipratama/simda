@@ -1,6 +1,9 @@
-<!-- Main Content -->
+<!-- <!-- Main Content -->
 <?php
 	$this->load->model('parameter/belanja_wajib_model');
+	// print "<pre>";
+	// print_r($browse);
+	// exit;
 ?>
    <section class="content">
 		<h2>Parameter<small> belanja wajib</small></h2>  
@@ -125,8 +128,7 @@
 					                    	</div>
 							        	</div>
 							        </form>
-							        
-                                </div>
+							    </div>
                             </div>
                         </div>
                     </div>
@@ -155,6 +157,7 @@
 	    		detailrek5 	= d.getElementsByClassName('Nm_Rek_5'),
 	    		hapus 		= d.getElementById('hapus'),
 	    		ubah 		= d.getElementById('ubah'),
+	    		browse 		= d.getElementById('browse'),
 	    		input 		= f.getElementsByTagName('input'),
 	    		form 		= d.getElementById('belanja-wajib-dan-mengikat'),
 	    		formId 		= d.getElementById('form-belanja-wajib-dan-mengikat'),
@@ -182,7 +185,7 @@
     					div = d.getElementById('Belanja_wajib_dan_mengikat_Nm_Rek_5');
     					if (balikan.Nm_Rek_5 === undefined) {
     						div.style.visibility = '';
-					        div.innerHTML = 'Data tidak ada pada sistem kami';
+					        div.innerHTML = '<p style=\'color:#a94442\'>Data tidak ada pada sistem kami</p>';
 					    } else {
 					    	div.style.visibility = '';
 					    	div.innerHTML = balikan.Nm_Rek_5;
@@ -208,6 +211,13 @@
 				}
 				http.send(params);
     		}
+
+    		// browse.addEventListener('click',function(){
+    		// 	tbl_browse  				= d.getElementById('table-browse_wrapper');
+    		// 	tbl_browse.style.display 	= '';
+    		// 	tutupBrowse.style.display   = '';
+    		// 	formId.style.display 		= 'none';
+    		// });
 
     		tutupBrowse.addEventListener('click',function(){
     			this.style.display = 'none';
@@ -238,24 +248,27 @@
 
 	    	//event hapus
 	    	hapus.addEventListener('click',function(){
-	    		var http = new XMLHttpRequest();
-				var url = '$urlHapus';
-				var params = serialize(f);
-				http.open('POST', url, true);
+	    		var r = confirm('Hapus data tekan yes');
+			    if (r == true) {
+		    		var http = new XMLHttpRequest();
+					var url = '$urlHapus';
+					var params = serialize(f);
+					http.open('POST', url, true);
 
-				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-				http.onreadystatechange = function() {
-				    if(http.readyState == 4 && http.status == 200) {
-				        if (http.responseText == 1) {
-				        	window.location.href = '$urlBelanja';
-				        }
-				        else{
-				        	alert('Gagal hapus data');
-				        }
-				    }
-				}
-				http.send(params);
+					http.onreadystatechange = function() {
+					    if(http.readyState == 4 && http.status == 200) {
+					        if (http.responseText == 1) {
+					        	window.location.href = '$urlBelanja';
+					        }
+					        else{
+					        	window.location.href = '$urlBelanja';
+					        }
+					    }
+					}
+					http.send(params);
+			    }
 	    	});
 
 	    	
@@ -278,7 +291,7 @@
 	    		tambah.style.display 	= 'none';
 	    		simpan.style.display    = '';
 
-	    		params = '/1';
+	    		// params = '/1';
 	    		url    = '$urlUpdateAjax'+params;
 	    		for(var i=0,fLen=f.length;i<fLen;i++){
 				  f.elements[i].readOnly = false;
@@ -287,7 +300,7 @@
 					link[i].removeEventListener('click',disableLink);
 				}
 				ajaxGET(url,function(cb){
-					alert(cb);
+					// alert(cb);
 				});
 	    	});
 
@@ -356,6 +369,13 @@
 						pesan_error.style.display = '';
 					}
 	    		}
+
+	    		// for (i=0; i< detailrek5.length;i++) {
+	    		// 	if (detailrek5[i].textContent == 'Data tidak ada pada sistem kami') {
+	    		// 		send = 0;
+	    		// 	}
+	    			
+	    		// }
 	    		return send;
 	    	}
 
@@ -382,7 +402,7 @@
 	    	cancel.addEventListener('click',function(){
 	    		url = '$urlUpdateAjaxCancel';
 	    		ajaxGET(url,function(cb){
-					alert(cb);
+					// alert(cb);
 				});
 	    		f.setAttribute('action','$urlSave');
 	    		removeError();
@@ -487,4 +507,4 @@
     <script type="text/javascript">
    	 	disableAll();
     </script> 
-    <?php }?>
+    <?php }?> -->

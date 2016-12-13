@@ -24,7 +24,7 @@ class belanja_wajib_dan_mengikat extends CI_Controller {
 			$container['content']['dataset']['title'] 		= "Wajib dan mengikat";
 			$container['content']['dataset']['title_header']= "Belanja wajib-dan-mengikat";
 			$container['content']['view']					= 'parameter/belanja_wajib_dan_mengikat/akun';
-			$container['data']								= $this->belanja_wajib_model->get_akun([5,7]);
+			$container['data']								= $this->belanja_wajib_model->get_akun([1,2,3]);
 			$header['admin_log']							= $admin_log;
 			
 			$this->load->view('admin/head');

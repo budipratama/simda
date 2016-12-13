@@ -1,10 +1,9 @@
 <!-- Main Content -->
-	<?php
-	// echo "nilai ".$this->session->userdata('KAR_Kd_Rek_1');
-	// print_r($data);
-	// echo $data->Kd_Rek_1;
-	// echo $data->Kd_Rek_1;die();
-	?>
+<?php
+	$browse 	= $this->belanja_wajib_model->allData();
+	// print_r($browse);
+	// exit;
+?>
 	
    <section class="content">
 		<h2>Parameter<small> belanja wajib</small></h2>  
@@ -46,10 +45,38 @@
 	                            </li>
 	                        </ul>
 	                    </div>
+	                    <?php
+	                    	// print_r($browse);
+	                    	// die();
+	                    ?>
 	                    <div class="body">
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                  <button type="button" class="close" id="tutup-browse" style="display: none;z-index: 9999;position: relative;">&times;</button>
+
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="table-browse">
+	                                        <thead>
+	                                        <tr>
+	                                            <th style="text-align:center; width:100px;display: none">id</th>
+	                                            <th style="text-align:center; width:100px">Kd Rek</th>
+	                                            <th style="text-align:center; width:100px">Uraian Belanja wajib</th>
+	                                        </tr>
+	                                        </thead>
+	                                        <tbody>
+	                                            <?php foreach($browse as $row):?>
+	                                                <?php
+	                                            		$kdRek4BelanjaWajib = strlen((string)$row->Kd_Rek_4)==1?"0".$row->Kd_Rek_4:$row->Kd_Rek_4;
+	                                            		$kdRek5BelanjaWajib = strlen((string)$row->Kd_Rek_5)==1?"0".$row->Kd_Rek_5:$row->Kd_Rek_5;
+	                                            	?>
+	                                            	<tr <?= "onclick='pilih({$row->id})'"?>>
+	                                                    <td style="text-align:center;display: none"><?= $row->id;?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1.".".$row->Kd_Rek_2.".".$row->Kd_Rek_3.".".$kdRek4BelanjaWajib.".".$kdRek5BelanjaWajib?></td>
+	                                                    <td style="text-align:center;"><?= $this->belanja_wajib_model->getDetailRek5($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4,$row->Kd_Rek_5)->Nm_Rek_5?></td>
+	                                                </tr>
+	                                            <?php endforeach; ?>
+	                                        </tbody>
+	                                    </table>
+
                                 	<form id="form-belanja-wajib-dan-mengikat" name="form-belanja-wajib" method="POST" action="<?=site_url("parameter/belanja_wajib/save")?>">
                                 		<div class="alert alert-danger" style="display: none" id="error_pesan">
 									        <button type="button" class="close" data-dismiss="alert">&times;</button>

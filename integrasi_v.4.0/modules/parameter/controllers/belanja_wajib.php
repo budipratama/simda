@@ -28,7 +28,10 @@ class belanja_wajib extends CI_Controller {
 
 			$row 		= $this->belanja_wajib_model->showData();
 			$rowAll 	= $this->belanja_wajib_model->allData();
-			
+			// print "<pre>";
+			// print_r($row);
+			// print_r($rowAll);
+			// exit;
 			$detailKAR 	= $this->belanja_wajib_model->getDetailRek5($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4,$row->Kd_Rek_5);
 			// print "<Pre>";
 			// print_r($detailKAR);
@@ -56,7 +59,7 @@ class belanja_wajib extends CI_Controller {
 		$admin_log 	= $this->auth->is_login_admin();
 		{
 			$enable_readonly = true;
-
+			
 			// session belanja wajib dan mengikat
 			if ($this->session->userdata('KAR_Kd_Rek_5')!='') 
 			{
