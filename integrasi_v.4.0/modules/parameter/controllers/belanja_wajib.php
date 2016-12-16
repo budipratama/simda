@@ -203,6 +203,22 @@ class belanja_wajib extends CI_Controller {
 			}
 		}
 	}*/
+	
+	public function export()
+	{
+		$query 		= $this->db->query("SELECT * FROM ".TBL_BELANJA_WAJIB." ORDER BY id ASC");
+        $array 		= $query->result_array();
+        $filename 	= "export_belanja_wajib.csv";
+		$delimiter 	= ",";
+
+        // open the "output" stream
+	    $f = fopen('php://output', 'w');
+	    foreach ($array as $line) {
+	        fputcsv($f, $line, $delimiter);
+	    }
+		header('Content-Type: application/csv');
+	    header('Content-Disposition: attachment; filename="'.$filename.'";');
+	}
 
 	public function hapus()
 	{
