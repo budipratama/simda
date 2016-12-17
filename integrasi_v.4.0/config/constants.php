@@ -58,6 +58,9 @@ define('TBL_MS_AKRUAL_2',							'Ms_Akrual_2');
 define('TBL_MS_AKRUAL_3',							'Ms_Akrual_3');
 define('TBL_MS_AKRUAL_4',							'Ms_Akrual_4');
 define('TBL_MS_AKRUAL_5',							'Ms_Akrual_5');
+define('TBL_MS_STANDART_HARGA_1',					'Ms_Standart_Harga_1');
+define('TBL_MS_STANDART_HARGA_2',					'Ms_Standart_Harga_2');
+define('TBL_MS_STANDART_HARGA_3',					'Ms_Standart_Harga_3');
 
 define('TBL_AKUN',									'akun');
 define('TBL_KELOMPOK',								'kelompok');
