@@ -125,7 +125,7 @@ Main Content -->
 												<button type="button" class="btn btn-success" id="ubah">Ubah</button>
 												<button type="button" class="btn btn-info" id="hapus">Hapus</button>
 												<button type="button" class="btn btn-danger" id="cancel">Cancel</button>
-												<a href="<?php echo base_url('parameter/belanja_wajib/export'); ?>"><button type="button" class="btn btn-warning">Export</button></a>
+												<a href="<?php echo base_url('parameter/belanja_wajib/export'); ?>"><button type="button" class="btn btn-warning" id="cetak">Export</button></a>
 											</div>
 							        	</div>
 							        </form>
@@ -283,7 +283,7 @@ Main Content -->
 	    	ubah.addEventListener('click',function(){
 	    		f.setAttribute('action','$urlUpdateData');
 	    		hapus.style.display 	= 'none';
-	    		// cetak.style.display 	= 'none';
+	    		cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
 	    		cancel.style.display 	= '';
 	    		tambah.style.display 	= 'none';
@@ -405,7 +405,7 @@ Main Content -->
 	    		f.setAttribute('action','$urlSave');
 	    		removeError();
 	    		hapus.style.display 	= '';
-	    		// cetak.style.display 	= '';
+	    		cetak.style.display 	= '';
 	    		ubah.style.display 		= '';
 	    		simpan.style.display 	= 'none';
 	    		tambah.style.display    = '';
@@ -430,7 +430,7 @@ Main Content -->
 	    		simpan.style.display    = '';
 	    		cancel.style.display    = '';
 	    		hapus.style.display 	= 'none';
-	    		// cetak.style.display 	= 'none';
+	    		cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
 	    		for(var i=0,fLen=detailrek5.length;i<fLen;i++){
 				  detailrek5[i].style.visibility = 'hidden';
