@@ -1,4 +1,4 @@
-<!-- Main Content -->
+Main Content -->
 <?php
 	$this->load->model('parameter/potongan_spm_model');
 	// print "<pre>";
@@ -30,8 +30,7 @@
             <!-- Multiple Items To Be Open -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                	
-                    <div class="card">
+                	<div class="card">
 	                    <div class="header bg-light-green">
 						    <h2>Unit Potongan spm<small>Data Urusan</small></h2>
 	                        <ul class="header-dropdown m-r--5">
@@ -113,7 +112,7 @@
 						                    </div>
 					                    </div>
 					                  		<div class="row">
-						                    	<div class="col-md-12 Nm_Rek_5" id="Potongan_spm_Nm_Rek_5">
+						                    	<div class="col-md-12 Nm_Rek_5" id="Potongan_spm_rekening_Nm_Rek_5">
 						                    		<?= $KAR->Nm_Rek_5;?>
 						                    	</div>
 						                    </div>
@@ -125,7 +124,8 @@
 												<button type="button" class="btn btn-success" id="ubah">Ubah</button>
 												<button type="button" class="btn btn-info" id="hapus">Hapus</button>
 												<button type="button" class="btn btn-danger" id="cancel">Cancel</button>
-					                    	</div>
+												<a href="<?php echo base_url('parameter/potongan_spm/export'); ?>"><button type="button" class="btn btn-warning" id="cetak">Export</button></a>
+											</div>
 							        	</div>
 							        </form>
 							    </div>
@@ -137,14 +137,14 @@
             <!-- #END# Tabs With Custom Animations -->
     </section>
     <?php
-    	$urlUpdate  			= base_url('parameter/Potongan_spm/update');
-    	$urlUpdateData  		= base_url("parameter/Potongan_spm/updateData/{$row->id}");
-    	$urlSave  				= base_url('parameter/Potongan_spm/save');
-    	$urlHapus  				= base_url('parameter/Potongan_spm/hapus');
-    	$urlAjax  				= base_url('parameter/Potongan_spm/ajax');
-    	$urlPotongan			= base_url('parameter/Potongan_spm');
-    	$urlUpdateAjax  		= base_url("parameter/Potongan_spm/ajaxUpdate/{$row->id}");
-    	$urlUpdateAjaxCancel  	= base_url("parameter/Potongan_spm/ajaxUpdate/0");
+    	$urlUpdate  			= base_url('parameter/potongan_spm/update');
+    	$urlUpdateData  		= base_url("parameter/potongan_spm/updateData/{$row->id}");
+    	$urlSave  				= base_url('parameter/potongan_spm/save');
+    	$urlHapus  				= base_url('parameter/potongan_spm/hapus');
+    	$urlAjax  				= base_url('parameter/potongan_spm/ajax');
+    	$urlPotongan			= base_url('parameter/potongan_spm');
+    	$urlUpdateAjax  		= base_url("parameter/potongan_spm/ajaxUpdate/{$row->id}");
+    	$urlUpdateAjaxCancel  	= base_url("parameter/potongan_spm/ajaxUpdate/0");
 
     	$this->registerJS("
     		var tempData 	= {}, 
@@ -157,7 +157,6 @@
 	    		detailrek5 	= d.getElementsByClassName('Nm_Rek_5'),
 	    		hapus 		= d.getElementById('hapus'),
 	    		ubah 		= d.getElementById('ubah'),
-	    		// browse 		= d.getElementById('browse'),
 	    		input 		= f.getElementsByTagName('input'),
 	    		form 		= d.getElementById('potongan-spm-rekening'),
 	    		formId 		= d.getElementById('form-potongan-spm-rekening'),
@@ -165,9 +164,8 @@
 	    		pesan_error = d.getElementById('error_pesan'),
 	    		ajaxKAR 	= form.getElementsByTagName('input'),
 	    		cetak 		= d.getElementById('cetak');
-	    	
-	    	cancel.style.display = 'none';
-    		simpan.style.display = 'none';
+		    	cancel.style.display = 'none';
+	    		simpan.style.display = 'none';
 
     		// event 5 inputan Potongan spm rekening
     		for(i=0;i<ajaxKAR.length;i++){
@@ -271,8 +269,6 @@
 			    }
 	    	});
 
-	    	
-
 			// event simpan data
 			simpan.addEventListener('click',function(){
 				submit = checkForm();
@@ -285,7 +281,7 @@
 	    	ubah.addEventListener('click',function(){
 	    		f.setAttribute('action','$urlUpdateData');
 	    		hapus.style.display 	= 'none';
-	    		// cetak.style.display 	= 'none';
+	    		cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
 	    		cancel.style.display 	= '';
 	    		tambah.style.display 	= 'none';
@@ -407,7 +403,7 @@
 	    		f.setAttribute('action','$urlSave');
 	    		removeError();
 	    		hapus.style.display 	= '';
-	    		// cetak.style.display 	= '';
+	    		cetak.style.display 	= '';
 	    		ubah.style.display 		= '';
 	    		simpan.style.display 	= 'none';
 	    		tambah.style.display    = '';
@@ -432,7 +428,7 @@
 	    		simpan.style.display    = '';
 	    		cancel.style.display    = '';
 	    		hapus.style.display 	= 'none';
-	    		// cetak.style.display 	= 'none';
+	    		cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
 	    		for(var i=0,fLen=detailrek5.length;i<fLen;i++){
 				  detailrek5[i].style.visibility = 'hidden';
@@ -507,4 +503,4 @@
     <script type="text/javascript">
    	 	disableAll();
     </script> 
-    <?php }?> -->
+    <?php }?>
