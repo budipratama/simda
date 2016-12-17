@@ -1,17 +1,17 @@
-Main Content -->
+<!-- Main Content -->
 <?php
-	$this->load->model('parameter/belanja_wajib_model');
+	$this->load->model('parameter/potongan_spm_model');
 	// print "<pre>";
 	// print_r($browse);
 	// exit;
 ?>
    <section class="content">
-		<h2>Parameter<small> belanja wajib</small></h2>  
+		<h2>Parameter<small> Potongan spm</small></h2>  
 			<div class="body">
 				<ol class="breadcrumb breadcrumb-col-cyan">
 					<li><a href="<?php echo site_url('dashboard');?>"><i class="material-icons">home</i> Home</a></li>
 					<li><a href="<?php echo site_url('parameter');?>"> Parameter</a></li>
-					<li><a href="<?php echo site_url('parameter/belanja-wajib');?>"> Belanja wajib</a></li>
+					<li><a href="<?php echo site_url('parameter/potongan-spm');?>"> Potongan spm</a></li>
 					<li class="active"> Urusan</li>
 				</ol>
 			</div>
@@ -33,7 +33,7 @@ Main Content -->
                 	
                     <div class="card">
 	                    <div class="header bg-light-green">
-						    <h2>Unit Belanja wajib<small>Data Urusan</small></h2>
+						    <h2>Unit Potongan spm<small>Data Urusan</small></h2>
 	                        <ul class="header-dropdown m-r--5">
 	                            <li class="dropdown">
 	                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -61,35 +61,35 @@ Main Content -->
 	                                        <tr>
 	                                            <th style="text-align:center; width:100px;display: none">id</th>
 	                                            <th style="text-align:center; width:100px">Kd Rek</th>
-	                                            <th style="text-align:center; width:100px">Uraian Belanja wajib</th>
+	                                            <th style="text-align:center; width:100px">Uraian Potongan spm</th>
 	                                        </tr>
 	                                        </thead>
 	                                        <tbody>
 	                                            <?php foreach($browse as $row):?>
 	                                                <?php
-	                                            		$kdRek4BelanjaWajib = strlen((string)$row->Kd_Rek_4)==1?"0".$row->Kd_Rek_4:$row->Kd_Rek_4;
-	                                            		$kdRek5BelanjaWajib = strlen((string)$row->Kd_Rek_5)==1?"0".$row->Kd_Rek_5:$row->Kd_Rek_5;
+	                                            		$kdRek4PotonganSpm = strlen((string)$row->Kd_Rek_4)==1?"0".$row->Kd_Rek_4:$row->Kd_Rek_4;
+	                                            		$kdRek5PotonganSpm = strlen((string)$row->Kd_Rek_5)==1?"0".$row->Kd_Rek_5:$row->Kd_Rek_5;
 	                                            	?>
 	                                            	<tr <?= "onclick='pilih({$row->id})'"?>>
 	                                                    <td style="text-align:center;display: none"><?= $row->id;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1.".".$row->Kd_Rek_2.".".$row->Kd_Rek_3.".".$kdRek4BelanjaWajib.".".$kdRek5BelanjaWajib?></td>
-	                                                    <td style="text-align:center;"><?= $this->belanja_wajib_model->getDetailRek5($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4,$row->Kd_Rek_5)->Nm_Rek_5?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1.".".$row->Kd_Rek_2.".".$row->Kd_Rek_3.".".$kdRek4PotonganSpm.".".$kdRek5PotonganSpm?></td>
+	                                                    <td style="text-align:center;"><?= $this->potongan_spm_model->getDetailRek5($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4,$row->Kd_Rek_5)->Nm_Rek_5?></td>
 	                                                </tr>
 	                                            <?php endforeach; ?>
 	                                        </tbody>
 	                                    </table>
 							    	<!-- </div> -->
 
-                                	<form id="form-belanja-wajib-dan-mengikat" name="form-belanja-wajib" method="POST" action="<?=site_url("parameter/belanja-wajib/save")?>">
+                                	<form id="form-potongan-spm-rekening" name="form-potongan-spm" method="POST" action="<?=site_url("parameter/potongan-spm/save")?>">
 	                                	<div class="alert alert-danger" style="display: none" id="error_pesan">
 									        <button type="button" class="close" data-dismiss="alert">&times;</button>
 									        <div><?= PESAN_FIELD_KOSONG?></div>
 									    </div>
 	                                	<div class="row">
-	                                		<div class="col-md-12">Belanja wajib dan mengikat</div>
+	                                		<div class="col-md-12">Potongan spm rekening</div>
 	                                	</div>
 	                                	<div class="row">
-		                                    <div id="belanja-wajib-dan-mengikat">
+		                                    <div id="potongan-spm-rekening">
 						                    	<div class="col-md-1">
 						                    		<input type="text" class="form-control" value="<?=$data->Kd_Rek_1?>" min="1" id="Kd_Rek_1" name="Kd_Rek_1">
 						                    	</div>
@@ -106,27 +106,26 @@ Main Content -->
 						                    		<input type="text" class="form-control" value="<?=$data->Kd_Rek_5?>" min="1" id="Kd_Rek_5" name="Kd_Rek_5">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<a class="link-search" href="<?=base_url('parameter/belanja-wajib-dan-mengikat/')?>">
+						                    		<a class="link-search" href="<?=base_url('parameter/potongan-spm-rekening/')?>">
 						                    			<img src="<?= base_url('public/templates/integrasi_v.4.0/images/search.png')?>" widht="24" height="24" class="icon-search"/>
 						                    		</a>
 						                    	</div>
 						                    </div>
 					                    </div>
 					                  		<div class="row">
-						                    	<div class="col-md-12 Nm_Rek_5" id="Belanja_wajib_dan_mengikat_Nm_Rek_5">
+						                    	<div class="col-md-12 Nm_Rek_5" id="Potongan_spm_Nm_Rek_5">
 						                    		<?= $KAR->Nm_Rek_5;?>
 						                    	</div>
 						                    </div>
 					                    <div class="row">
 					                    	<div class="col-md-12" id="kumpulan_button">
-												<?php //($enable_readonly == true)?'<button type="button" class="btn btn-primary" id="Belanja_tambah">Tambah</button>':'<button type="submit" class="btn btn-primary" id="Belanja_simpan">Simpan</button>'?>
-												<button type="button" class="btn btn-primary" id="Belanja_simpan">Simpan</button>
-												<button type="button" class="btn btn-primary" id="Belanja_tambah">Tambah</button>
+												<?php //($enable_readonly == true)?'<button type="button" class="btn btn-primary" id="Potongan_tambah">Tambah</button>':'<button type="submit" class="btn btn-primary" id="Potongan_simpan">Simpan</button>'?>
+												<button type="button" class="btn btn-primary" id="Potongan_simpan">Simpan</button>
+												<button type="button" class="btn btn-primary" id="Potongan_tambah">Tambah</button>
 												<button type="button" class="btn btn-success" id="ubah">Ubah</button>
 												<button type="button" class="btn btn-info" id="hapus">Hapus</button>
 												<button type="button" class="btn btn-danger" id="cancel">Cancel</button>
-												<a href="<?php echo base_url('parameter/belanja_wajib/export'); ?>"><button type="button" class="btn btn-warning" id="cetak">Export</button></a>
-											</div>
+					                    	</div>
 							        	</div>
 							        </form>
 							    </div>
@@ -138,29 +137,30 @@ Main Content -->
             <!-- #END# Tabs With Custom Animations -->
     </section>
     <?php
-    	$urlUpdate  			= base_url('parameter/belanja_wajib/update');
-    	$urlUpdateData  		= base_url("parameter/belanja_wajib/updateData/{$row->id}");
-    	$urlSave  				= base_url('parameter/belanja_wajib/save');
-    	$urlHapus  				= base_url('parameter/belanja_wajib/hapus');
-    	$urlAjax  				= base_url('parameter/belanja_wajib/ajax');
-    	$urlBelanja				= base_url('parameter/belanja_wajib');
-    	$urlUpdateAjax  		= base_url("parameter/belanja_wajib/ajaxUpdate/{$row->id}");
-    	$urlUpdateAjaxCancel  	= base_url("parameter/belanja_wajib/ajaxUpdate/0");
+    	$urlUpdate  			= base_url('parameter/Potongan_spm/update');
+    	$urlUpdateData  		= base_url("parameter/Potongan_spm/updateData/{$row->id}");
+    	$urlSave  				= base_url('parameter/Potongan_spm/save');
+    	$urlHapus  				= base_url('parameter/Potongan_spm/hapus');
+    	$urlAjax  				= base_url('parameter/Potongan_spm/ajax');
+    	$urlPotongan			= base_url('parameter/Potongan_spm');
+    	$urlUpdateAjax  		= base_url("parameter/Potongan_spm/ajaxUpdate/{$row->id}");
+    	$urlUpdateAjaxCancel  	= base_url("parameter/Potongan_spm/ajaxUpdate/0");
 
     	$this->registerJS("
     		var tempData 	= {}, 
 	    		d 			= document,
 	    		cancel 		= d.getElementById('cancel'), 
-	    		f 			= d.forms['form-belanja-wajib'], 
-	    		tambah 		= d.getElementById('Belanja_tambah'), 
-	    		simpan 		= d.getElementById('Belanja_simpan'), 
+	    		f 			= d.forms['form-potongan-spm'], 
+	    		tambah 		= d.getElementById('Potongan_tambah'), 
+	    		simpan 		= d.getElementById('Potongan_simpan'), 
 	    		link 		= d.getElementsByClassName('link-search'),
 	    		detailrek5 	= d.getElementsByClassName('Nm_Rek_5'),
 	    		hapus 		= d.getElementById('hapus'),
 	    		ubah 		= d.getElementById('ubah'),
+	    		// browse 		= d.getElementById('browse'),
 	    		input 		= f.getElementsByTagName('input'),
-	    		form 		= d.getElementById('belanja-wajib-dan-mengikat'),
-	    		formId 		= d.getElementById('form-belanja-wajib-dan-mengikat'),
+	    		form 		= d.getElementById('potongan-spm-rekening'),
+	    		formId 		= d.getElementById('form-potongan-spm-rekening'),
 	    		tutupBrowse = d.getElementById('tutup-browse'),
 	    		pesan_error = d.getElementById('error_pesan'),
 	    		ajaxKAR 	= form.getElementsByTagName('input'),
@@ -169,7 +169,7 @@ Main Content -->
 	    	cancel.style.display = 'none';
     		simpan.style.display = 'none';
 
-    		// event 5 inputan belanja wajib dan mengikat
+    		// event 5 inputan Potongan spm rekening
     		for(i=0;i<ajaxKAR.length;i++){
     			d.getElementById(ajaxKAR[i].getAttribute('id')).addEventListener('keyup',function(){
     				removeError();
@@ -182,7 +182,7 @@ Main Content -->
     				params = params.slice(0, -1);
     				url = '$urlAjax';
     				response = ajaxPost(url,params,function(err,balikan){
-    					div = d.getElementById('Belanja_wajib_dan_mengikat_Nm_Rek_5');
+    					div = d.getElementById('Potongan_spm_rekening_Nm_Rek_5');
     					if (balikan.Nm_Rek_5 === undefined) {
     						div.style.visibility = '';
 					        div.innerHTML = '<p style=\'color:#a94442\'>Data tidak ada pada sistem kami</p>';
@@ -260,10 +260,10 @@ Main Content -->
 					http.onreadystatechange = function() {
 					    if(http.readyState == 4 && http.status == 200) {
 					        if (http.responseText == 1) {
-					        	window.location.href = '$urlBelanja';
+					        	window.location.href = '$urlPotongan';
 					        }
 					        else{
-					        	window.location.href = '$urlBelanja';
+					        	window.location.href = '$urlPotongan';
 					        }
 					    }
 					}
@@ -271,11 +271,13 @@ Main Content -->
 			    }
 	    	});
 
+	    	
+
 			// event simpan data
 			simpan.addEventListener('click',function(){
 				submit = checkForm();
 				if (submit) {
-					d.getElementById('form-belanja-wajib-dan-mengikat').submit();
+					d.getElementById('form-potongan-spm-rekening').submit();
 				}
 			});
 
@@ -283,7 +285,7 @@ Main Content -->
 	    	ubah.addEventListener('click',function(){
 	    		f.setAttribute('action','$urlUpdateData');
 	    		hapus.style.display 	= 'none';
-	    		cetak.style.display 	= 'none';
+	    		// cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
 	    		cancel.style.display 	= '';
 	    		tambah.style.display 	= 'none';
@@ -349,7 +351,7 @@ Main Content -->
 			// disable all
 			function disableAll()
 			{
-				f = d.forms['form-belanja-wajib'];
+				f = d.forms['form-potongan-spm'];
 				for(var i=0,fLen=f.length;i<fLen;i++){
 				  	f.elements[i].readOnly = true;
 				}
@@ -405,7 +407,7 @@ Main Content -->
 	    		f.setAttribute('action','$urlSave');
 	    		removeError();
 	    		hapus.style.display 	= '';
-	    		cetak.style.display 	= '';
+	    		// cetak.style.display 	= '';
 	    		ubah.style.display 		= '';
 	    		simpan.style.display 	= 'none';
 	    		tambah.style.display    = '';
@@ -430,7 +432,7 @@ Main Content -->
 	    		simpan.style.display    = '';
 	    		cancel.style.display    = '';
 	    		hapus.style.display 	= 'none';
-	    		cetak.style.display 	= 'none';
+	    		// cetak.style.display 	= 'none';
 	    		ubah.style.display 		= 'none';
 	    		for(var i=0,fLen=detailrek5.length;i<fLen;i++){
 				  detailrek5[i].style.visibility = 'hidden';
@@ -505,4 +507,4 @@ Main Content -->
     <script type="text/javascript">
    	 	disableAll();
     </script> 
-    <?php }?>
+    <?php }?> -->

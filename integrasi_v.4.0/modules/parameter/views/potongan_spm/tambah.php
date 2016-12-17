@@ -1,17 +1,17 @@
 <!-- Main Content -->
 <?php
-	$browse 	= $this->belanja_wajib_model->allData();
+	$browse 	= $this->potongan_spm_model->allData();
 	// print_r($browse);
 	// exit;
 ?>
 	
    <section class="content">
-		<h2>Parameter<small> belanja wajib</small></h2>  
+		<h2>Parameter<small> Potongan spm</small></h2>  
 			<div class="body">
 				<ol class="breadcrumb breadcrumb-col-cyan">
 					<li><a href="<?php echo site_url('dashboard');?>"><i class="material-icons">home</i> Home</a></li>
 					<li><a href="<?php echo site_url('parameter');?>"> Parameter</a></li>
-					<li><a href="<?php echo site_url('parameter/belanja-wajib');?>"> Belanja wajib</a></li>
+					<li><a href="<?php echo site_url('parameter/potongan-spm');?>"> Potongan spm</a></li>
 					<li class="active"> Urusan</li>
 				</ol>
 			</div>
@@ -33,7 +33,7 @@
                 	
                     <div class="card">
 	                    <div class="header bg-light-green">
-						    <h2>Unit belanja wajib<small>Data Urusan</small></h2>
+						    <h2>Unit Potongan spm<small>Data Urusan</small></h2>
 	                        <ul class="header-dropdown m-r--5">
 	                            <li class="dropdown">
 	                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -59,34 +59,34 @@
 	                                        <tr>
 	                                            <th style="text-align:center; width:100px;display: none">id</th>
 	                                            <th style="text-align:center; width:100px">Kd Rek</th>
-	                                            <th style="text-align:center; width:100px">Uraian Belanja wajib</th>
+	                                            <th style="text-align:center; width:100px">Uraian Potongan spm</th>
 	                                        </tr>
 	                                        </thead>
 	                                        <tbody>
 	                                            <?php foreach($browse as $row):?>
 	                                                <?php
-	                                            		$kdRek4BelanjaWajib = strlen((string)$row->Kd_Rek_4)==1?"0".$row->Kd_Rek_4:$row->Kd_Rek_4;
-	                                            		$kdRek5BelanjaWajib = strlen((string)$row->Kd_Rek_5)==1?"0".$row->Kd_Rek_5:$row->Kd_Rek_5;
+	                                            		$kdRek4PotonganSpm = strlen((string)$row->Kd_Rek_4)==1?"0".$row->Kd_Rek_4:$row->Kd_Rek_4;
+	                                            		$kdRek5PotonganSpm = strlen((string)$row->Kd_Rek_5)==1?"0".$row->Kd_Rek_5:$row->Kd_Rek_5;
 	                                            	?>
 	                                            	<tr <?= "onclick='pilih({$row->id})'"?>>
 	                                                    <td style="text-align:center;display: none"><?= $row->id;?></td>
-	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1.".".$row->Kd_Rek_2.".".$row->Kd_Rek_3.".".$kdRek4BelanjaWajib.".".$kdRek5BelanjaWajib?></td>
-	                                                    <td style="text-align:center;"><?= $this->belanja_wajib_model->getDetailRek5($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4,$row->Kd_Rek_5)->Nm_Rek_5?></td>
+	                                                    <td style="text-align:center;"><?= $row->Kd_Rek_1.".".$row->Kd_Rek_2.".".$row->Kd_Rek_3.".".$kdRek4PotonganSpm.".".$kdRek5PotonganSpm?></td>
+	                                                    <td style="text-align:center;"><?= $this->potongan_spm_model->getDetailRek5($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4,$row->Kd_Rek_5)->Nm_Rek_5?></td>
 	                                                </tr>
 	                                            <?php endforeach; ?>
 	                                        </tbody>
 	                                    </table>
 
-                                	<form id="form-belanja-wajib-dan-mengikat" name="form-belanja-wajib" method="POST" action="<?=site_url("parameter/belanja_wajib/save")?>">
+                                	<form id="form-potongan-spm-rekening" name="form-potongan-spm" method="POST" action="<?=site_url("parameter/potongan_spm/save")?>">
                                 		<div class="alert alert-danger" style="display: none" id="error_pesan">
 									        <button type="button" class="close" data-dismiss="alert">&times;</button>
 									        <div><?= PESAN_FIELD_KOSONG?></div>
 									    </div>
 	                                	<div class="row">
-	                                		<div class="col-md-12">Belanja wajib dan mengikat</div>
+	                                		<div class="col-md-12">Potongan spm rekening</div>
 	                                	</div>
 	                                	<div class="row">
-		                                    <div id="belanja-wajib-dan-mengikat">
+		                                    <div id="potongan-spm-rekening">
 						                    	<div class="col-md-1">
 						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KAR_Kd_Rek_1')!=''?$this->session->userdata('KAR_Kd_Rek_1'):''?>" min="1" id="Kd_Rek_1" name="Kd_Rek_1">
 						                    	</div>
@@ -103,14 +103,14 @@
 						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KAR_Kd_Rek_5')!=''?$this->session->userdata('KAR_Kd_Rek_5'):''?>" min="1" id="Kd_Rek_5" name="Kd_Rek_5">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<a class="link-search" href="<?=base_url('parameter/belanja-wajib-dan-mengikat/')?>">
+						                    		<a class="link-search" href="<?=base_url('parameter/potongan-spm-rekening/')?>">
 						                    			<img src="<?= base_url('public/templates/integrasi_v.4.0/images/search.png')?>" widht="24" height="24" class="icon-search"/>
 						                    		</a>
 						                    	</div>
 						                    </div>
 					                    </div>
 				                  		<div class="row">
-					                    	<div class="col-md-12 Nm_Rek_5" id="Belanja_wajib_dan_mengikat_Nm_Rek_5">
+					                    	<div class="col-md-12 Nm_Rek_5" id="potongan_spm_rekening_Nm_Rek_5">
 					                    		<?php if (isset($content['dataset']['rekening'])) {
 						                    			$data = $content['dataset']['rekening'];
 						                    			echo $data->Nm_Rek_5;
@@ -140,15 +140,15 @@
     	// echo '<script type="text/javascript">';
     	// echo 'var cancel = document.getElementById("cancel");cancel.addEventListener("click",function(){window.location.href=\''.base_url('parameter/Belanja/destroy').'\'});';
     	// echo '</script>';
-    	$cancel = base_url('parameter/belanja_wajib/destroy');
-    	$urlAjax  		= base_url('parameter/belanja_wajib/ajax');
+    	$cancel = base_url('parameter/potongan_spm/destroy');
+    	$urlAjax  		= base_url('parameter/potongan_spm/ajax');
     	$this->registerJS("
 
 	    	var d 			= document,
-	    		f 			= d.forms['form-belanja-wajib'],
+	    		f 			= d.forms['form-potongan-spm'],
 	    		input 		= f.getElementsByTagName('input'),
 	    		tempData 	= {},
-	    		form 		= d.getElementById('belanja-wajib-dan-mengikat'),
+	    		form 		= d.getElementById('potongan-spm-rekening'),
 	    		ajaxKAR 	= form.getElementsByTagName('input'),
 	    		pesan_error = d.getElementById('error_pesan'),
 	    		simpan 		= d.getElementById('Belanja_simpan');
@@ -170,7 +170,7 @@
 				  });
 			}
 
-			// event 5 inputan belanja wajib dan mengikat
+			// event 5 inputan Potongan spm rekening
     		for(i=0;i<ajaxKAR.length;i++){
     			d.getElementById(ajaxKAR[i].getAttribute('id')).addEventListener('keyup',function(){
     				params = '';
@@ -182,7 +182,7 @@
     				params = params.slice(0, -1);
     				url = '$urlAjax';
     				response = ajaxPost(url,params,function(err,balikan){
-    					div = d.getElementById('Belanja_wajib_dan_mengikat_Nm_Rek_5');
+    					div = d.getElementById('potongan_spm_rekening_Nm_Rek_5');
     					if (balikan.Nm_Rek_5 === undefined) {
     						div.style.visibility = '';
 					        div.innerHTML = 'Data tidak ada pada sistem kami';
@@ -216,7 +216,7 @@
 			simpan.addEventListener('click',function(){
 				submit = checkForm();
 				if (submit) {
-					d.getElementById('form-belanja-wajib-dan-mengikat').submit();
+					d.getElementById('form-potongan-spm-rekening').submit();
 				}
 			});
 			// fungsi untuk cek form
