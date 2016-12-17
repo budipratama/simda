@@ -206,24 +206,16 @@ class belanja_wajib extends CI_Controller {
 	
 	public function export()
 	{
-		$query 		= $this->db->query("SELECT Kd_Rek_1, Kd_Rek_2, Kd_Rek_3, Kd_Rek_4, Kd_Rek_5 FROM ".TBL_BELANJA_WAJIB." ORDER BY id ASC");
-        $array 		= $query->result_array();
-        $browse 	= $this->belanja_wajib_model->allData();
-
-        $detail = array();
+		$browse 	= $this->belanja_wajib_model->allData();
+		$filename 	= "export_belanja_wajib.csv";
+		$delimiter 	= ",";
+		$header 	= "Kd Rek, Uraian belanja wajib";
+		$detail 	= array();
         foreach ($browse as $k => $row) {
         	$detail[$k]['Kd_Rek'] = $row->Kd_Rek_1.".".$row->Kd_Rek_2.".".$row->Kd_Rek_3.".0".$row->Kd_Rek_4.".0".$row->Kd_Rek_5;
 			$detail[$k]['Nm_Rek'] = $this->belanja_wajib_model->getDetailRek5($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4,$row->Kd_Rek_5)->Nm_Rek_5;
 		}
-
-		// print "<pre>";
-		// print_r($detail);
-		// exit;
-
-		$filename 	= "export_belanja_wajib.csv";
-		$delimiter 	= ",";
-		$header 	= "Kd Rek, Uraian belanja wajib";
-
+		
         // open the "output" stream
         $f = fopen('php://output', 'w');
 	    fwrite($f, $header."\r\n");
