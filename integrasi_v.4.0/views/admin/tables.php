@@ -3,7 +3,7 @@
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/bootstrap/js/bootstrap.js');?>"></script>
 	<!-- Select Plugin Js -->
-    <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/bootstrap-select/js/bootstrap-select.js');?>"></script>
+    <!-- <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/bootstrap-select/js/bootstrap-select.js');?>"></script> -->
     <!-- Slimscroll Plugin Js -->
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/jquery-slimscroll/jquery.slimscroll.js');?>"></script>
     <!-- Waves Effect Plugin Js -->

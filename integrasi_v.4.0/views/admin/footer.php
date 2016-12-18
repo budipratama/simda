@@ -7,7 +7,7 @@
     <!-- Custom Js 4-->
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/js/admin.js');?>"></script>
     <!-- Select Plugin Js 5-->
-    <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/bootstrap-select/js/bootstrap-select.js');?>"></script>
+    <!-- <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/bootstrap-select/js/bootstrap-select.js');?>"></script> -->
     <!-- Slimscroll Plugin Js 6-->
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/jquery-slimscroll/jquery.slimscroll.js');?>"></script>
     <!-- Bootstrap Colorpicker Js 7-->
@@ -15,7 +15,7 @@
     <!-- Dropzone Plugin Js 8-->
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/dropzone/dropzone.js');?>"></script>	
     <!-- Multi Select Plugin Js 9-->
-    <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/multi-select/js/jquery.multi-select.js');?>"></script>
+    <!-- <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/multi-select/js/jquery.multi-select.js');?>"></script> -->
     <!-- noUISlider Plugin Js 10-->
     <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/nouislider/nouislider.js');?>"></script>
     <!-- Demo Js 11-->
@@ -41,7 +41,7 @@
 	<!-- <script src="<?php echo base_url('public/templates/integrasi_v.4.0/js/pages/ui/modals.js');?>"></script> -->
 	
 	<!-- Select Plugin Js -->
-    <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/bootstrap-select/js/bootstrap-select.js');?>"></script>
+    <!-- <script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/bootstrap-select/js/bootstrap-select.js');?>"></script> -->
 	
 	<!-- Form Validasi -->
 	<script src="<?php echo base_url('public/templates/integrasi_v.4.0/plugins/jquery-validation/jquery.validate.js');?>"></script>
@@ -59,7 +59,7 @@
 <script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/typeahead/handlebars.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/typeahead/typeahead.bundle.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/select2/select2.min.js');?>"></script>
+<!-- <script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/select2/select2.min.js');?>"></script> -->
 <script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/datatables/media/js/jquery.dataTables.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/templates/rkpd_v.4.0/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js');?>"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.js"></script>

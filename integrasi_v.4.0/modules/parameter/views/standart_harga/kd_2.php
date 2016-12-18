@@ -1,9 +1,5 @@
 <!-- Main Content -->
-	<style type="text/css">
-		.highlight {
-		    background: red;
-		}
-	</style>
+
    <section class="content">
 		<h2>Parameter<small> Standart Harga</small></h2>  
 			<div class="body">
@@ -14,7 +10,6 @@
 					<li class="active"> Urusan</li>
 				</ol>
 			</div>
-			
             <!-- Multiple Items To Be Open -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -43,7 +38,7 @@
 	                                <div class="wizard">
                                         <div class="steps-index-container">
                                             <ul class="steps">
-                                                <li class="pointer active">
+                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/standart-harga")?>')">
                                                     <span class="step-index">
                                                         <span class="label">1</span>
                                                     </span>
@@ -51,7 +46,7 @@
                                                     <span class="wiz-icon-chevron-right colorA"></span>
                                                     <span class="wiz-icon-chevron-right colorB"></span>
                                                 </li>
-                                                <li class="pointer">
+                                                <li class="pointer active">
                                                     <span class="step-index">
                                                         <span class="label">2</span>
                                                     </span>
@@ -76,6 +71,7 @@
 		                                        <thead>
 		                                        <tr>
 		                                            <th style="text-align:center; width:100px">id</th>
+		                                            <th style="text-align:center; width:100px">Kode 1</th>
 		                                            <th style="text-align:center; width:100px">Kode</th>
 		                                            <th style="text-align:center; width:100px">Uraian Rekening</th>
 		                                        </tr>
@@ -103,7 +99,7 @@
 		                                	<div class="row">
 											      <div class="col-md-12">
 											      	<label for="usr">ID :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											      	<input type="text" class="form-control" id="Kd_1" name="Kd_1" style="display: inline;width:5%" value="<?= $table1[0]->Kd_1?>">
+											      	<input type="text" class="form-control" id="Kd_2" name="Kd_2" style="display: inline;width:5%" value="<?= $table1[0]->Kd_2?>">
 											      </div>
 
 											      <div class="col-md-12">
@@ -134,9 +130,11 @@
         </div>
     </section>
     <?php
-    	$urlDataTbl1  			= base_url('parameter/standart-harga/get-data-table-json');
-    	$urlHome  				= base_url('parameter/standart-harga/');
-    	$table 					= TBL_MS_STANDART_HARGA_1;
+    	$urlDataTbl1  			= base_url('parameter/standart-harga/get-data-table-json-kd-2')."/".$Kd_1;
+    	$urlHome  				= base_url('parameter/standart-harga/Kd-2');
+    	$urlMain  				= base_url('parameter/standart-harga/');
+    	$table 					= TBL_MS_STANDART_HARGA_2;
+    	// echo $Kd_1;die();
     	$this->registerJS("
     		var d 				= document,
     			tempData 		= {}, 
@@ -144,14 +142,13 @@
     			simpan  		= d.getElementById('Standart_harga_simpan'),
     			f 				= d.forms['form-standart-harga'],
     			id  			= d.getElementById('id'),
-    			Kd_1  			= d.getElementById('Kd_1'),
+    			Kd_2  			= d.getElementById('Kd_2'),
     			pesan_error  	= d.getElementById('error_pesan'),
     			pesan_sukses  	= d.getElementById('pesan_sukses'),
     			error_unik  	= d.getElementById('error_unik'),
     			Uraian  		= d.getElementById('Uraian'),
     			input 			= f.getElementsByTagName('input'),
     			cancel  		= d.getElementById('cancel'),
-    			simpan  		= d.getElementById('Standart_harga_simpan'),
     			ubah  			= d.getElementById('ubah'),
     			cetak  			= d.getElementById('cetak'),
     			hapus  			= d.getElementById('hapus'),
@@ -166,16 +163,17 @@
 		    	for(var i=0,fLen = input.length;i<fLen;i++){
 				  tempData[i] = input[i].value;
 				}
-				// console.log(tempData);
+				console.log(tempData);
     		}
     		// event tambah
     		tambah.addEventListener('click',function(){
-    			params 	= 'kd=1&field=Kd_1&table=$table';
-    			url 	= '$urlHome/get-max-id';
+    			params 	= 'kd=2&field=Kd_2&table=$table&Kd_1=$Kd_1';
+    			url 	= '$urlMain/get-max-id';
     			ajaxPost(url,params,function(err,balikan){
+
 					input[0].value = (balikan.id === null)?1:parseInt(balikan.id)+1;				
 				});
-    			
+
     			for(var i=0,fLen = input.length;i<fLen;i++){
 				  input[i].value = '';
 				}
@@ -221,7 +219,7 @@
     			send = checkForm();
     			if (send == 1) {
 
-    				url = '$urlHome';
+    				url = '$urlHome/$Kd_1/';
 	    			params = 'flag=update&id='+evt.target.myParam+'&';
 	    			for (j=0; j < input.length; j++) { 
 	    				console.log(input[j].value);
@@ -258,7 +256,7 @@
     			send = checkForm();
     			
     			if (send==1) {
-    				url = '$urlHome';
+    				url = '$urlHome/$Kd_1/';
 	    			params = 'flag=new&';
 	    			for (j=0; j < input.length; j++) { 
 	    				console.log(input[j].value);
@@ -341,7 +339,7 @@
 	    		removeError();
 	    	});
 
-    		Kd_1.addEventListener('keydown',function(e){
+    		Kd_2.addEventListener('keydown',function(e){
     			removeError();
 			  	if ((e.keyCode == 65 && e.ctrlKey === true) || (e.keyCode == 67 && e.ctrlKey === true) || (e.keyCode == 88 && e.ctrlKey === true) || (e.keyCode == 8 )||(e.keyCode == 37 ) || (e.keyCode == 39 ) || (e.keyCode == 9 )) {
 		                 return;
@@ -361,8 +359,9 @@
 		                'ajax': '$urlDataTbl1',
 		                'columns' : [
 		                        {'data':'0', visible:false},
-		                        {'data':'1'},
+		                        {'data':'1', visible:false},
 		                        {'data':'2'},
+		                        {'data':'3'},
 		                    ],
 		            });
 
@@ -371,24 +370,26 @@
 		            $('.jDtable tbody').on('click', 'tr', function () {
 		            	clicks++;  //count clicks
 		            	var data = table.row( this ).data();
-		            	
 				        if(clicks === 1) {
-				        	
 
 				            timer = setTimeout(function() {
-						        console.log(data.length)
-						        for(i=1;i<data.length;i++){
-						        	console.log(data[i])
-						        	input[i-1].value = data[i];
-						        }
+				            	
+						        // console.log(data.length)
+						        // for(i=0;i<data.length;i++){
+						        // 	console.log(data[i])
+						        // 	// input[i].value = data[i];
+						        // }
+						        input[0].value = data[2];
+						        input[1].value = data[3];
 				                clicks = 0;  //after action performed, reset counter
 
 				            }, DELAY);
 
 				        } else {
 				            clearTimeout(timer);  //prevent single-click action
+
 				            clicks = 0;  //after action performed, reset counter
-				            window.location.href = '$urlHome/Kd-2/'+data[1];
+				            window.location.href = '$urlMain/Kd-3/'+data[1]+'/'+data[2];
 				        }
 				        
 				    })
@@ -402,7 +403,10 @@
 				    
 		        });
 	        },500);
-	        
+	        // setInterval(function(){
+	        // 	table = $('.jDtable').DataTable();
+	        // 	table.ajax.reload();
+	        // },2000);
     		// event hapus
     		hapus.addEventListener('click',function(){
     			var r = confirm('Hapus data tekan yes');

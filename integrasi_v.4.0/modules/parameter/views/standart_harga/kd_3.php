@@ -1,9 +1,8 @@
 <!-- Main Content -->
-	<style type="text/css">
-		.highlight {
-		    background: red;
-		}
-	</style>
+	<?php
+	// print_r($table1->Keterangan);
+	// die();
+	?>
    <section class="content">
 		<h2>Parameter<small> Standart Harga</small></h2>  
 			<div class="body">
@@ -14,7 +13,7 @@
 					<li class="active"> Urusan</li>
 				</ol>
 			</div>
-			
+
             <!-- Multiple Items To Be Open -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -37,13 +36,14 @@
 	                    	// print_r($browse);
 	                    	// die();
 	                    ?>
+
 	                    <div class="body">
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	                                <div class="wizard">
                                         <div class="steps-index-container">
                                             <ul class="steps">
-                                                <li class="pointer active">
+                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/standart-harga")?>')">
                                                     <span class="step-index">
                                                         <span class="label">1</span>
                                                     </span>
@@ -51,7 +51,7 @@
                                                     <span class="wiz-icon-chevron-right colorA"></span>
                                                     <span class="wiz-icon-chevron-right colorB"></span>
                                                 </li>
-                                                <li class="pointer">
+                                                <li class="completed pointer">
                                                     <span class="step-index">
                                                         <span class="label">2</span>
                                                     </span>
@@ -59,7 +59,7 @@
                                                     <span class="wiz-icon-chevron-right colorA"></span>
                                                     <span class="wiz-icon-chevron-right colorB"></span>
                                                 </li>
-                                                <li class="pointer">
+                                                <li class="pointer active">
                                                     <span class="step-index">
                                                         <span class="label">3</span>
                                                     </span>
@@ -72,12 +72,17 @@
                                         <div class="step-pane active">
                                           <!-- <h4>Details</h4> -->
                                           <p>
-                                            <table class="table table-bordered table-striped table-hover dataTable jDtable" id="table-browse">
+                                            <table class="table table-bordered table-striped table-hover dataTable jDtable" id="table_utama">
 		                                        <thead>
 		                                        <tr>
 		                                            <th style="text-align:center; width:100px">id</th>
+		                                            <th style="text-align:center; width:100px">Kode 1</th>
+		                                            <th style="text-align:center; width:100px">Kode 2</th>
 		                                            <th style="text-align:center; width:100px">Kode</th>
-		                                            <th style="text-align:center; width:100px">Uraian Rekening</th>
+		                                            <th style="text-align:center; width:100px">Uraian</th>
+		                                            <th style="text-align:center; width:100px">Harga</th>
+		                                            <th style="text-align:center; width:100px">Satuan</th>
+		                                            <th style="text-align:center; width:100px">Keterangan</th>
 		                                        </tr>
 		                                        </thead>
 		                                        <tbody>
@@ -98,31 +103,65 @@
 										        <button type="button" class="close" data-dismiss="alert">&times;</button>
 										        <div><?= NOTIF_UNIQUE_INPUT?></div>
 										    </div>
-                                          <form id="form-standart-harga" name="form-standart-harga" method="POST" action="<?=site_url("parameter/standart-harga/")?>">
-		                                	
-		                                	<div class="row">
-											      <div class="col-md-12">
-											      	<label for="usr">ID :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											      	<input type="text" class="form-control" id="Kd_1" name="Kd_1" style="display: inline;width:5%" value="<?= $table1[0]->Kd_1?>">
-											      </div>
+                                            <form id="form-standart-harga" name="form-standart-harga" method="POST" action="<?=site_url("parameter/standart-harga/")?>">
+			                                	<div class="row">
+												      <div class="col-md-12">
+												      	<label for="usr">ID :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												      	<input type="text" class="form-control" id="Kd_3" name="Kd_3" style="display: inline;width:5%" value="<?= $table1->Kd_3?>">
+												      </div>
 
-											      <div class="col-md-12">
-											      	<label for="usr">Uraian :</label>&nbsp;&nbsp;&nbsp;
-											      	<input type="text" class="form-control" id="Uraian" name="Uraian" value="<?=$table1[0]->Uraian?>" style="display: inline;width:50%">
-											      </div>
-						                    </div>
-						                    <div class="row">
-						                    	<div class="col-md-12" id="kumpulan_button">
-													<button type="button" class="btn btn-primary" id="Standart_harga_simpan" style="display: none">Simpan</button>
-													<button type="button" class="btn btn-primary" id="Standart_harga_tambah">Tambah</button>
-													<button type="button" class="btn btn-success" id="ubah">Ubah</button>
-													<button type="button" class="btn btn-info" id="hapus">Hapus</button>
-													<button type="button" class="btn btn-warning" id="cetak">Cetak</button>
-													<button type="button" class="btn btn-danger" id="cancel" style="display: none">Cancel</button>
-						                    	</div>
-								        	</div>
-								        </form>
+												      <div class="col-md-12">
+												      	<label for="usr">Uraian :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												      	<input type="text" class="form-control" id="Uraian" name="Uraian" value="<?=$table1->Uraian?>" style="display: inline;width:50%">
+												      </div>
+												      <div class="col-md-12">
+												      	<label for="usr">Harga :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												      	<input type="text" class="form-control" id="Harga" name="Harga" value="<?=$table1->Harga?>" style="display: inline;width:50%">
+												      </div>
+												      <div class="col-md-12">
+												      	
+												      	<label for="usr" style="float: left;">Satuan :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												      	<select class="form-control" id="Satuan" name="Satuan" style="display: inline;width:50%">
+												      		<option value='0'>Pilih Satuan</option>
+												      	<?php
+												      		foreach ($databTableSatuan as $key => $value) {
+												      			echo "<option value='{$databTableSatuan[$key]->ID_Satuan}'>{$databTableSatuan[$key]->Uraian}</option>";
+												      		}
+												      	?>
+												      	</select>
+												      </div>
+												      <div class="col-md-12">
+												      	<label for="usr" style="float: left;">Keterangan :</label>&nbsp;&nbsp;&nbsp;
+												      	<textarea class="form-control" rows="3" id="Keterangan" name="Keterangan" style="display: inline;width:50%"><?=$table1->Keterangan?></textarea>
+												      </div>
+							                    </div>
+							                    <div class="row">
+							                    	<div class="col-md-12" id="kumpulan_button">
+														<button type="button" class="btn btn-primary" id="Standart_harga_simpan" style="display: none">Simpan</button>
+														<button type="button" class="btn btn-primary" id="Standart_harga_tambah">Tambah</button>
+														<button type="button" class="btn btn-success" id="ubah">Ubah</button>
+														<button type="button" class="btn btn-info" id="hapus">Hapus</button>
+														<button type="button" class="btn btn-warning" id="cetak">Cetak</button>
+														<button type="button" class="btn btn-danger" id="cancel" style="display: none">Cancel</button>
+							                    	</div>
+									        	</div>
+								        	</form>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                    	<div class="col-md-12">
+                                    		<table class="table table-bordered table-striped table-hover dataTable jDtableSub" id="table_utama_sub">
+		                                        <thead>
+		                                        <tr>
+		                                            <th style="text-align:center; width:100px">id</th>
+		                                            <th style="text-align:center; width:100px">ID</th>
+		                                            <th style="text-align:center; width:100px">Uraian Rekening</th>
+		                                        </tr>
+		                                        </thead>
+		                                        <tbody>
+		                                        </tbody>
+		                                    </table>
+                                    	</div>
                                     </div>
                                 </div>
                             </div>
@@ -132,11 +171,17 @@
             </div>
             <!-- #END# Tabs With Custom Animations -->
         </div>
+
     </section>
     <?php
-    	$urlDataTbl1  			= base_url('parameter/standart-harga/get-data-table-json');
-    	$urlHome  				= base_url('parameter/standart-harga/');
-    	$table 					= TBL_MS_STANDART_HARGA_1;
+    	$urlDataTbl1  			= base_url('parameter/standart-harga/get-data-table-json-kd-3')."/".$Kd_1."/".$Kd_2;
+    	$urlDataTblSatuan  		= base_url('parameter/standart-harga/get-data-table-json-satuan');
+    	$urlHome  				= base_url('parameter/standart-harga/Kd-3');
+    	$urlMain  				= base_url('parameter/standart-harga/');
+    	$table 					= TBL_MS_STANDART_HARGA_3;
+    	$valueSatuan 			= $table1->Satuan;
+    	$id 					= $table1->id;
+    	// echo $Kd_1;die();
     	$this->registerJS("
     		var d 				= document,
     			tempData 		= {}, 
@@ -144,41 +189,54 @@
     			simpan  		= d.getElementById('Standart_harga_simpan'),
     			f 				= d.forms['form-standart-harga'],
     			id  			= d.getElementById('id'),
-    			Kd_1  			= d.getElementById('Kd_1'),
+    			Kd_3  			= d.getElementById('Kd_3'),
     			pesan_error  	= d.getElementById('error_pesan'),
     			pesan_sukses  	= d.getElementById('pesan_sukses'),
     			error_unik  	= d.getElementById('error_unik'),
     			Uraian  		= d.getElementById('Uraian'),
     			input 			= f.getElementsByTagName('input'),
     			cancel  		= d.getElementById('cancel'),
-    			simpan  		= d.getElementById('Standart_harga_simpan'),
     			ubah  			= d.getElementById('ubah'),
     			cetak  			= d.getElementById('cetak'),
     			hapus  			= d.getElementById('hapus'),
+    			satuan  			= d.getElementById('Satuan'),
+    			keterangan		= d.getElementById('Keterangan'),
     			DELAY 			= 700,
 			    clicks 			= 0,
 			    timer 			= null,
     			tambah  		= d.getElementById('Standart_harga_tambah');
 
+    		selectedOptionSatuan($valueSatuan);
+
+    		function selectedOptionSatuan(val){
+    			console.log('nilai selected '+val);
+    			satuan.value = 	val;
+    		}
     		dataField();
     		function dataField(){
     			// event only number inputan
 		    	for(var i=0,fLen = input.length;i<fLen;i++){
 				  tempData[i] = input[i].value;
 				}
-				// console.log(tempData);
+				tempData[3] = d.getElementById('Satuan').value;
+				tempData[4] = keterangan.value;
+				console.log(tempData);
     		}
     		// event tambah
     		tambah.addEventListener('click',function(){
-    			params 	= 'kd=1&field=Kd_1&table=$table';
-    			url 	= '$urlHome/get-max-id';
+    			params 	= 'kd=3&field=Kd_3&table=$table&Kd_1=$Kd_1&Kd_2=$Kd_2';
+    			url 	= '$urlMain/get-max-id';
     			ajaxPost(url,params,function(err,balikan){
 					input[0].value = (balikan.id === null)?1:parseInt(balikan.id)+1;				
 				});
-    			
+
     			for(var i=0,fLen = input.length;i<fLen;i++){
 				  input[i].value = '';
 				}
+				keterangan.value = '';
+				satuan.value = 0;
+				// keterangan.getElementsByTagName('option');
+
     			simpan.style.display 		= '';
     			cancel.style.display 		= '';
     			this.style.display 			= 'none';
@@ -188,9 +246,12 @@
     			disableAll(false);
     		});
     		cancel.addEventListener('click',function(){
+    			removeError();
     			for(var i=0,fLen = input.length;i<fLen;i++){
 				  input[i].value = tempData[i];
 				}
+				selectedOptionSatuan(tempData[3]);
+				keterangan.value = tempData[4];
     			disableAll(true);
     			tambah.style.display 	= '';
     			simpan.style.display 	= 'none';
@@ -206,8 +267,9 @@
     			cetak.style.display 	= 'none';
     			tambah.style.display 	= 'none'; 
     			simpan.style.display    = '';
+    			cancel.style.display    = '';
     			disableAll(false);
-    			id = input[0].value;
+    			id = $id;
     			simpan.removeEventListener('click',actionSimpan);
     			simpan.addEventListener('click',actionUpdate);
     			simpan.myParam = id;
@@ -221,16 +283,13 @@
     			send = checkForm();
     			if (send == 1) {
 
-    				url = '$urlHome';
+    				url = '$urlHome/$Kd_1/';
+    				var tmpParams = serialize(f);
+	    			params = 'flag=new&Kd_1=$Kd_1&Kd_2=$Kd_2&'+tmpParams;
+	    			
 	    			params = 'flag=update&id='+evt.target.myParam+'&';
-	    			for (j=0; j < input.length; j++) { 
-	    				console.log(input[j].value);
-						val = input[j].value;
-						tempData[j] = input[j].value;;
-						params += input[j].getAttribute('name')+'='+val+'&';
-					}
-	    			params = params.slice(0, -1);
-	    			// alert(params)
+	    			
+	    			alert(params);
     				ajaxPost(url,params,function(err,balikan){
     					if (balikan.status==1) {
     						pesan_sukses.style.display='';
@@ -258,16 +317,10 @@
     			send = checkForm();
     			
     			if (send==1) {
-    				url = '$urlHome';
-	    			params = 'flag=new&';
-	    			for (j=0; j < input.length; j++) { 
-	    				console.log(input[j].value);
-						val = input[j].value;
-						tempData[j] = input[j].value;;
-						params += input[j].getAttribute('name')+'='+val+'&';
-					}
-	    			params = params.slice(0, -1);
-	    			// alert(params)
+    				url = '$urlHome/$Kd_1/';
+	    			var tmpParams = serialize(f);
+	    			params = 'flag=new&Kd_1=$Kd_1&Kd_2=$Kd_2&'+tmpParams;
+
     				ajaxPost(url,params,function(err,balikan){
     					if (balikan.status==1) {
     						pesan_sukses.style.display='';
@@ -288,9 +341,6 @@
     				});
     			}
     		}
-
-    		
-
     		simpan.addEventListener('click',actionSimpan);
 
     		function ajaxPost(url,params,callback){
@@ -341,7 +391,7 @@
 	    		removeError();
 	    	});
 
-    		Kd_1.addEventListener('keydown',function(e){
+    		Kd_3.addEventListener('keydown',function(e){
     			removeError();
 			  	if ((e.keyCode == 65 && e.ctrlKey === true) || (e.keyCode == 67 && e.ctrlKey === true) || (e.keyCode == 88 && e.ctrlKey === true) || (e.keyCode == 8 )||(e.keyCode == 37 ) || (e.keyCode == 39 ) || (e.keyCode == 9 )) {
 		                 return;
@@ -355,10 +405,27 @@
 	        setTimeout(function(){
 	        	// table
 	        	$(document).ready(function() {
-		            $('.jDtable').DataTable( {
+		            $('#table_utama').DataTable( {
 		                'processing': true,
 		                'serverSide': true,
 		                'ajax': '$urlDataTbl1',
+		                'columns' : [
+		                        {'data':'0', visible:false},
+		                        {'data':'1', visible:false},
+		                        {'data':'2', visible:false},
+		                        {'data':'3'},
+		                        {'data':'4'},
+		                        {'data':'5'},
+		                        {'data':'6'},
+		                        {'data':'7'},
+		                    ],
+		            });
+
+		            // untuk satuan
+		            $('#table_utama_sub').DataTable( {
+		                'processing': true,
+		                'serverSide': true,
+		                'ajax': '$urlDataTblSatuan',
 		                'columns' : [
 		                        {'data':'0', visible:false},
 		                        {'data':'1'},
@@ -371,24 +438,26 @@
 		            $('.jDtable tbody').on('click', 'tr', function () {
 		            	clicks++;  //count clicks
 		            	var data = table.row( this ).data();
-		            	
 				        if(clicks === 1) {
-				        	
 
 				            timer = setTimeout(function() {
-						        console.log(data.length)
-						        for(i=1;i<data.length;i++){
-						        	console.log(data[i])
-						        	input[i-1].value = data[i];
-						        }
+				            	
+						        // console.log(data.length)
+						        // for(i=0;i<data.length;i++){
+						        // 	console.log(data[i])
+						        // 	// input[i].value = data[i];
+						        // }
+						        input[0].value = data[2];
+						        input[1].value = data[3];
 				                clicks = 0;  //after action performed, reset counter
 
 				            }, DELAY);
 
 				        } else {
 				            clearTimeout(timer);  //prevent single-click action
+
 				            clicks = 0;  //after action performed, reset counter
-				            window.location.href = '$urlHome/Kd-2/'+data[1];
+				            window.location.href = '$urlMain/Kd-3/'+data[1]+'/'+data[2];
 				        }
 				        
 				    })
@@ -402,7 +471,7 @@
 				    
 		        });
 	        },500);
-	        
+
     		// event hapus
     		hapus.addEventListener('click',function(){
     			var r = confirm('Hapus data tekan yes');
