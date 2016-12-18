@@ -1,20 +1,20 @@
 <!-- Main Content -->
    <section class="content">
-		<h2>Parameter<small> Wajib dan Mengikat</small></h2>  
-			<div class="body">
-				<ol class="breadcrumb breadcrumb-col-cyan">
-					<li><a href="<?= site_url('dashboard');?>"><i class="material-icons">home</i> Home</a></li>
-					<li><a href="<?= site_url('parameter');?>"> Parameter</a></li>
-					<li><a href="<?= site_url('parameter/belanja-wajib');?>"> Belanja wajib</a></li>
-					<li class="active"> Urusan</li>
-				</ol>
-			</div>
+        <h2>Parameter<small> Rekening</small></h2>  
+            <div class="body">
+                <ol class="breadcrumb breadcrumb-col-cyan">
+                    <li><a href="<?= site_url('dashboard');?>"><i class="material-icons">home</i> Home</a></li>
+                    <li><a href="<?= site_url('parameter');?>"> Parameter</a></li>
+                    <li><a href="<?= site_url('parameter/potongan-spm');?>"> Potongan spm</a></li>
+                    <li class="active"> Urusan</li>
+                </ol>
+            </div>
             <!-- Multiple Items To Be Open -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header bg-light-green">
-						      <h2>Belanja-wajib-dan-mengikat<small>Data Urusan</small></h2>
+                              <h2>potongan-spm-rekening<small>Data Urusan</small></h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -81,7 +81,7 @@
                                                 <thead>
                                                 <tr>
                                                     <th style="text-align:center; width:100px">Akun</th>
-                                                    <th style="text-align:center;">Uraian Wajib dan mengikat</th>
+                                                    <th style="text-align:center;">Uraian Rekening</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -89,7 +89,7 @@
                                                         <tr>
                                                             <td style="text-align:center;"><?= $row->Kd_Rek_1;?></td>
                                                             <td>
-                                                                <a href="<?= site_url('parameter/belanja-wajib-dan-mengikat/kelompok/'.$row->Kd_Rek_1);?>">
+                                                                <a href="<?= site_url('parameter/potongan-spm-rekening/kelompok/'.$row->Kd_Rek_1);?>">
                                                                 <?= $row->Nm_Rek_1;?>
                                                                 </a>
                                                             </td>

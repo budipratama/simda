@@ -5,7 +5,7 @@
 *
 */
 // error_reporting(E_ALL);
-class belanja_wajib_model extends CI_Model {
+class potongan_spm_model extends CI_Model {
 
         public $Kd_Rek_1;
         public $Kd_Rek_2;
@@ -19,7 +19,7 @@ class belanja_wajib_model extends CI_Model {
 
         public function showData()
         {
-                $query = $this->db->query("SELECT * FROM ".TBL_BELANJA_WAJIB." ORDER BY id DESC");
+                $query = $this->db->query("SELECT * FROM ".TBL_POTONGAN_SPM." ORDER BY id DESC");
                 $row = $query->row();
                 
                 return $row;
@@ -27,7 +27,7 @@ class belanja_wajib_model extends CI_Model {
 
         public function update($id)
         {
-                $query = $this->db->query("SELECT * FROM ".TBL_BELANJA_WAJIB." WHERE `id`= $id");
+                $query = $this->db->query("SELECT * FROM ".TBL_POTONGAN_SPM." WHERE `id`= $id");
                 $row = $query->row();
                 
                 return $row;
@@ -35,7 +35,7 @@ class belanja_wajib_model extends CI_Model {
 
         public function updateData($id)
         {
-               return $this->db->update(TBL_BELANJA_WAJIB, $_POST, array('id' => $id));
+               return $this->db->update(TBL_POTONGAN_SPM, $_POST, array('id' => $id));
 
         }
 
@@ -123,7 +123,7 @@ class belanja_wajib_model extends CI_Model {
         public function allData()
         {
                 $this->db->select('*');
-                $this->db->from(TBL_BELANJA_WAJIB);
+                $this->db->from(TBL_POTONGAN_SPM);
 
                 $query = $this->db->get();
 
@@ -132,7 +132,7 @@ class belanja_wajib_model extends CI_Model {
 
         public function save($data)
         {
-                if(!$this->db->insert(TBL_BELANJA_WAJIB,$data))
+                if(!$this->db->insert(TBL_POTONGAN_SPM,$data))
                 {
                         // echo $error = $this->db->error();die();
                         return false;
@@ -143,13 +143,13 @@ class belanja_wajib_model extends CI_Model {
         public function delete($data)
         {
                 $this->db->select("*");
-                $this->db->from(TBL_BELANJA_WAJIB);
+                $this->db->from(TBL_POTONGAN_SPM);
                 $this->db->where($data);
                 $query = $this->db->get();
 
                 $row = $query->row();
-                // echo "hapus ".$this->db->delete(TBL_BELANJA_WAJIB, array('id' => $row->id));
-                if ($this->db->delete(TBL_BELANJA_WAJIB, array('id' => $row->id))) {
+                // echo "hapus ".$this->db->delete(TBL_POTONGAN_SPM, array('id' => $row->id));
+                if ($this->db->delete(TBL_POTONGAN_SPM, array('id' => $row->id))) {
                         echo "1";
                 }
                 else {

@@ -1,11 +1,11 @@
 <!-- Main Content -->
    <section class="content">
-		<h2>Parameter<small> Wajib dan Mengikat</small></h2>  
+		<h2>Parameter<small> Potongan spm</small></h2>  
 			<div class="body">
 				<ol class="breadcrumb breadcrumb-col-cyan">
 					<li><a href="<?= site_url('dashboard');?>"><i class="material-icons">home</i> Home</a></li>
 					<li><a href="<?= site_url('parameter');?>"> Parameter</a></li>
-					<li><a href="<?= site_url('parameter/belanja-wajib');?>"> Belanja Wajib</a></li>
+					<li><a href="<?= site_url('parameter/potongan-spm');?>"> Potongan spm</a></li>
 					<li class="active"> Urusan</li>
 				</ol>
 			</div>
@@ -14,7 +14,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header bg-light-green">
-						      <h2>Belanja-wajib-dan-mengikat<small>Data Urusan</small></h2>
+						      <h2>potongan-spm-rekening<small>Data Urusan</small></h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -32,7 +32,7 @@
                                     <div class="wizard">
                                         <div class="steps-index-container">
                                             <ul class="steps">
-                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/belanja-wajib-dan-mengikat")?>')">
+                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/potongan-spm-rekening")?>')">
                                                     <span class="step-index">
                                                         <span class="label">1</span>
                                                     </span>
@@ -40,7 +40,7 @@
                                                     <span class="wiz-icon-chevron-right colorA"></span>
                                                     <span class="wiz-icon-chevron-right colorB"></span>
                                                 </li>
-                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/belanja-wajib-dan-mengikat/kelompok/{$this->session->userdata('Kd_Rek_1')}")?>')">
+                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/potongan-spm-rekening/kelompok/{$this->session->userdata('Kd_Rek_1')}")?>')">
                                                     <span class="step-index">
                                                         <span class="label">2</span>
                                                     </span>
@@ -48,7 +48,7 @@
                                                     <span class="wiz-icon-chevron-right colorA"></span>
                                                     <span class="wiz-icon-chevron-right colorB"></span>
                                                 </li>
-                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/belanja-wajib-dan-mengikat/jenis/{$this->session->userdata('Kd_Rek_2')}")?>')">
+                                                <li class="completed pointer" onclick="href('<?=site_url("parameter/potongan-spm-rekening/jenis/{$this->session->userdata('Kd_Rek_2')}")?>')">
                                                     <span class="step-index">
                                                         <span class="label">3</span>
                                                     </span>
@@ -95,7 +95,7 @@
                                                             <td style="text-align:center;"><?= $list->Kd_Rek_3;?></td>
                                                             <td style="text-align:center;"><?= $list->Kd_Rek_4;?></td>
                                                             <td>
-                                                                <a href="<?= site_url('parameter/belanja-wajib-dan-mengikat/rincian/'.$list->Kd_Rek_4);?>">
+                                                                <a href="<?= site_url('parameter/potongan-spm-rekening/rincian/'.$list->Kd_Rek_4);?>">
                                                                 <?= $list->Nm_Rek_4;?>
                                                                 </a>
                                                             </td>

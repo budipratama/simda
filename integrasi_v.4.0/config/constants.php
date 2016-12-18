@@ -51,6 +51,7 @@ define('TBL_CONFIG_REK_4',							'Ms_Rek_4');
 define('TBL_CONFIG_REK_5',							'Ms_Rek_5');
 define('TBL_KOROLARI',								'Ms_Korolari');
 define('TBL_BELANJA_WAJIB',							'ms_belanja_wajib');
+define('TBL_POTONGAN_SPM',							'ms_pot_spm_rek');
 define('TBL_AKRUAL',								'Ms_Akrual_Rek');
 define('TBL_MS_AKRUAL5',							'Ms_Akrual_5');
 define('TBL_MS_AKRUAL_1',							'Ms_Akrual_1');

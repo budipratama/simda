@@ -1,6 +1,6 @@
 <!-- Main Content -->
 <?php
-	$browse 	= $this->potongan_spm_model->allData();
+	$browse = $this->potongan_spm_model->allData();
 	// print_r($browse);
 	// exit;
 ?>
@@ -30,8 +30,7 @@
             <!-- Multiple Items To Be Open -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                	
-                    <div class="card">
+                	<div class="card">
 	                    <div class="header bg-light-green">
 						    <h2>Unit Potongan spm<small>Data Urusan</small></h2>
 	                        <ul class="header-dropdown m-r--5">
@@ -121,9 +120,8 @@
 					                    </div>
 						                <div class="row">
 					                    	<div class="col-md-12">
-												
-												<?= ($enable_readonly == true)?'<button type="button" class="btn btn-primary" id="Belanja_tambah">Tambah</button>':'<button type="button" class="btn btn-primary" id="Belanja_simpan">Simpan</button>'?>
-												<!-- <button type="submit" class="btn btn-primary" id="Belanja_simpan">Simpan</button> -->
+												<?= ($enable_readonly == true)?'<button type="button" class="btn btn-primary" id="Potongan_tambah">Tambah</button>':'<button type="button" class="btn btn-primary" id="Potongan_simpan">Simpan</button>'?>
+												<!-- <button type="submit" class="btn btn-primary" id="Potongan_simpan">Simpan</button> -->
 												<button type="button" class="btn btn-danger" id="cancel">Cancel</button>
 					                    	</div>
 							        	</div>
@@ -138,21 +136,21 @@
     </section>
     <?php
     	// echo '<script type="text/javascript">';
-    	// echo 'var cancel = document.getElementById("cancel");cancel.addEventListener("click",function(){window.location.href=\''.base_url('parameter/Belanja/destroy').'\'});';
+    	// echo 'var cancel = document.getElementById("cancel");cancel.addEventListener("click",function(){window.location.href=\''.base_url('parameter/Potongan/destroy').'\'});';
     	// echo '</script>';
     	$cancel = base_url('parameter/potongan_spm/destroy');
     	$urlAjax  		= base_url('parameter/potongan_spm/ajax');
     	$this->registerJS("
-
-	    	var d 			= document,
-	    		f 			= d.forms['form-potongan-spm'],
-	    		input 		= f.getElementsByTagName('input'),
-	    		tempData 	= {},
-	    		form 		= d.getElementById('potongan-spm-rekening'),
-	    		ajaxKAR 	= form.getElementsByTagName('input'),
-	    		pesan_error = d.getElementById('error_pesan'),
-	    		simpan 		= d.getElementById('Belanja_simpan');
+	    var d 			= document,
+    		f 			= d.forms['form-potongan-spm'],
+    		input 		= f.getElementsByTagName('input'),
+    		tempData 	= {},
+    		form 		= d.getElementById('potongan-spm-rekening'),
+    		ajaxKAR 	= form.getElementsByTagName('input'),
+    		pesan_error = d.getElementById('error_pesan'),
+    		simpan 		= d.getElementById('Potongan_simpan');
 	    	// console.log(input);
+
 	    	// event only number inputan
 	    	for(var i=0,fLen = input.length;i<fLen;i++){
 				  c = input[i];
