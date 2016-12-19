@@ -35,7 +35,7 @@ class standart_harga extends CI_Controller {
 				}
 
 				if ($data['flag']=='update') {
-					// print_r($data);
+
 					$id = $data['id'];
 					array_shift($data);// hapus param flag
 					array_shift($data);// hapus param id
@@ -87,12 +87,43 @@ class standart_harga extends CI_Controller {
 			$where = "Kd_1 = {$_POST['Kd_1']} AND Kd_2 = {$_POST['Kd_2']}" ;
 			$data = $this->standart_harga_model->getMaxId($_POST['field'],$_POST['table'],$where);
 		}
-		
-		// die();
 
-		// print_r($data);
+		if ($_POST['kd'] == 4) {
+			$data = $this->standart_harga_model->getMaxId($_POST['field'],$_POST['table']);
+		}
+		
 		echo json_encode(['id' =>$data->id]);
 	}
+
+	public function standart_satuan(){
+		if ($_POST) {
+			// print_r($_POST);
+			if ($_POST['flag']=='new') {
+				$data = $_POST;
+				array_shift($data);// hapus param flag
+				if($this->standart_harga_model->add_satuan($data)){
+					echo json_encode(['status'=>1,'id'=>$this->db->insert_id()]);
+				}
+				else
+					echo json_encode(['status'=>0]);
+			}
+			if ($_POST['flag']=='update') {
+				$data = $_POST;
+				$id = $_POST['id'];
+				array_shift($data);// hapus param flag
+				array_shift($data);// hapus param id
+
+				if ($this->standart_harga_model->update_satuan($id,$data)) {
+					echo json_encode(['status'=>1]);
+				}
+				else{
+					echo json_encode(['status'=>0]);
+				}
+				exit;
+			}
+		}
+	}
+
 	public function kd_2($id,$kd){
 		// echo $id;
 		$admin_log 	= $this->auth->is_login_admin();
@@ -107,7 +138,7 @@ class standart_harga extends CI_Controller {
 					array_shift($data);// hapus param flag
 					
 					if ($this->standart_harga_model->save_tbl_2($data)) {
-						echo json_encode(['status'=>1]);
+						echo json_encode(['status'=>1,'id'=>$this->db->insert_id()]);
 					}
 					else{
 						echo json_encode(['status'=>0]);
@@ -136,11 +167,14 @@ class standart_harga extends CI_Controller {
 			$enable_readonly = true;
 			$this->standart_harga_model->Kd_1 = $id;
 			$databTable1 		= $this->standart_harga_model->dataTableKode2();
+			$where 				= "Kd_1 = $id"; 
+			$detailData 		= $this->standart_harga_model->dataDetail(TBL_MS_STANDART_HARGA_1,$where);
 
 			$container['sidebar']['view']						= 'admin/sidebar';
 			$container['sidebar']['dataset']['aktive_menu'] 	= 60;
 			$container['content']['view']						= 'parameter/standart_harga/kd_2';
 			$container['content']['dataset']['table1']			= $databTable1;
+			$container['content']['dataset']['uraian']			= $detailData;
 			$container['content']['dataset']['Kd_1']			= $id;
 			$container['content']['dataset']['enable_readonly']	= $enable_readonly;
 			$header['admin_log']								= $admin_log;
@@ -167,7 +201,7 @@ class standart_harga extends CI_Controller {
 					array_shift($data);// hapus param flag
 					// die();
 					if ($this->standart_harga_model->save_tbl_3($data)) {
-						echo json_encode(['status'=>1]);
+						echo json_encode(['status'=>1,'id'=>$this->db->insert_id()]);
 					}
 					else{
 						echo json_encode(['status'=>0]);
@@ -177,12 +211,13 @@ class standart_harga extends CI_Controller {
 
 				if ($data['flag']=='update') {
 					// print_r($data);
-					$Kd_2 = $data['id'];
+					// die();
+					$id = $data['id'];
 					array_shift($data);// hapus param flag
 					array_shift($data);// hapus param id
 					// print_r($data);
 
-					if ($this->standart_harga_model->updateData_table_2($id,$Kd_2,$data)) {
+					if ($this->standart_harga_model->updateData_table_3($id,$data)) {
 						echo json_encode(['status'=>1]);
 					}
 					else{
@@ -197,11 +232,21 @@ class standart_harga extends CI_Controller {
 			$this->standart_harga_model->Kd_1 = $Kd_1;
 			$this->standart_harga_model->Kd_2 = $Kd_2;
 			$databTable1 		= $this->standart_harga_model->dataTableKode3();
+			$databTable2 		= $this->standart_harga_model->dataTableSatuan();
+			// print_r($databTable2);die();
 			$databTableSatuan 	= $this->standart_harga_model->getData();
+			$where 				= "Kd_1 = $Kd_1";
+			$detailData 		= $this->standart_harga_model->dataDetail(TBL_MS_STANDART_HARGA_1,$where);
+			$where 				= "Kd_1 = $Kd_1 AND Kd_2 = $Kd_2";
+			$detailData2 		= $this->standart_harga_model->dataDetail(TBL_MS_STANDART_HARGA_2,$where);
+
 			$container['sidebar']['view']							= 'admin/sidebar';
 			$container['sidebar']['dataset']['aktive_menu'] 		= 60;
 			$container['content']['view']							= 'parameter/standart_harga/kd_3';
 			$container['content']['dataset']['table1']				= $databTable1;
+			$container['content']['dataset']['table2']				= $databTable2;
+			$container['content']['dataset']['uraian']				= $detailData;
+			$container['content']['dataset']['uraian2']				= $detailData2;
 			$container['content']['dataset']['Kd_1']				= $Kd_1;
 			$container['content']['dataset']['Kd_2']				= $Kd_2;
 			$container['content']['dataset']['databTableSatuan']	= $databTableSatuan;
@@ -350,7 +395,7 @@ class standart_harga extends CI_Controller {
 	}
 
 
-	public function get_Data_Table_Json_kd_3($id){
+	public function get_Data_Table_Json_kd_3($Kd_1,$Kd_2){
 		$CI 					= & get_instance();
 		$CI->load->database();
 		$this->load->library('SSP');
@@ -390,7 +435,7 @@ class standart_harga extends CI_Controller {
 		* server-side, there is no need to edit below this line.
 		*/
 
-		$where = "Kd_1 = $id";
+		$where = "Kd_1 = $Kd_1 AND Kd_2 = $Kd_2";
 
 		echo json_encode(
 			SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns,$where)
@@ -411,6 +456,49 @@ class standart_harga extends CI_Controller {
 		else
 			$this->session->set_flashdata('success', NOTIF_SUCCESS_DELETE);
 		
+	}
+
+	public function hapus2()
+	{
+		$error = $this->standart_harga_model->delete2($_POST);
+		
+		if ($error != '1')
+			$this->session->set_flashdata('errors', NOTIF_FAILED_DELETE);
+		else
+			$this->session->set_flashdata('success', NOTIF_SUCCESS_DELETE);
+		
+	}
+
+	public function hapus3()
+	{
+		$error = $this->standart_harga_model->delete3($_POST);
+		// echo $this->db->last_query();
+		if ($error != '1')
+			$this->session->set_flashdata('errors', NOTIF_FAILED_DELETE);
+		else
+			$this->session->set_flashdata('success', NOTIF_SUCCESS_DELETE);
+		
+	}
+
+	public function hapus4()
+	{
+		$error = $this->standart_harga_model->delete4($_POST);
+		// echo $this->db->last_query();
+		if ($error != '1')
+			$this->session->set_flashdata('errors', NOTIF_FAILED_DELETE);
+		else
+			$this->session->set_flashdata('success', NOTIF_SUCCESS_DELETE);
+		
+	}
+
+	public function select_option()
+	{
+		$c = $this->standart_harga_model->select_optoin();
+		$data = "<option value='0'>Pilih Satuan</option>";
+		foreach ($c as $key => $value) {
+			$data .= "<option value='{$value->ID_Satuan}'>{$value->Uraian}</option>";
+		}
+		echo json_encode(['option'=>$data]);
 	}
 
 	

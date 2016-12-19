@@ -23,11 +23,11 @@ var ComponentsFormTools = function () {
         if (Metronic.isRTL()) {
           $('#typeahead_example_1').attr("dir", "rtl");  
         }
-        $('#typeahead_example_1').typeahead(null, {
+        /*$('#typeahead_example_1').typeahead(null, {
           displayKey: 'num',
           hint: (Metronic.isRTL() ? false : true),
           source: numbers.ttAdapter()
-        });
+        });*/
 
         // Example #2
         var countries = new Bloodhound({

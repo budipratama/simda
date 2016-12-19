@@ -10,6 +10,12 @@
 					<li class="active"> Urusan</li>
 				</ol>
 			</div>
+			<?php if($this->session->flashdata('errors')) : ?>
+			    <div class="alert alert-danger">
+			        <button type="button" class="close" data-dismiss="alert">&times;</button>
+			        <?php echo $this->session->flashdata('errors'); ?>
+			    </div>
+			<?php endif; ?>
             <!-- Multiple Items To Be Open -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -95,7 +101,12 @@
 										        <div><?= NOTIF_UNIQUE_INPUT?></div>
 										    </div>
                                           <form id="form-standart-harga" name="form-standart-harga" method="POST" action="<?=site_url("parameter/standart-harga/")?>">
-		                                	
+		                                	<div class="row">
+											      <div class="col-md-12">
+											      	<label for="usr">Kode 1 : <?=$uraian->Uraian?></label>
+											      </div>
+						                    </div>
+
 		                                	<div class="row">
 											      <div class="col-md-12">
 											      	<label for="usr">ID :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -113,7 +124,6 @@
 													<button type="button" class="btn btn-primary" id="Standart_harga_tambah">Tambah</button>
 													<button type="button" class="btn btn-success" id="ubah">Ubah</button>
 													<button type="button" class="btn btn-info" id="hapus">Hapus</button>
-													<button type="button" class="btn btn-warning" id="cetak">Cetak</button>
 													<button type="button" class="btn btn-danger" id="cancel" style="display: none">Cancel</button>
 						                    	</div>
 								        	</div>
@@ -133,7 +143,9 @@
     	$urlDataTbl1  			= base_url('parameter/standart-harga/get-data-table-json-kd-2')."/".$Kd_1;
     	$urlHome  				= base_url('parameter/standart-harga/Kd-2');
     	$urlMain  				= base_url('parameter/standart-harga/');
+    	$urlHapus  				= base_url('parameter/standart-harga/hapus2');
     	$table 					= TBL_MS_STANDART_HARGA_2;
+    	$idTable 				= $table1[0]->id;
     	// echo $Kd_1;die();
     	$this->registerJS("
     		var d 				= document,
@@ -150,11 +162,11 @@
     			input 			= f.getElementsByTagName('input'),
     			cancel  		= d.getElementById('cancel'),
     			ubah  			= d.getElementById('ubah'),
-    			cetak  			= d.getElementById('cetak'),
     			hapus  			= d.getElementById('hapus'),
     			DELAY 			= 700,
 			    clicks 			= 0,
 			    timer 			= null,
+			    idTable         = '$idTable',
     			tambah  		= d.getElementById('Standart_harga_tambah');
 
     		dataField();
@@ -181,7 +193,6 @@
     			cancel.style.display 		= '';
     			this.style.display 			= 'none';
     			ubah.style.display 			= 'none';
-    			cetak.style.display 		= 'none';
     			hapus.style.display 		= 'none';
     			disableAll(false);
     		});
@@ -194,14 +205,12 @@
     			simpan.style.display 	= 'none';
     			this.style.display 		= 'none';
     			ubah.style.display 		= '';
-    			cetak.style.display 	= '';
     			hapus.style.display 	= '';
     		});
 
     		ubah.addEventListener('click',function(){
     			this.style.display  	= 'none';
     			hapus.style.display 	= 'none';
-    			cetak.style.display 	= 'none';
     			tambah.style.display 	= 'none'; 
     			simpan.style.display    = '';
     			disableAll(false);
@@ -239,7 +248,6 @@
 			    			simpan.style.display 	= 'none';
 			    			cancel.style.display 		= 'none';
 			    			ubah.style.display 		= '';
-			    			cetak.style.display 	= '';
 			    			hapus.style.display 	= '';
 			    			simpan.removeEventListener('click',actionUpdate);
 			    			simpan.addEventListener('click',actionSimpan);
@@ -270,13 +278,12 @@
     					if (balikan.status==1) {
     						pesan_sukses.style.display='';
     						setTimeout(refreshTable,10);
-    						
+    						idTable = balikan.id;
     						disableAll(true);
 			    			tambah.style.display 	= '';
 			    			simpan.style.display 	= 'none';
 			    			cancel.style.display 		= 'none';
 			    			ubah.style.display 		= '';
-			    			cetak.style.display 	= '';
 			    			hapus.style.display 	= '';
 
     					}
@@ -379,10 +386,11 @@
 						        // 	console.log(data[i])
 						        // 	// input[i].value = data[i];
 						        // }
-						        input[0].value = data[2];
-						        input[1].value = data[3];
+						        idTable 		= data[0];
+						        input[0].value 	= data[2];
+						        input[1].value 	= data[3];
 				                clicks = 0;  //after action performed, reset counter
-
+				                dataField();
 				            }, DELAY);
 
 				        } else {
@@ -402,7 +410,7 @@
 				    //  });
 				    
 		        });
-	        },500);
+	        },1000);
 	        // setInterval(function(){
 	        // 	table = $('.jDtable').DataTable();
 	        // 	table.ajax.reload();
@@ -413,7 +421,7 @@
 			    if (r == true) {
 		    		var http = new XMLHttpRequest();
 					var url = '$urlHapus';
-					var params = serialize(f);
+					var params = 'id='+idTable;
 					http.open('POST', url, true);
 
 					http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -421,10 +429,10 @@
 					http.onreadystatechange = function() {
 					    if(http.readyState == 4 && http.status == 200) {
 					        if (http.responseText == 1) {
-					        	window.location.href = '$urlHome';
+					        	window.location.href = '$urlHome/$Kd_1';
 					        }
 					        else{
-					        	window.location.href = '$urlHome';
+					        	window.location.href = '$urlHome/$Kd_1';
 					        }
 					    }
 					}

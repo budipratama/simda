@@ -1,4 +1,4 @@
-var FormValidation = function () {
+/*var FormValidation = function () {
 
     // basic validation
     var handleValidation1 = function() {
@@ -339,3 +339,4 @@ var FormValidation = function () {
     };
 
 }();
+*/

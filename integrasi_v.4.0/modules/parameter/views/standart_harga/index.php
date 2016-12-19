@@ -14,7 +14,12 @@
 					<li class="active"> Urusan</li>
 				</ol>
 			</div>
-			
+			<?php if($this->session->flashdata('errors')) : ?>
+			    <div class="alert alert-danger">
+			        <button type="button" class="close" data-dismiss="alert">&times;</button>
+			        <?php echo $this->session->flashdata('errors'); ?>
+			    </div>
+			<?php endif; ?>
             <!-- Multiple Items To Be Open -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -136,6 +141,7 @@
     <?php
     	$urlDataTbl1  			= base_url('parameter/standart-harga/get-data-table-json');
     	$urlHome  				= base_url('parameter/standart-harga/');
+    	$urlHapus  				= base_url('parameter/standart-harga/hapus');
     	$table 					= TBL_MS_STANDART_HARGA_1;
     	$this->registerJS("
     		var d 				= document,
@@ -382,7 +388,7 @@
 						        	input[i-1].value = data[i];
 						        }
 				                clicks = 0;  //after action performed, reset counter
-
+				                dataField();	
 				            }, DELAY);
 
 				        } else {
@@ -401,7 +407,7 @@
 				    //  });
 				    
 		        });
-	        },500);
+	        },1000);
 	        
     		// event hapus
     		hapus.addEventListener('click',function(){
@@ -417,9 +423,11 @@
 					http.onreadystatechange = function() {
 					    if(http.readyState == 4 && http.status == 200) {
 					        if (http.responseText == 1) {
+					        	// refreshTable();
 					        	window.location.href = '$urlHome';
 					        }
 					        else{
+					        	// refreshTable();
 					        	window.location.href = '$urlHome';
 					        }
 					    }
