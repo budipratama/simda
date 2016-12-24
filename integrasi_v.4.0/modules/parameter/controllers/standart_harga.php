@@ -266,7 +266,6 @@ class standart_harga extends CI_Controller {
 		$CI->load->database();
 		$this->load->library('SSP');
 
-
 		$table = TBL_MS_STANDART_HARGA_1;
 
 		// Table's primary key

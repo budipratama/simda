@@ -64,6 +64,10 @@ define('TBL_MS_STANDART_HARGA_2',					'Ms_Standart_Harga_2');
 define('TBL_MS_STANDART_HARGA_3',					'Ms_Standart_Harga_3');
 define('TBL_MS_STANDART_SATUAN',					'Ms_Standart_Satuan');
 define('TBL_MS_LRA_REK',							'Ms_LRA_Rek');
+define('TBL_MS_LRA_REK_1',							'Ms_LRA_1');
+define('TBL_MS_LRA_REK_2',							'Ms_LRA_2');
+define('TBL_MS_LRA_REK_3',							'Ms_LRA_3');
+define('TBL_MS_LRA_REK_4',							'Ms_LRA_4');
 
 define('TBL_AKUN',									'akun');
 define('TBL_KELOMPOK',								'kelompok');

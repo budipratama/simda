@@ -4,7 +4,7 @@
 *
 * @author Budi Pratama <irezpratama90@gmail.com>
 */
-// error_reporting(E_ALL);
+error_reporting(E_ALL);
 class Mrs_permendagri_64 extends CI_Controller {
 
 	public function __construct() {
@@ -24,7 +24,7 @@ class Mrs_permendagri_64 extends CI_Controller {
 			$container['content']['dataset']['title'] 		= "Rekening Permendagri 64";
 			$container['content']['dataset']['title_header']= "Rekening Permendagri 64";
 			$container['content']['view']					= 'parameter/Mrs_permendagri_64/akun';
-			$container['data']								= $this->Mapping_rekening_sap_model->get_akun([4,5,6]);
+			$container['data']								= $this->Mapping_rekening_sap_model->get_akun2([1,2,3]);
 			$header['admin_log']							= $admin_log;
 			
 			$this->load->view('admin/head');
@@ -48,7 +48,7 @@ class Mrs_permendagri_64 extends CI_Controller {
 			$container['content']['dataset']['title_header']= "Rekening Permendagri 64";
 			$container['content']['view']					= 'parameter/Mrs_permendagri_64/kelompok';
 			$this->Mapping_rekening_sap_model->Kd_Rek_1 	= $id;
-			$container['data']								= $this->Mapping_rekening_sap_model->get_kelompok();			
+			$container['data']								= $this->Mapping_rekening_sap_model->get_kelompok2();			
 			$header['admin_log']							= $admin_log;
 
 			$this->load->view('admin/head');
@@ -76,7 +76,7 @@ class Mrs_permendagri_64 extends CI_Controller {
 			
 			$this->session->set_userdata($korolari);
 
-			$container['data']								= $this->Mapping_rekening_sap_model->get_jenis();			
+			$container['data']								= $this->Mapping_rekening_sap_model->get_jenis2();			
 			$header['admin_log']							= $admin_log;
 			
 			$this->id_kelompok 								= $id;			
@@ -105,7 +105,7 @@ class Mrs_permendagri_64 extends CI_Controller {
 			$this->Mapping_rekening_sap_model->Kd_Rek_1 	= $this->session->userdata('Mrs_Permen_64_Kd_Rek_1');
 			$this->Mapping_rekening_sap_model->Kd_Rek_2 	= $this->session->userdata('Mrs_Permen_64_Kd_Rek_2');
 			$this->Mapping_rekening_sap_model->Kd_Rek_3 	= $id;
-			$container['data']								= $this->Mapping_rekening_sap_model->get_obyek();			
+			$container['data']								= $this->Mapping_rekening_sap_model->get_obyek2();			
 			$header['admin_log']							= $admin_log;
 
 			$this->load->view('admin/head');

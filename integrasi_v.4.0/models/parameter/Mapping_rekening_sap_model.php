@@ -4,7 +4,7 @@
 * @author Budi Pratama <irezpratama90@gmail.com>
 *
 */
-// error_reporting(E_ALL);
+error_reporting(E_ALL);
 class Mapping_rekening_sap_model extends CI_Model {
 
         public $Kd_Rek_1;
@@ -54,7 +54,7 @@ class Mapping_rekening_sap_model extends CI_Model {
         public function getDetailRek4LRA($Kd_Rek_1,$Kd_Rek_2,$Kd_Rek_3,$Kd_Rek_4)
         {
                 $this->db->select('*');
-                $this->db->from(TBL_CONFIG_REK_4);
+                $this->db->from(TBL_MS_LRA_REK_4);
                 $this->db->where('Kd_Rek_1', $Kd_Rek_1);
                 $this->db->where('Kd_Rek_2', $Kd_Rek_2);
                 $this->db->where('Kd_Rek_3', $Kd_Rek_3);
@@ -75,10 +75,34 @@ class Mapping_rekening_sap_model extends CI_Model {
                 return $query->result();
         }
 
+        public function get_akun2($where)
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_MS_LRA_REK_1);
+                $this->db->where_in('Kd_Rek_1',$where);
+                $query = $this->db->get();
+       
+                return $query->result();
+        }
+
         public function get_kelompok()
         {
                 $this->db->select('*');
                 $this->db->from(TBL_CONFIG_REK_2);
+                if ($this->Kd_Rek_1 == 5) {
+                        $this->db->where('Kd_Rek_2',2);
+                }
+                $this->db->where('Kd_Rek_1', $this->Kd_Rek_1);
+
+                $query = $this->db->get();
+
+                return $query->result(); 
+        }
+
+        public function get_kelompok2()
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_MS_LRA_REK_2);
                 if ($this->Kd_Rek_1 == 5) {
                         $this->db->where('Kd_Rek_2',2);
                 }
@@ -105,10 +129,39 @@ class Mapping_rekening_sap_model extends CI_Model {
                 return $query->result();
         }
 
+        public function get_jenis2()
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_MS_LRA_REK_3);
+                $this->db->where('Kd_Rek_1', $this->Kd_Rek_1);
+                $this->db->where('Kd_Rek_2', $this->Kd_Rek_2);
+
+                if ($this->Kd_Rek_1 == 5) {
+                        $this->db->where('Kd_Rek_3',3);
+                }
+
+                $query = $this->db->get();
+                // echo $this->db->last_query();
+                return $query->result();
+        }
+
         public function get_obyek()
         {
                 $this->db->select('*');
                 $this->db->from(TBL_CONFIG_REK_4);
+                $this->db->where('Kd_Rek_1', $this->Kd_Rek_1);
+                $this->db->where('Kd_Rek_2', $this->Kd_Rek_2);
+                $this->db->where('Kd_Rek_3', $this->Kd_Rek_3);
+
+                $query = $this->db->get();
+
+                return $query->result(); 
+        }
+
+        public function get_obyek2()
+        {
+                $this->db->select('*');
+                $this->db->from(TBL_MS_LRA_REK_4);
                 $this->db->where('Kd_Rek_1', $this->Kd_Rek_1);
                 $this->db->where('Kd_Rek_2', $this->Kd_Rek_2);
                 $this->db->where('Kd_Rek_3', $this->Kd_Rek_3);

@@ -5,7 +5,7 @@
 *
 *
 */
-// error_reporting(E_ALL);
+error_reporting(E_ALL);
 class Mapping_rekening_sap extends CI_Controller {
 	
 	public function __construct()
@@ -28,7 +28,7 @@ class Mapping_rekening_sap extends CI_Controller {
 			$row 		= $this->Mapping_rekening_sap_model->showData();
 			$rowAll 	= $this->Mapping_rekening_sap_model->allData();
 			$detailKAR 	= $this->Mapping_rekening_sap_model->getDetailRek4($row->Kd_Rek_1,$row->Kd_Rek_2,$row->Kd_Rek_3,$row->Kd_Rek_4);
-			$detailKRD 	= $this->Mapping_rekening_sap_model->getDetailRek4($row->Kd_LRA_1,$row->Kd_LRA_2,$row->Kd_LRA_3,$row->Kd_LRA_4);
+			$detailKRD 	= $this->Mapping_rekening_sap_model->getDetailRek4LRA($row->Kd_LRA_1,$row->Kd_LRA_2,$row->Kd_LRA_3,$row->Kd_LRA_4);
 			// print_r($detailKAR);die();
 			$container['sidebar']['view']						= 'admin/sidebar';
 			$container['sidebar']['dataset']['aktive_menu'] 	= 60;
@@ -66,7 +66,8 @@ class Mapping_rekening_sap extends CI_Controller {
 			// session korolari rekening debit
 			if ($this->session->userdata('Mrs_Permen_64_Kd_Rek_4')!='') 
 			{
-				$detail_data_debit = $this->Mapping_rekening_sap_model->getDetailRek4($this->session->userdata('Mrs_Permen_64_Kd_Rek_1'),$this->session->userdata('Mrs_Permen_64_Kd_Rek_2'),$this->session->userdata('Mrs_Permen_64_Kd_Rek_3'),$this->session->userdata('Mrs_Permen_64_Kd_Rek_4'));
+				$detail_data_debit = $this->Mapping_rekening_sap_model->getDetailRek4LRA($this->session->userdata('Mrs_Permen_64_Kd_Rek_1'),$this->session->userdata('Mrs_Permen_64_Kd_Rek_2'),$this->session->userdata('Mrs_Permen_64_Kd_Rek_3'),$this->session->userdata('Mrs_Permen_64_Kd_Rek_4'));
+				
 				$container['content']['dataset']['debit'] = $detail_data_debit;
 				$enable_readonly = false;
 			}

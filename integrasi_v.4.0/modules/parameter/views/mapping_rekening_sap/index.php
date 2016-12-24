@@ -136,17 +136,17 @@
 						                    		<input type="text" class="form-control" value="<?=$this->session->userdata('KRD_Kd_Rek_4_debit')!=''?$this->session->userdata('KRD_Kd_Rek_4_debit'):$data->Kd_LRA_4?>" id="Kd_LRA_4" name="Kd_LRA_4">
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<a class="link-search" href="<?=base_url('parameter/Mrs_permendagri-64')?>">
+						                    		<a class="link-search" href="<?=base_url('parameter/Mrs-permendagri-64')?>">
 						                    			<img src="<?= base_url('public/templates/integrasi_v.4.0/images/search.png')?>" widht="24" height="24" class="icon-search"/>
 						                    		</a>
 						                    	</div>
 						                    </div>
 					                    </div>
-					                  		<div class="row">
-						                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_debit_Nm_Rek_5">
-						                    		<?= $KRD->Nm_Rek_4;?>
-						                    	</div>
-						                    </div>
+				                  		<div class="row">
+					                    	<div class="col-md-12 Nm_Rek_5" id="Korolari_rekening_debit_Nm_Rek_5">
+					                    		<?= $KRD->Nm_Rek_4;?>
+					                    	</div>
+					                    </div>
 						                
 					                  		
 					                    <div class="row">
