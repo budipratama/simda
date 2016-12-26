@@ -68,6 +68,7 @@ define('TBL_MS_LRA_REK_1',							'Ms_LRA_1');
 define('TBL_MS_LRA_REK_2',							'Ms_LRA_2');
 define('TBL_MS_LRA_REK_3',							'Ms_LRA_3');
 define('TBL_MS_LRA_REK_4',							'Ms_LRA_4');
+define('TBL_PRIORITAS',								'Ts_Prioritas');
 
 define('TBL_AKUN',									'akun');
 define('TBL_KELOMPOK',								'kelompok');
