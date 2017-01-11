@@ -138,13 +138,15 @@ Main Content -->
             <!-- #END# Tabs With Custom Animations -->
     </section>
     <?php
+    	$url = base_url(uri_string());
+		$id = substr($url, strrpos($url, '/') + 1);
     	$urlUpdate  			= base_url('parameter/belanja_wajib/update');
-    	$urlUpdateData  		= base_url("parameter/belanja_wajib/updateData/{$row->id}");
+    	$urlUpdateData  		= base_url("parameter/belanja_wajib/updateData/{$id}");
     	$urlSave  				= base_url('parameter/belanja_wajib/save');
     	$urlHapus  				= base_url('parameter/belanja_wajib/hapus');
     	$urlAjax  				= base_url('parameter/belanja_wajib/ajax');
     	$urlBelanja				= base_url('parameter/belanja_wajib');
-    	$urlUpdateAjax  		= base_url("parameter/belanja_wajib/ajaxUpdate/{$row->id}");
+    	$urlUpdateAjax  		= base_url("parameter/belanja_wajib/ajaxUpdate/{$id}");
     	$urlUpdateAjaxCancel  	= base_url("parameter/belanja_wajib/ajaxUpdate/0");
 
     	$this->registerJS("
@@ -300,6 +302,7 @@ Main Content -->
 				ajaxGET(url,function(cb){
 					// alert(cb);
 				});
+				disableSearch();
 	    	});
 
 	    	// ajax GET

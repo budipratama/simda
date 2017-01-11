@@ -35,8 +35,7 @@ class belanja_wajib_model extends CI_Model {
 
         public function updateData($id)
         {
-               return $this->db->update(TBL_BELANJA_WAJIB, $_POST, array('id' => $id));
-
+            return $this->db->update(TBL_BELANJA_WAJIB, $_POST, array('id' => $id));
         }
 
         public function getDetailRek5($Kd_Rek_1,$Kd_Rek_2,$Kd_Rek_3,$Kd_Rek_4,$Kd_Rek_5)

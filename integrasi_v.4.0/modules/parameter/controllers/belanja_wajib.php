@@ -183,7 +183,14 @@ class belanja_wajib extends CI_Controller {
 	}
 
 	public function updateData($id){
-        $result = $this->belanja_wajib_model->updateData($id);
+		// echo "asdf";
+		// echo $id;
+		if (!is_numeric($id)) {
+			$this->session->set_flashdata('errors', "Anda belum memilih uraian belanja wajib");
+			@ redirect('parameter/belanja-wajib');
+		}
+		
+		$result = $this->belanja_wajib_model->updateData($id);
 
         if ($result == '1') {
         	$this->session->set_flashdata('success', NOTIF_UPDATE_SUCCESS);
