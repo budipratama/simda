@@ -1,9 +1,6 @@
 Main Content -->
 <?php
 	$this->load->model('parameter/belanja_wajib_model');
-	// print "<pre>";
-	// print_r($browse);
-	// exit;
 ?>
    <section class="content">
 		<h2>Parameter<small> belanja wajib</small></h2>  
@@ -138,8 +135,20 @@ Main Content -->
             <!-- #END# Tabs With Custom Animations -->
     </section>
     <?php
-    	$url = base_url(uri_string());
-		$id = substr($url, strrpos($url, '/') + 1);
+    	// untuk update
+    	foreach ($browse as $row) {
+			$asd[] = $row->id;
+		}
+		asort($asd);
+		$url = base_url(uri_string());
+		$cek = substr($url, strrpos($url, '/') + 1);
+		if (!is_numeric($cek)) {
+			$id = end($asd);
+		}
+		else {
+			$id = substr($url, strrpos($url, '/') + 1);
+		}
+		
     	$urlUpdate  			= base_url('parameter/belanja_wajib/update');
     	$urlUpdateData  		= base_url("parameter/belanja_wajib/updateData/{$id}");
     	$urlSave  				= base_url('parameter/belanja_wajib/save');

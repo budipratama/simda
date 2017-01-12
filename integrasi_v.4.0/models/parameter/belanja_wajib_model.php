@@ -131,12 +131,33 @@ class belanja_wajib_model extends CI_Model {
 
         public function save($data)
         {
-                if(!$this->db->insert(TBL_BELANJA_WAJIB,$data))
-                {
-                        // echo $error = $this->db->error();die();
-                        return false;
-                }
-                return true;
+            $hasil = $this->checkKode1($data['Kd_Rek_1']);
+            if ($hasil == "failed") {
+                $this->session->set_flashdata('errors', 'Data tidak ditemukan di sistem kami');
+                @ redirect('parameter/belanja-wajib');
+            }
+
+            if(!$this->db->insert(TBL_BELANJA_WAJIB,$data))
+            {
+                // echo $error = $this->db->error();die();
+                return false;
+            }
+            return true;
+        }
+
+        public function checkKode1($kd)
+        {
+            if ($kd == 1) {
+                return "success";
+            }
+            if ($kd == 2) {
+                return "success";
+            }
+            if ($kd == 3) {
+                return "success";
+            }
+            else
+                return "failed";
         }
 
         public function delete($data)
